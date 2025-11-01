@@ -1,6 +1,3 @@
-Com certeza! Baseado em todo o trabalho que fizemos, preparei um arquivo README.md completo para o seu projeto, com as seções em Português, Inglês e Espanhol.
-
-Você pode copiar o texto abaixo e salvar em um arquivo chamado README.md no seu projeto (especialmente se for hospedá-lo no GitHub).
 
 Ferramenta de Sorteio (Kick + Twitch) v2.0
 Uma ferramenta de sorteio front-end, baseada em navegador, projetada para streamers do Kick e da Twitch. Esta é uma versão atualizada e aprimorada (v2.0) do projeto original "kickaway".
