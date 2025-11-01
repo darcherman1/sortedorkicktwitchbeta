@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveaway Tool - for Kick & Twitch</title>
+    <meta name="description" content="A powerful, client-side giveaway tool for Kick.com and Twitch.tv">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-wrapper">
+        <div id="app-container" data-nosnippet>
+            <div id="login-screen" class="screen">
+                <h1 data-lang-key="appTitle">Giveaway Tool</h1>
+                <p data-lang-key="loginSubtitle">Enter the channel(s) for the giveaway. You can connect to one or both.</p>
+                <div class="login-inputs">
+                    <div class="login-group">
+                        <label for="kick-channel-input" data-lang-key="kickChannel">Kick Channel</label>
+                        <input type="text" id="kick-channel-input" placeholder="E.g., xqc">
+                    </div>
+                    <div class="login-group">
+                        <label for="twitch-channel-input" data-lang-key="twitchChannel">Twitch Channel</label>
+                        <input type="text" id="twitch-channel-input" placeholder="E.g., gaules">
+                    </div>
+                </div>
+                <button id="connect-button" data-lang-key="connect">Connect</button>
+                
+                <p class="credits" data-lang-key="credits">Updated version of the kickaway (github) project by darcherman v2.0</p>
+            </div>
+
+            <div id="main-screen" class="screen" style="display: none;">
+                <header>
+                    <div class="channel-info">
+                        <span data-lang-key="connectedTo">Connected to:</span>
+                        <strong id="connected-kick-channel"></strong>
+                        <strong id="connected-twitch-channel"></strong>
+                    </div>
+                    <div id="header-menu-container" class="header-menu-container">
+                        <button id="header-menu-toggle" class="icon-button" aria-label="Settings Menu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82-.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </button>
+                        <div id="header-menu-dropdown" class="header-menu-dropdown">
+                            <div class="language-selector-wrapper">
+                                <label for="language-select" data-lang-key="language">Language</label>
+                                <select id="language-select">
+                                    <option value="en">English</option>
+                                    <option value="pt">Português (BR)</option>
+                                    <option value="es">Español</option>
+                                </select>
+                            </div>
+                            <button id="change-channel-button" class="small-button" data-lang-key="changeChannel">Change Channel</button>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="main-content">
+                    <div class="left-panels">
+                        <div class="settings-panel">
+                            <h2 data-lang-key="settings">Settings</h2>
+                            <label for="keyword-input" data-lang-key="keyword">Keyword (optional):</label>
+                            <input type="text" id="keyword-input" placeholder="">
+                            <div class="checkbox-wrapper">
+                                 <label for="allow-multi-platform-checkbox">
+                                    <input type="checkbox" id="allow-multi-platform-checkbox">
+                                    <span data-lang-key="allowDualEntry">Allow dual entry (Kick + Twitch)</span>
+                                </label>
+                                <button class="tooltip-trigger" data-tooltip-key="allowDualEntryTooltip" aria-label="Help">?</button>
+                            </div>
+                            <div class="checkbox-wrapper">
+                                 <label for="exclude-mods-checkbox">
+                                    <input type="checkbox" id="exclude-mods-checkbox">
+                                    <span data-lang-key="excludeMods">Exclude Moderators</span>
+                                </label>
+                            </div>
+                            <label for="winner-timer-duration-input" data-lang-key="timerDuration">Winner Timer Duration (seconds):</label>
+                            <input type="number" id="winner-timer-duration-input" value="10" min="0">
+                            
+                            <label for="animation-select" data-lang-key="animation">Giveaway Animation:</label>
+                            <select id="animation-select">
+                                <option value="char-scramble" data-lang-key="animScramble">Character Scramble</option>
+                                <option value="none" data-lang-key="animNone">No Animation</option>
+                            </select>
+                        </div>
+                        
+                        <div class="multiplier-settings-panel">
+                            <h2 data-lang-key="multipliers">Luck Multipliers</h2>
+                            <div class="multiplier-grid">
+                                <label data-lang-key="platform">Platform</label><label>Sub</label><label>VIP</label>
+                                <span>Kick</span>
+                                <input type="number" id="kick-sub-multiplier" value="2" min="1">
+                                <input type="number" id="kick-vip-multiplier" value="2" min="1">
+                                <span>Twitch</span>
+                                <input type="number" id="twitch-sub-multiplier" value="2" min="1">
+                                <input type="number" id="twitch-vip-multiplier" value="2" min="1">
+                            </div>
+                        </div>
+
+                        <div class="bot-settings-panel">
+                            <h2 data-lang-key="botSettings">Bot Settings</h2>
+                            <label for="twitch-bot-username-input" data-lang-key="botUsername">Twitch Bot Username</label>
+                            <input type="text" id="twitch-bot-username-input" placeholder-lang-key="botUsernamePlaceholder">
+                            
+                            <div class="label-wrapper">
+                                <label for="twitch-bot-oauth-input" data-lang-key="botToken">Twitch Bot OAuth Token</label>
+                                <button class="tooltip-trigger" data-tooltip-key="botTokenTooltip" aria-label="Help">?</button>
+                            </div>
+                            <input type="password" id="twitch-bot-oauth-input" placeholder="oauth:xxxxxxxx">
+                            
+                            <div class="label-wrapper">
+                                <label for="announcement-message-input" data-lang-key="announceMessage">Announcement Message ({winner}, {platform})</label>
+                                <button class="tooltip-trigger" data-tooltip-key="announceMessageTooltip" aria-label="Help">?</button>
+                            </div>
+                            <textarea id="announcement-message-input" rows="3"></textarea>
+                            <button id="save-settings-button" data-lang-key="saveSettings">Save All Settings</button>
+                        </div>
+                        <p id="status-message" class="status-waiting" data-lang-key="statusWaiting">Press "Start" to connect to chat(s).</p>
+                        <button id="start-giveaway-button" data-lang-key="startGiveaway">Start Giveaway</button>
+                    </div>
+
+                    <div class="giveaway-panel">
+                        <h2 data-lang-key="participants">Participants (<span id="participant-count">0</span>)</h2>
+                        <ul id="participant-list"></ul>
+                        <div class="action-buttons">
+                            <button id="draw-button" disabled data-lang-key="drawWinner">Draw Winner</button>
+                            <button id="reset-button" data-lang-key="reset">Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="winners-panel">
+                        <h2 data-lang-key="winners">Winners (<span id="winners-count">0</span>)</h2>
+                        <ul id="winners-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="multi-winner-modal-container"></div>
+        <div id="modal-template" style="display: none;">
+            <div class="modal-instance">
+                <div class="modal-content">
+                    <p class="winner-title-text" data-lang-key="drawing">Drawing...</p>
+                    <div id="modal-timer-display">00:10</div>
+                    <div class="winner-animation-box"></div>
+                    <div class="modal-button-container">
+                        <button class="modal-confirm-button small-button" data-lang-key="ok">OK</button>
+                        <button class="modal-draw-again-button small-button" data-lang-key="drawAgain">Draw Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="tooltip-popup-container" class="tooltip-popup" style="opacity: 0; visibility: hidden;"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/tmi.js/dist/tmi.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
