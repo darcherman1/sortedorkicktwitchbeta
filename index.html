@@ -105,7 +105,7 @@
                         </div>
                         
                         <div class="multiplier-settings-panel">
-                            <h2 data-lang-key="multipliers">Luck Multipliers</h2>
+                            <h2><span data-lang-key="multipliers">Luck Multipliers</span><button class="tooltip-trigger" data-tooltip-key="multipliersTooltip" aria-label="Help">?</button></h2>
                             <div class="multiplier-grid">
                                 <label data-lang-key="platform">Platform</label><label>Sub</label><label>VIP</label>
                                 <span>Kick</span>
@@ -119,47 +119,163 @@
 
                         <div class="bot-settings-panel">
                             <h2 data-lang-key="botSettings">Bot Settings</h2>
-                            <label for="twitch-bot-username-input" data-lang-key="botUsername">Twitch Bot Username</label>
-                            <input type="text" id="twitch-bot-username-input" placeholder-lang-key="botUsernamePlaceholder">
                             
-                            <div class="label-wrapper">
-                                <label for="twitch-bot-oauth-input" data-lang-key="botToken">Twitch Bot OAuth Token</label>
-                                <button class="tooltip-trigger" data-tooltip-key="botTokenTooltip" aria-label="Help">?</button>
+                            <div class="collapsible-header" id="toggle-twitch-bot-panel">
+                                <label for="enable-twitch-bot-checkbox">
+                                    <input type="checkbox" id="enable-twitch-bot-checkbox">
+                                    <span data-lang-key="enableTwitchBot">Enable Twitch Bot</span>
+                                </label>
+                                <button class="icon-button toggle-visibility-button" aria-label="Toggle Twitch Settings">
+                                    <svg id="twitch-eye-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    <svg id="twitch-eye-icon-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                </button>
                             </div>
-                            <input type="password" id="twitch-bot-oauth-input" placeholder="oauth:xxxxxxxx">
                             
-                            <div class="label-wrapper">
-                                <label for="start-message-input" data-lang-key="startMessage">Start Giveaway Message ({keyword})</label>
-                                <button class="tooltip-trigger" data-tooltip-key="startMessageTooltip" aria-label="Help">?</button>
+                            <div id="twitch-bot-settings-wrapper" class="collapsible-content" style="display: none;">
+                                <label for="twitch-bot-username-input" data-lang-key="botUsername">Twitch Bot Username</label>
+                                <input type="text" id="twitch-bot-username-input" placeholder-lang-key="botUsernamePlaceholder">
+                                
+                                <div class="label-wrapper">
+                                    <label for="twitch-bot-oauth-input" data-lang-key="botToken">Twitch Bot OAuth Token</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="botTokenTooltip" aria-label="Help">?</button>
+                                </div>
+                                <input type="password" id="twitch-bot-oauth-input" placeholder="oauth:xxxxxxxx">
+                                
+                                <div class="label-wrapper">
+                                    <label for="start-message-input" data-lang-key="startMessage">Start Giveaway Message ({keyword})</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="startMessageTooltip" aria-label="Help">?</button>
+                                </div>
+                                <textarea id="start-message-input" rows="3"></textarea>
+                                
+                                <div class="label-wrapper">
+                                    <label for="announcement-message-input" data-lang-key="announceMessage">Winner Announcement Message ({winner}, {platform}, {chance}%)</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="announceMessageTooltip" aria-label="Help">?</button>
+                                </div>
+                                <textarea id="announcement-message-input" rows="3"></textarea>
                             </div>
-                            <textarea id="start-message-input" rows="3"></textarea>
                             
-                            <div class="label-wrapper">
-                                <label for="announcement-message-input" data-lang-key="announceMessage">Winner Announcement Message ({winner}, {platform})</label>
-                                <button class="tooltip-trigger" data-tooltip-key="announceMessageTooltip" aria-label="Help">?</button>
+                            <div class="kick-bot-separator"></div>
+                            
+                            <div class="collapsible-header" id="toggle-kick-bot-panel">
+                                <label for="enable-kick-bot-checkbox">
+                                    <input type="checkbox" id="enable-kick-bot-checkbox">
+                                    <span data-lang-key="enableKickBot">Enable Kick Bot (via Kicklet)</span>
+                                </label>
+                                <button class="icon-button toggle-visibility-button" aria-label="Toggle Kick Settings">
+                                    <svg id="kick-eye-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    <svg id="kick-eye-icon-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                </button>
                             </div>
-                            <textarea id="announcement-message-input" rows="3"></textarea>
+                            
+                            <div id="kick-bot-settings-wrapper" class="collapsible-content" style="display: none;">
+                                <div class="label-wrapper">
+                                    <label for="kicklet-api-token-input" data-lang-key="kickletApiToken">Kicklet API Token</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="kickletTokenTooltip" aria-label="Help">?</button>
+                                </div>
+                                <input type="password" id="kicklet-api-token-input" placeholder="apitoken_xxxxxx">
+                                
+                                <div class="label-wrapper">
+                                    <label for="kick-start-message-input" data-lang-key="kickStartMessage">Kick Start Message ({keyword})</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="kickStartMessageTooltip" aria-label="Help">?</button>
+                                </div>
+                                <textarea id="kick-start-message-input" rows="3"></textarea>
+                                
+                                <div class="label-wrapper">
+                                    <label for="kick-announcement-message-input" data-lang-key="kickAnnounceMessage">Kick Winner Message ({winner}, {platform}, {chance}%)</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="kickAnnounceMessageTooltip" aria-label="Help">?</button>
+                                </div>
+                                <textarea id="kick-announcement-message-input" rows="3"></textarea>
+                            </div>
+
+                            <div class="kick-bot-separator"></div>
+
+                            <div class="collapsible-header" id="toggle-awards-overlay-panel">
+                                <label for="enable-awards-overlay-checkbox">
+                                    <input type="checkbox" id="enable-awards-overlay-checkbox">
+                                    <span data-lang-key="enableAwardsOverlay">Painel de Premiação</span>
+                                </label>
+                                <button class="icon-button toggle-visibility-button" aria-label="Toggle Awards Overlay Settings">
+                                    <svg id="awards-eye-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    <svg id="awards-eye-icon-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                </button>
+                            </div>
+                            
+                            <div id="awards-overlay-settings-wrapper" class="collapsible-content" style="display: none;">
+                                <label for="awards-dv-input" data-lang-key="awardsDv">DV (Login)</label>
+                                <input type="text" id="awards-dv-input" placeholder="Seu login (DV)">
+                                
+                                <div class="label-wrapper">
+                                    <label for="awards-api-key-input" data-lang-key="awardsApiKey">API Key</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="awardsOverlayTooltip" aria-label="Help">?</button>
+                                </div>
+                                <input type="password" id="awards-api-key-input" placeholder="Sua chave de API">
+
+                                <div class="label-wrapper">
+                                    <label for="award-announce-message-input" data-lang-key="awardAnnounceMessageLabel">Award Announcement Message ({award})</label>
+                                    <button class="tooltip-trigger" data-tooltip-key="awardAnnounceMessageTooltip" aria-label="Help">?</button>
+                                </div>
+                                <textarea id="award-announce-message-input" rows="3"></textarea>
+                            </div>
+                            <div class="kick-bot-separator"></div>
+                            
+                            <div class="collapsible-panel">
+                                <div class="collapsible-header" id="toggle-closed-message-panel">
+                                    <h2><span data-lang-key="closedMessages">"Entries Closed" Messages</span></h2>
+                                    <button class="icon-button toggle-visibility-button" aria-label="Toggle Visibility">
+                                        <svg id="eye-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                        <svg id="eye-icon-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                    </button>
+                                </div>
+                                <div id="closed-message-settings-wrapper" class="collapsible-content" style="display: none;">
+                                    <p data-lang-key="closedMessagesDesc">Messages sent by bots when you stop entries.</p>
+                                    
+                                    <div class="label-wrapper">
+                                        <label for="twitch-closed-message-input" data-lang-key="twitchClosedMessage">Twitch "Closed" Message</label>
+                                        <button class="tooltip-trigger" data-tooltip-key="closedMessageTooltip" aria-label="Help">?</button>
+                                    </div>
+                                    <textarea id="twitch-closed-message-input" rows="3"></textarea>
+                                    
+                                    <div class="label-wrapper">
+                                        <label for="kick-closed-message-input" data-lang-key="kickClosedMessage">Kick "Closed" Message</label>
+                                        <button class="tooltip-trigger" data-tooltip-key="closedMessageTooltip" aria-label="Help">?</button>
+                                    </div>
+                                    <textarea id="kick-closed-message-input" rows="3"></textarea>
+                                </div>
+                            </div>
+                            
                             <button id="save-settings-button" data-lang-key="saveSettings">Save All Settings</button>
                         </div>
+                        
                         <p id="status-message" class="status-waiting" data-lang-key="statusWaiting">Press "Start" to connect to chat(s).</p>
                         <button id="start-giveaway-button" data-lang-key="startGiveaway">Start Giveaway</button>
                     </div>
 
                     <div class="giveaway-panel">
-                        <h2 data-lang-key="participants">Participants (<span id="participant-count">0</span>)</h2>
+                        <h2><span data-lang-key="participants">Participants</span> (<span id="participant-count">0</span>)</h2>
                         <ul id="participant-list"></ul>
                         <div class="action-buttons">
                             <button id="draw-button" disabled data-lang-key="drawWinner">Draw Winner</button>
+                            <button id="pause-giveaway-button" data-lang-key="pauseGiveaway" disabled>Stop Entries</button>
                             <button id="reset-button" data-lang-key="reset">Reset</button>
                         </div>
                     </div>
 
-                    <div class="winners-panel">
-                        <h2 data-lang-key="winners">Winners (<span id="winners-count">0</span>)</h2>
-                        <ul id="winners-list"></ul>
+                    <div class="right-panels">
+                        
+                        <div class="awards-overlay-panel" id="awards-overlay-panel" style="display: none;">
+                            <h2><span data-lang-key="awardsPanelTitle">Prêmios Atuais</span> (<span id="awards-count">0</span>)</h2>
+                            <ul id="awards-list-container">
+                            </ul>
+                            <p id="awards-status-message" class="status-waiting" data-lang-key="awardsStatusLoading">Carregando prêmios...</p>
+                        </div>
+                        
+                        <div class="winners-panel">
+                            <h2><span data-lang-key="winners">Winners</span> (<span id="winners-count">0</span>)</h2>
+                            <ul id="winners-list"></ul>
+                        </div>
                     </div>
                     
-                    </div>
+                </div>
             </div>
         </div> <div id="multi-winner-modal-container"></div>
         
@@ -178,17 +294,26 @@
                         </div>
                     </div>
                     
-                    <div class="modal-participant-list-container">
-                        <h2 data-lang-key="participants">Participants</h2>
-                        <ul id="modal-participant-list">
+                    <div class="modal-right-column">
+                        
+                        <div class="awards-overlay-panel" id="modal-awards-panel" style="display: none;">
+                            <h2><span data-lang-key="awardsPanelTitle">Prêmios Atuais</span> (<span id="modal-awards-count">0</span>)</h2>
+                            <ul id="modal-awards-list-container">
+                                </ul>
+                        </div>
+                        
+                        <div class="modal-participant-list-container">
+                            <h2><span data-lang-key="participants">Participants</span> (<span id="modal-participant-count">0</span>)</h2>
+                            <ul id="modal-participant-list">
                             </ul>
+                        </div>
+                        
                     </div>
                     
                 </div>
             </div>
         </div>
-        
-    </div> <div id="tooltip-popup-container" class="tooltip-popup" style="opacity: 0; visibility: hidden;"></div>
+        </div> <div id="tooltip-popup-container" class="tooltip-popup" style="opacity: 0; visibility: hidden;"></div>
     
     <script src="https://cdn.jsdelivr.net/npm/tmi.js/dist/tmi.min.js"></script>
     <script src="script.js"></script>

@@ -11,6 +11,13 @@
     --vip-color: #ae70ff;
     --draw-again-color: #3498db;
     --twitch-color: #9146FF; /* Twitch Purple */
+    
+    --card-font-color: #ffffff;
+    --card-border-color: rgba(255, 255, 255, 0.18);
+    --card-tag-color: #ffd100;
+    --card-bg: rgba(0, 0, 0, 0.45);
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+    --border-radius: 12px;
 }
 html { font-size: clamp(14px, 1vw, 16px); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -122,10 +129,46 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 .settings-panel label, .bot-settings-panel label, .multiplier-settings-panel label { color: var(--secondary-text-color); font-size: 0.9rem; }
 .checkbox-wrapper { display: flex; align-items: center; }
 .checkbox-wrapper label { display: inline-flex; align-items: center; gap: 0.625rem; cursor: pointer; color: var(--primary-text-color); font-size: 1rem; }
-.checkbox-wrapper input[type="checkbox"]{ -webkit-appearance:none; appearance:none; width: 2.75rem; height: 1.5rem; background:var(--border-color); border-radius: 0.75rem; position:relative; cursor:pointer; outline:none; transition:background .2s; }
-.checkbox-wrapper input[type="checkbox"]::before{ content:''; position:absolute; top: 0.1875rem; left: 0.1875rem; width: 1.125rem; height: 1.125rem; background:var(--primary-text-color); border-radius:50%; transition:transform .2s; }
-.checkbox-wrapper input[type="checkbox"]:checked { background:var(--primary-color); }
-.checkbox-wrapper input[type="checkbox"]:checked::before { transform:translateX(1.25rem); background:#000; }
+
+/* Regra 1: Aplicada a todos os toggles */
+.checkbox-wrapper input[type="checkbox"],
+.collapsible-header input[type="checkbox"] { 
+    -webkit-appearance:none; 
+    appearance:none; 
+    width: 2.75rem; 
+    height: 1.5rem; 
+    background:var(--border-color); 
+    border-radius: 0.75rem; 
+    position:relative; 
+    cursor:pointer; 
+    outline:none; 
+    transition:background .2s; 
+}
+/* Regra 2: Círculo desligado (cinza) */
+.checkbox-wrapper input[type="checkbox"]::before,
+.collapsible-header input[type="checkbox"]::before { 
+    content:''; 
+    position:absolute; 
+    top: 0.1875rem; 
+    left: 0.1875rem; 
+    width: 1.125rem; 
+    height: 1.125rem; 
+    background: var(--secondary-text-color); 
+    border-radius:50%; 
+    transition:transform .2s; 
+}
+/* Regra 3: Fundo ligado (verde) */
+.checkbox-wrapper input[type="checkbox"]:checked,
+.collapsible-header input[type="checkbox"]:checked { 
+    background:var(--primary-color); 
+}
+/* Regra 4: Círculo ligado (branco) */
+.checkbox-wrapper input[type="checkbox"]:checked::before,
+.collapsible-header input[type="checkbox"]:checked::before { 
+    transform:translateX(1.25rem); 
+    background: var(--primary-text-color);
+}
+
 #status-message { font-size: 0.9rem; margin-top: auto; text-align: center; font-weight: 600; }
 .status-waiting { color: var(--secondary-text-color); }
 .status-connected { color: var(--success-color); }
@@ -140,13 +183,181 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 .winner-date-span { font-size: 0.8rem; color: var(--secondary-text-color); flex-shrink: 0; margin-left: 0.625rem; }
 .action-buttons { display:flex; gap: 0.9375rem; margin-top: 1.25rem; }
 #draw-button  { flex:2 1 0; }
+
+/* ESTILOS DO NOVO BOTÃO DE PAUSAR */
+#pause-giveaway-button {
+    flex: 2 1 0;
+    background-color: var(--warning-color);
+    color: #000;
+}
+#pause-giveaway-button:hover {
+    filter: brightness(1.1);
+}
+#pause-giveaway-button.paused {
+    background-color: var(--success-color);
+}
+/* FIM DOS ESTILOS DO NOVO BOTÃO */
+
 #reset-button { background:#e9113c; flex:1 0 0; color: #fff; }
 #reset-button:hover{ background:#b50d2f; }
 
 
-/* --- INÍCIO DA SEÇÃO DO MODAL (ESTILO NOVO) --- */
+/* (Request 2) Alinha o H2 e o ? dos multiplicadores */
+.multiplier-settings-panel h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-/* Este é o estilo SUBSTITUÍDO. Agora é tela cheia (position: fixed) */
+#twitch-bot-settings-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-color);
+    margin-top: 0.9375rem;
+}
+
+.kick-bot-separator {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0.9375rem 0;
+}
+#kick-bot-settings-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-color);
+    margin-top: 0.9375rem;
+}
+
+/* === ESTILOS (AWARDS OVERLAY) === */
+#awards-overlay-settings-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-color);
+    margin-top: 0.9375rem;
+}
+
+.right-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+}
+
+.awards-overlay-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Lista de Prêmios Principal (Direita) e Lista de Prêmios do Modal */
+#awards-list-container,
+#modal-awards-list-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    max-height: 20rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.625rem;
+}
+
+/* Card de Prêmio (Principal e Modal) */
+.award-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 10px 14px 10px 18px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border-color);
+    background: var(--card-bg);
+    backdrop-filter: blur(6px);
+    box-shadow: var(--card-shadow);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.award-card:hover {
+    background: var(--border-color);
+}
+
+.award-card__tag {
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 70%;
+    border-radius: 3px;
+    background: var(--card-tag-color);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--card-tag-color) 60%, #000 40%);
+}
+
+.award-card__title {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+    color: var(--card-font-color);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+/* Mensagens de Status (Principal e Modal) */
+#awards-list-container .empty,
+#awards-list-container .error,
+#modal-awards-list-container .empty,
+#modal-awards-list-container .error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 52px;
+    padding: 10px 14px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border-color);
+    background: var(--card-bg);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: pre-line;
+    line-height: 1.5;
+}
+
+#awards-list-container .error,
+#modal-awards-list-container .error { 
+    color: #ff6666;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#awards-status-message {
+    font-size: 0.9rem;
+    margin-top: 0.9375rem;
+    text-align: center;
+    font-weight: 600;
+}
+/* === FIM DOS ESTILOS DO AWARDS === */
+
+
+/* --- INÍCIO DA SEÇÃO DO MODAL (ESTILO NOVO) --- */
 #multi-winner-modal-container { 
     position: fixed; 
     top: 0; 
@@ -154,7 +365,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     width: 100%; 
     height: 100%; 
     background-color: rgba(0, 0, 0, 0.85); 
-    display: none; /* Inicia oculto */
+    display: none;
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
@@ -164,16 +375,13 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     backdrop-filter: blur(0.3125rem); 
     overflow-y: auto; 
 }
-
-/* Os estilos abaixo são ADICIONADOS (do segundo arquivo) */
 .modal-instance {
     display: flex;
-    max-width: 64rem; /* Aumentado */
+    max-width: 64rem;
     width: 100%;
     flex-grow: 1;
     flex-basis: 0;
 }
-
 .modal-content {
     background-color: var(--panel-bg-color);
     padding: 1.5rem 2rem;
@@ -182,15 +390,13 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     border: 1px solid var(--primary-color);
     box-shadow: 0 0 1.25rem rgba(83, 252, 24, 0.3);
     display: flex;
-    flex-direction: row; /* Alterado para duas colunas */
+    flex-direction: row;
     gap: 1.5rem; 
-    min-height: 28rem;
     width: 100%;
     justify-content: space-between;
 }
-
 .modal-draw-panel {
-    flex: 1;
+    flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -198,20 +404,46 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     min-width: 0;
 }
 
-.modal-participant-list-container {
+/* === MUDANÇA AQUI: Nova Coluna Direita do Modal === */
+.modal-right-column {
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 1.5rem; /* Espaço entre Prêmios e Participantes */
     min-width: 0;
-    max-height: 28rem;
 }
 
-.modal-participant-list-container h2 {
+/* Painel de Prêmios DENTRO do modal */
+#modal-awards-panel {
+    display: flex; /* Começa escondido via JS */
+    flex-direction: column;
+}
+#modal-awards-panel h2 {
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
     text-align: left;
 }
 
+/* Lista de Prêmios DENTRO do modal */
+#modal-awards-list-container {
+    max-height: 10rem; /* Altura menor para caber no modal */
+    min-height: 52px;
+}
+/* === FIM DA MUDANÇA === */
+
+.modal-participant-list-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.modal-participant-list-container h2 {
+    font-size: 1.1rem; /* Padroniza o H2 */
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
 #modal-participant-list {
     list-style: none;
     padding: 0.5rem;
@@ -222,7 +454,6 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
 }
-
 #modal-participant-list li {
     display: flex;
     align-items: center;
@@ -235,8 +466,6 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 #modal-participant-list li:last-child {
     border-bottom: none;
 }
-
-/* Estilo para riscar o vencedor no modal */
 #modal-participant-list li.winner {
     text-decoration: line-through;
     opacity: 0.6;
@@ -244,10 +473,10 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 #modal-participant-list li .status-tags-container {
     font-size: 0.7rem;
 }
-/* --- FIM DA SEÇÃO DO MODAL (ESTILO NOVO) --- */
+/* --- FIM DA SEÇÃO DO MODAL --- */
 
 
-/* Estilos comuns do modal (do primeiro arquivo) */
+/* Estilos comuns do modal */
 #modal-timer-display {
     font-size: 1.75rem;
     font-weight: 600;
@@ -316,10 +545,9 @@ h1.winner-name.winner { color: var(--primary-color); }
     display: flex;
     gap: 1rem;
     justify-content: center;
-    visibility: hidden; /* A visibilidade é controlada no JS */
+    visibility: hidden;
     margin-top: 0.5rem;
 }
-/* Aplica visibilidade apenas no painel de desenho (do segundo arquivo) */
 .modal-draw-panel .modal-button-container {
     visibility: visible;
 }
@@ -394,17 +622,100 @@ h1.winner-name.winner { color: var(--primary-color); }
     border-radius: 0.25rem;
     font-family: monospace;
 }
+.tooltip-popup a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+.tooltip-popup a:hover {
+    text-decoration: underline;
+}
+
+/* NOVOS ESTILOS DO PAINEL RECOLHÍVEL */
+.collapsible-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 0.625rem;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 0.9375rem;
+}
+.collapsible-header h2 {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+.collapsible-header label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    color: var(--primary-text-color);
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.bot-settings-panel > h2 {
+    margin-bottom: 0;
+}
+.collapsible-header {
+    cursor: default;
+}
+.collapsible-header label,
+.collapsible-header .toggle-visibility-button {
+    cursor: pointer;
+}
+
+.collapsible-header .toggle-visibility-button {
+    width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    flex-shrink: 0;
+}
+.collapsible-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--border-color);
+}
+.collapsible-content p {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: var(--secondary-text-color);
+}
+/* FIM DOS NOVOS ESTILOS */
+
 
 @media (max-width: 1024px) {
     body { padding: 1rem; }
     #app-container { min-height: auto; }
     .main-content { grid-template-columns: 1fr; gap: 2rem; }
-    .left-panels, .giveaway-panel, .winners-panel { grid-row: auto; }
+    .left-panels, .giveaway-panel, .winners-panel, .right-panels { grid-row: auto; }
     
-    /* Ajuste do Modal para telas menores (do segundo arquivo) */
     .modal-instance { max-width: 90vw; }
     .modal-content { flex-direction: column; min-height: 80vh; max-height: 80vh; }
-    .modal-participant-list-container { max-height: 40%; }
+    
+    /* === MUDANÇA AQUI: Ajusta o layout do modal em telas menores === */
+    .modal-right-column {
+        flex-direction: column-reverse; /* Coloca participantes embaixo dos prêmios */
+        flex: 1;
+        overflow-y: auto; /* Permite rolar a coluna da direita se for pequena */
+    }
+    #modal-awards-list-container {
+        max-height: 10rem; /* Mantém a altura limitada */
+    }
+    .modal-participant-list-container {
+        flex-shrink: 0; /* Impede que o painel de participantes encolha */
+    }
+    /* === FIM DA MUDANÇA === */
 }
 @media (max-width: 768px) {
     .login-inputs { flex-direction: column; }
