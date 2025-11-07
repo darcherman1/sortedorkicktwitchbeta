@@ -84,7 +84,6 @@ const translations = {
         defaultTwitchClosedMessage: 'Entries are now closed! Good luck.',
         defaultKickClosedMessage: 'Entries are now closed! Good luck.',
 
-        // === NOVAS TRADUÇÕES (AWARDS OVERLAY) ===
         enableAwardsOverlay: 'Awards Panel', 
         awardsDv: 'DV (Login)',
         awardsApiKey: 'API Key',
@@ -182,7 +181,6 @@ const translations = {
         defaultTwitchClosedMessage: 'As entradas estão fechadas! Boa sorte.',
         defaultKickClosedMessage: 'As entradas estão fechadas! Boa sorte.',
 
-        // === NOVAS TRADUÇÕES (AWARDS OVERLAY) ===
         enableAwardsOverlay: 'Painel de Premiação',
         awardsDv: 'DV (Login)',
         awardsApiKey: 'Chave da API',
@@ -192,7 +190,6 @@ const translations = {
         awardsStatusError: 'Verifique as credenciais nas Configurações.',
         awardsStatusApiError: 'Erro na API. Tentando novamente...',
         awardsStatusNoAwards: 'Nenhum prêmio disponível.',
-        // TRADUÇÃO DO NOVO CAMPO
         awardAnnounceMessageLabel: 'Mensagem de Anúncio de Prêmio ({award})',
         awardAnnounceMessageTooltip: 'A mensagem que seus bots enviarão quando você clicar em um prêmio.<br><br><code>{award}</code> é substituído pelo nome do prêmio.',
         defaultAwardAnnounceMessage: 'Próximo sorteio: {award}!'
@@ -232,7 +229,7 @@ const translations = {
         kickletApiToken: 'Token de API de Kicklet',
         kickStartMessage: 'Mensaje de Inicio (Kick) ({keyword})',
         kickAnnounceMessage: 'Mensaje de Anúncio (Kick) ({winner}, {platform}, {chance}%)',
-        defaultKickStartMessage: '¡Un nuevo sorteio ha comenzado! Escribe {keyword} para entrar.',
+        defaultKickStartMessage: '¡Un nuevo sorteo ha comenzado! Escribe {keyword} para entrar.',
         defaultKickAnnounceMessage: '¡Felicidades @{winner}, ganaste el sorteo desde {platform} con un {chance}% de chance! 🎉',
         
         kickletTokenTooltip: 'Obtén esto en la Configuración de TU Perfil de Kicklet <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> inicia sesión en tu cuenta, ve a "API tokens" y haz clic para crear un bot, elige el nombre que quieras, copia y pega el token aquí<br><br>Esto permite que la herramienta envie mensajes como el bot Kicklet en tu chat.',
@@ -281,7 +278,6 @@ const translations = {
         defaultTwitchClosedMessage: '¡Las entradas están cerradas! Buena suerte.',
         defaultKickClosedMessage: '¡Las entradas están cerradas! Buena suerte.',
 
-        // === NOVAS TRADUÇÕES (AWARDS OVERLAY) ===
         enableAwardsOverlay: 'Panel de Premios',
         awardsDv: 'DV (Login)',
         awardsApiKey: 'Clave de API',
@@ -294,12 +290,113 @@ const translations = {
         awardAnnounceMessageLabel: 'Mensaje de Anuncio de Premio ({award})',
         awardAnnounceMessageTooltip: 'El mensaje que enviarán tus bots al hacer clic en un premio.<br><br><code>{award}</code> se reemplaza por el nombre del premio.',
         defaultAwardAnnounceMessage: 'Próximo sorteo: ¡{award}!'
+    },
+    // === NOVA LINGUAGEM ADICIONADA: VIETNAMITA ===
+    'vi': {
+        appTitle: 'Công cụ Quay số',
+        loginSubtitle: 'Nhập (các) kênh để quay số. Bạn có thể kết nối một hoặc cả hai.',
+        kickChannel: 'Kênh Kick',
+        twitchChannel: 'Kênh Twitch',
+        connect: 'Kết nối',
+        connectedTo: 'Đã kết nối tới:',
+        language: 'Ngôn ngữ',
+        changeChannel: 'Đổi kênh',
+        settings: 'Cài đặt',
+        keyword: 'Từ khóa (tùy chọn):',
+        allowDualEntry: 'Cho phép tham gia kép (Kick + Twitch)',
+        excludeMods: 'Loại trừ Người điều hành',
+        showWinnerChat: 'Hiển thị chat của người thắng',
+        timerDuration: 'Thời gian đếm ngược (giây):',
+        animation: 'Hiệu ứng quay số:',
+        animScramble: 'Xáo trộn ký tự',
+        animNone: 'Không có',
+        multipliers: 'Hệ số may mắn',
+        platform: 'Nền tảng',
+        botSettings: 'Cài đặt Bot',
+
+        enableTwitchBot: 'Bật Bot Twitch',
+        botUsername: 'Tên người dùng Bot (Twitch)',
+        botUsernamePlaceholder: 'Tên bot của bạn',
+        botToken: 'Token OAuth của Bot (Twitch)',
+        startMessage: 'Tin nhắn bắt đầu quay số ({keyword})',
+        announceMessage: 'Tin nhắn thông báo người thắng ({winner}, {platform}, {chance}%)',
+        defaultStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
+        defaultAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng quay số từ {platform} với {chance}% cơ hội! 🎉',
+        
+        enableKickBot: 'Bật Bot Kick (qua Kicklet)',
+        kickletApiToken: 'Token API Kicklet',
+        kickStartMessage: 'Tin nhắn bắt đầu (Kick) ({keyword})',
+        kickAnnounceMessage: 'Tin nhắn thông báo (Kick) ({winner}, {platform}, {chance}%)',
+        defaultKickStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
+        defaultKickAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng quay số từ {platform} với {chance}% cơ hội! 🎉',
+        
+        kickletTokenTooltip: 'Lấy mã này từ Cài đặt Hồ sơ Kicklet CỦA BẠN <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> đăng nhập vào tài khoản của bạn, đi tới "API tokens" và nhấp để tạo bot, chọn bất kỳ tên nào bạn muốn, sao chép và dán token vào đây<br><br>Điều này cho phép công cụ gửi tin nhắn dưới dạng bot Kicklet trong cuộc trò chuyện của bạn.',
+        kickStartMessageTooltip: 'Tin nhắn mà bot Kicklet sẽ gửi khi bạn nhấp vào "Bắt đầu Quay số".<br><br><code>{keyword}</code> được thay thế bằng từ khóa của bạn.',
+        kickAnnounceMessageTooltip: 'Tin nhắn mà bot Kicklet sẽ gửi khi có người chiến thắng.<br><br><code>{winner}</code> được thay thế bằng tên người thắng.<br><code>{platform}</code> được thay thế bằng "Kick" hoặc "Twitch".<br><code>{chance}</code> được thay thế bằng % cơ hội thắng của người đó.',
+
+        saveSettings: 'Lưu Cài đặt',
+        statusWaiting: 'Nhấn "Bắt đầu Quay số" để kết nối với (các) kênh chat.',
+        statusConnected: 'Đã kết nối! Đang chờ người tham gia.',
+        statusError: 'Lỗi kết nối.',
+        kickError: 'Lỗi kết nối Kick.',
+        kickLost: 'Mất kết nối Kick.',
+        startGiveaway: 'Bắt đầu Quay số',
+        participants: 'Người tham gia',
+        drawWinner: 'Quay số',
+        reset: 'Đặt lại',
+        winners: 'Người chiến thắng',
+        drawing: 'Đang quay số...',
+        ok: 'OK',
+        drawAgain: 'Quay lại',
+        alertNoParticipants: 'Không có người tham gia để quay số!',
+        alertKickConnectFail: 'Không tìm thấy kênh Kick:',
+        alertKickChatroomFail: 'Không thể lấy ID phòng chat Kick.',
+        alertNoChannel: 'Vui lòng nhập ít nhất một tên kênh.',
+        alertConnectFail: 'Kết nối thất bại:',
+        alertSettingsSaved: 'Đã lưu cài đặt!',
+        credits: 'Phiên bản cập nhật của dự án kickaway (github) bởi darcherman v2.0',
+        allowDualEntryTooltip: 'Nếu được chọn, người dùng có thể tham gia một lần trên Kick VÀ một lần trên Twitch, nhân đôi cơ hội của họ.<br><br>Nếu không được chọn, lần tham gia đầu tiên (từ bất kỳ nền tảng nào) là lần duy nhất được tính.',
+        botTokenTooltip: 'Đây là "mật khẩu" cho tài khoản bot của bạn.<br><br><strong>Cách lấy:</strong><br>1. Tạo một tài khoản Twitch mới cho bot của bạn (ví dụ: "MyBot").<br>2. Bật Xác thực 2 yếu tố (2FA) trên đó.<br>3. Truy cập <code>twitchtokengenerator.com</code> và lấy "Access Token".<br>4. Dán token vào đây và thêm <code>oauth:</code> ở trước (ví dụ: <code>oauth:abcdef123...</code>).',
+        startMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp "Bắt đầu Quay số".<br><br><code>{keyword}</code> được thay thế bằng từ khóa của bạn. Nếu không có từ khóa, nó sẽ được thay thế bằng "bất kỳ tin nhắn nào".',
+        announceMessageTooltip: 'Tin nhắn bot sẽ gửi đến chat Twitch khi có người chiến thắng.<br><br><code>{winner}</code> được thay thế bằng tên người thắng.<br><code>{platform}</code> được thay thế bằng "Kick" hoặc "Twitch".<br><code>{chance}</code> được thay thế bằng % cơ hội thắng.',
+        
+        multipliersTooltip: "Tăng cơ hội thắng của người dùng.<br><br><strong>Ví dụ:</strong> Nếu giá trị là '2', một SUB sẽ có 2x cơ hội (2 'vé' trong đợt quay).<br><br><strong>QUAN TRỌNG (KICK):</strong> Để hệ số nhân Sub và VIP của Kick hoạt động, người dùng phải <strong>bật huy hiệu Sub/VIP</strong> của họ trong cài đặt trò chuyện trên kênh Kick của bạn.",
+
+        chatWaitingForMessage: 'Đang chờ tin nhắn từ người thắng...',
+        keywordAnyMessage: 'bất kỳ tin nhắn nào',
+
+        pauseGiveaway: 'Dừng tham gia',
+        resumeGiveaway: 'Tiếp tục tham gia',
+        statusPaused: 'Đã tạm dừng tham gia.',
+        closedMessages: 'Tin nhắn "Đã đóng"',
+        closedMessagesDesc: 'Tin nhắn được gửi bởi bot khi bạn dừng tham gia.',
+        twitchClosedMessage: 'Tin nhắn "Đã đóng" (Twitch)',
+        kickClosedMessage: 'Tin nhắn "Đã đóng" (Kick)',
+        closedMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp "Dừng tham gia".',
+        defaultTwitchClosedMessage: 'Đã đóng đăng ký! Chúc may mắn.',
+        defaultKickClosedMessage: 'Đã đóng đăng ký! Chúc may mắn.',
+
+        enableAwardsOverlay: 'Bảng Phần thưởng',
+        awardsDv: 'DV (Đăng nhập)',
+        awardsApiKey: 'Khóa API',
+        awardsOverlayTooltip: 'Nhập thông tin đăng nhập cho bảng phần thưởng của bạn.<br><br>Chúng được lưu cục bộ khi nhấp vào "Lưu Cài đặt".',
+        awardsPanelTitle: 'Phần thưởng Hiện tại',
+        awardsStatusLoading: 'Đang tải phần thưởng...',
+        awardsStatusError: 'Kiểm tra thông tin đăng nhập trong Cài đặt.',
+        awardsStatusApiError: 'Lỗi API. Đang thử lại...',
+        awardsStatusNoAwards: 'Không có phần thưởng nào.',
+        awardAnnounceMessageLabel: 'Tin nhắn Thông báo Phần thưởng ({award})',
+        awardAnnounceMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp vào một phần thưởng.<br><br><code>{award}</code> được thay thế bằng tên phần thưởng.',
+        defaultAwardAnnounceMessage: 'Vòng quay số tiếp theo: {award}!'
     }
 };
 
 // Função para definir o idioma
 function setLanguage(lang) {
-    if (!translations[lang]) lang = 'en';
+    // === MUDANÇA AQUI ===
+    if (!translations[lang]) lang = 'en'; // Define 'en' como padrão se 'vi' (ou outro) não for encontrado
+    // === FIM DA MUDANÇA ===
+    
     currentLang = lang;
     
     document.querySelectorAll('[data-lang-key]').forEach(el => {
@@ -343,10 +440,12 @@ function getInitialLanguage() {
     if (savedLang && translations[savedLang]) {
         return savedLang;
     }
-    const browserLang = navigator.language.split('-')[0];
+    // === MUDANÇA AQUI ===
+    const browserLang = navigator.language.split('-')[0]; // Pega 'vi', 'pt', 'en', 'es'
     if (translations[browserLang]) {
-        return browserLang;
+        return browserLang; // Retorna 'vi' se o navegador estiver em vietnamita
     }
+    // === FIM DA MUDANÇA ===
     return 'en';
 }
 
@@ -526,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showAlert('alertConnectFail', error.message);
         } finally {
             connectButton.disabled = false;
-            setLanguage(currentLang);
+            setLanguage(currentLang); // Garante que o texto do botão volte ao normal no idioma certo
         }
     }
 
@@ -639,7 +738,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 sendTwitchMessage(message);
             };
 
-            // Garante que não haja um cliente antigo rodando
             if (twitchClient) {
                 twitchClient.disconnect();
                 twitchClient = null;
@@ -678,7 +776,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (kickChannel) connectToKick();
         
-        // Conecta anonimamente se o bot estiver desligado
         if (!twitchClient && twitchChannel && !enableTwitchBotCheckbox.checked) {
             connectToTwitch();
         }
@@ -1167,7 +1264,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // === FUNÇÃO displayWinnerAnimation ATUALIZADA ===
     function displayWinnerAnimation(winnerName, winnerUniqueId, platform, chancePercent) {
         return new Promise(resolve => {
             if (winnerCountdownInterval) {
@@ -1201,10 +1297,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (enableAwardsOverlayCheckbox.checked) {
                 modalAwardsPanel.style.display = 'flex';
-                modalAwardsList.innerHTML = ''; // Limpa a lista
+                modalAwardsList.innerHTML = '';
                 
                 if (lastValidAwards.length > 0) {
-                    // Copia os prêmios do cache
                     lastValidAwards.forEach(award => {
                         const card = document.createElement('div');
                         card.className = 'award-card';
@@ -1222,15 +1317,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalAwardsList.appendChild(card);
                     });
                 } else {
-                    // Mostra mensagem de "sem prêmios"
                     modalAwardsList.innerHTML = `<div class="empty">${translations[currentLang].awardsStatusNoAwards}</div>`;
                 }
                 modalAwardsCount.textContent = lastValidAwards.length;
             } else {
-                modalAwardsPanel.style.display = 'none'; // Esconde se estiver desativado
+                modalAwardsPanel.style.display = 'none';
             }
             
-            // Adiciona o listener de clique para os cards DENTRO do modal
             modalInstance.addEventListener('click', (e) => {
                 const card = e.target.closest('.award-card');
                 if (card) {
@@ -1653,52 +1746,60 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLang = event.target.value;
         setLanguage(currentLang);
         
+        // Atualiza os placeholders das mensagens
         const defaultStartEn = translations['en'].defaultStartMessage;
         const defaultStartPt = translations['pt'].defaultStartMessage;
         const defaultStartEs = translations['es'].defaultStartMessage;
-        if ([defaultStartEn, defaultStartPt, defaultStartEs, ""].includes(startMessageInput.value)) {
+        const defaultStartVi = translations['vi'].defaultStartMessage; // NOVO
+        if ([defaultStartEn, defaultStartPt, defaultStartEs, defaultStartVi, ""].includes(startMessageInput.value)) {
             startMessageInput.value = translations[currentLang].defaultStartMessage;
         }
 
         const defaultAnnounceEn = translations['en'].defaultAnnounceMessage;
         const defaultAnnouncePt = translations['pt'].defaultAnnounceMessage;
         const defaultAnnounceEs = translations['es'].defaultAnnounceMessage;
-        if ([defaultAnnounceEn, defaultAnnouncePt, defaultAnnounceEs, ""].includes(announcementMessageInput.value)) {
+        const defaultAnnounceVi = translations['vi'].defaultAnnounceMessage; // NOVO
+        if ([defaultAnnounceEn, defaultAnnouncePt, defaultAnnounceEs, defaultAnnounceVi, ""].includes(announcementMessageInput.value)) {
             announcementMessageInput.value = translations[currentLang].defaultAnnounceMessage;
         }
         
         const defaultKickStartEn = translations['en'].defaultKickStartMessage;
         const defaultKickStartPt = translations['pt'].defaultKickStartMessage;
         const defaultKickStartEs = translations['es'].defaultKickStartMessage;
-        if ([defaultKickStartEn, defaultKickStartPt, defaultKickStartEs, ""].includes(kickStartMessageInput.value)) {
+        const defaultKickStartVi = translations['vi'].defaultKickStartMessage; // NOVO
+        if ([defaultKickStartEn, defaultKickStartPt, defaultKickStartEs, defaultKickStartVi, ""].includes(kickStartMessageInput.value)) {
             kickStartMessageInput.value = translations[currentLang].defaultKickStartMessage;
         }
 
         const defaultKickAnnounceEn = translations['en'].defaultKickAnnounceMessage;
         const defaultKickAnnouncePt = translations['pt'].defaultKickAnnounceMessage;
         const defaultKickAnnounceEs = translations['es'].defaultKickAnnounceMessage;
-        if ([defaultKickAnnounceEn, defaultKickAnnouncePt, defaultKickAnnounceEs, ""].includes(kickAnnounceMessageInput.value)) {
+        const defaultKickAnnounceVi = translations['vi'].defaultKickAnnounceMessage; // NOVO
+        if ([defaultKickAnnounceEn, defaultKickAnnouncePt, defaultKickAnnounceEs, defaultKickAnnounceVi, ""].includes(kickAnnounceMessageInput.value)) {
             kickAnnounceMessageInput.value = translations[currentLang].defaultKickAnnounceMessage;
         }
 
         const defaultClosedEn = translations['en'].defaultTwitchClosedMessage;
         const defaultClosedPt = translations['pt'].defaultTwitchClosedMessage;
-        const defaultClosedEs = translations['es'].sdefaultTwitchClosedMessage;
-        if ([defaultClosedEn, defaultClosedPt, defaultClosedEs, ""].includes(twitchClosedMessageInput.value)) {
+        const defaultClosedEs = translations['es'].defaultTwitchClosedMessage;
+        const defaultClosedVi = translations['vi'].defaultTwitchClosedMessage; // NOVO
+        if ([defaultClosedEn, defaultClosedPt, defaultClosedEs, defaultClosedVi, ""].includes(twitchClosedMessageInput.value)) {
             twitchClosedMessageInput.value = translations[currentLang].defaultTwitchClosedMessage;
         }
 
         const defaultKickClosedEn = translations['en'].defaultKickClosedMessage;
         const defaultKickClosedPt = translations['pt'].defaultKickClosedMessage;
         const defaultKickClosedEs = translations['es'].defaultKickClosedMessage;
-        if ([defaultKickClosedEn, defaultKickClosedPt, defaultKickClosedEs, ""].includes(kickClosedMessageInput.value)) {
+        const defaultKickClosedVi = translations['vi'].defaultKickClosedMessage; // NOVO
+        if ([defaultKickClosedEn, defaultKickClosedPt, defaultKickClosedEs, defaultKickClosedVi, ""].includes(kickClosedMessageInput.value)) {
             kickClosedMessageInput.value = translations[currentLang].defaultKickClosedMessage;
         }
         
         const defaultAwardAnnounceEn = translations['en'].defaultAwardAnnounceMessage;
         const defaultAwardAnnouncePt = translations['pt'].defaultAwardAnnounceMessage;
         const defaultAwardAnnounceEs = translations['es'].defaultAwardAnnounceMessage;
-        if ([defaultAwardAnnounceEn, defaultAwardAnnouncePt, defaultAwardAnnounceEs, ""].includes(awardAnnounceMessageInput.value)) {
+        const defaultAwardAnnounceVi = translations['vi'].defaultAwardAnnounceMessage; // NOVO
+        if ([defaultAwardAnnounceEn, defaultAwardAnnouncePt, defaultAwardAnnounceEs, defaultAwardAnnounceVi, ""].includes(awardAnnounceMessageInput.value)) {
             awardAnnounceMessageInput.value = translations[currentLang].defaultAwardAnnounceMessage;
         }
     }
@@ -1707,8 +1808,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
         currentLang = getInitialLanguage();
         setLanguage(currentLang);
+        
+        // === MUDANÇA AQUI ===
+        // Garante que os seletores de idioma reflitam o idioma carregado (ex: 'vi' do navegador)
         languageSelectLogin.value = currentLang;
         languageSelectSettings.value = currentLang;
+        // === FIM DA MUDANÇA ===
 
         loadSettings();
         
