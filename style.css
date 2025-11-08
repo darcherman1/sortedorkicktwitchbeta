@@ -198,6 +198,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     border-radius:0.5rem; 
     padding:0.625rem; 
     flex: 1; /* Permite que ele cresça */
+    max-height: 121vh;
     overflow-y: auto; /* Adiciona a barra de rolagem se estourar */
     /* Remove a altura máxima fixa para deixá-lo preencher o espaço flexível */
 }
@@ -488,6 +489,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     list-style: none;
     padding: 0.5rem;
     margin: 0;
+    max-height: 30rem;
     overflow-y: auto;
     flex: 1; /* Permite que ele cresça */
     /* max-height: 30rem; FOI REMOVIDO para deixar o flex: 1; funcionar */
