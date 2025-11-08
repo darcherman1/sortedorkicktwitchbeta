@@ -232,7 +232,7 @@ const translations = {
         defaultKickStartMessage: '¡Un nuevo sorteo ha comenzado! Escribe {keyword} para entrar.',
         defaultKickAnnounceMessage: '¡Felicidades @{winner}, ganaste el sorteo desde {platform} con un {chance}% de chance! 🎉',
         
-        kickletTokenTooltip: 'Obtén esto en la Configuración de TU Perfil de Kicklet <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> inicia sesión en tu cuenta, ve a "API tokens" y haz clic para crear un bot, elige el nombre que quieras, copia y pega el token aquí<br><br>Esto permite que la herramienta envie mensajes como el bot Kicklet en tu chat.',
+        kickletTokenTooltip: 'Obtén esto en la Configuración de TU Perfil de Kicklet <a href=\"httpshttps://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> inicia sesión en tu cuenta, ve a "API tokens" y haz clic para crear un bot, elige el nombre que quieras, copia y pega el token aquí<br><br>Esto permite que la herramienta envie mensajes como el bot Kicklet en tu chat.',
         kickStartMessageTooltip: 'Mensaje que el bot Kicklet enviará al hacer clic en "Iniciar Sorteo".<br><br><code>{keyword}</code> se reemplaza por tu palabra clave.',
         kickAnnounceMessageTooltip: 'Mensaje que el bot Kicklet enviará cuando se sortee un ganador.<br><br><code>{winner}</code> se reemplaza por el nombre del ganador.<br><code>{platform}</code> se reemplaza por "Kick" ou "Twitch".<br><code>{chance}</code> se reemplaza por el % de probabilidad de ganar del ganador (basado en sus entradas).',
 
@@ -330,7 +330,7 @@ const translations = {
         defaultKickStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
         defaultKickAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng quay số từ {platform} với {chance}% cơ hội! 🎉',
         
-        kickletTokenTooltip: 'Lấy mã này từ Cài đặt Hồ sơ Kicklet CỦA BẠN <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> đăng nhập vào tài khoản của bạn, đi tới "API tokens" và nhấp để tạo bot, chọn bất kỳ tên nào bạn muốn, sao chép và dán token vào đây<br><br>Điều này cho phép công cụ gửi tin nhắn dưới dạng bot Kicklet trong cuộc trò chuyện của bạn.',
+        kickletTokenTooltip: 'Lấy mã này từ Cài đặt Hồ sơ Kicklet CỦA BẠN <a href=\"httpshttps://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> đăng nhập vào tài khoản của bạn, đi tới "API tokens" và nhấp để tạo bot, chọn bất kỳ tên nào bạn muốn, sao chép và dán token vào đây<br><br>Điều này cho phép công cụ gửi tin nhắn dưới dạng bot Kicklet trong cuộc trò chuyện của bạn.',
         kickStartMessageTooltip: 'Tin nhắn mà bot Kicklet sẽ gửi khi bạn nhấp vào "Bắt đầu Quay số".<br><br><code>{keyword}</code> được thay thế bằng từ khóa của bạn.',
         kickAnnounceMessageTooltip: 'Tin nhắn mà bot Kicklet sẽ gửi khi có người chiến thắng.<br><br><code>{winner}</code> được thay thế bằng tên người thắng.<br><code>{platform}</code> được thay thế bằng "Kick" hoặc "Twitch".<br><code>{chance}</code> được thay thế bằng % cơ hội thắng của người đó.',
 
@@ -1406,6 +1406,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 winnerNameEl.classList.add('winner');
                 platformIconEl.src = platform === 'kick' ? 'https://kick.com/favicon.ico' : 'https://www.twitch.tv/favicon.ico';
                 platformIconEl.style.display = 'inline-block';
+
+                // === INÍCIO DA MODIFICAÇÃO (ADICIONAR TAGS) ===
+                const winnerObject = participants.get(winnerUniqueId);
+                if (winnerObject && winnerObject.tags.length > 0) {
+                    const tagsContainer = document.createElement('div');
+                    tagsContainer.className = 'status-tags-container';
+                    winnerObject.tags.forEach(tagInfo => {
+                        const tagSpan = document.createElement('span');
+                        tagSpan.className = `status-tag ${tagInfo.class}`;
+                        tagSpan.textContent = tagInfo.text;
+                        tagsContainer.appendChild(tagSpan);
+                    });
+                    animationBox.appendChild(tagsContainer);
+                }
+                // === FIM DA MODIFICAÇÃO ===
                 
                 adjustWinnerFontSize(winnerNameEl, animationBox);
 
