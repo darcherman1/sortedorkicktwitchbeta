@@ -234,7 +234,7 @@ const translations = {
         
         kickletTokenTooltip: 'Obtén esto en la Configuración de TU Perfil de Kicklet <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">https://kicklet.app/profile/settings</a> inicia sesión en tu cuenta, ve a "API tokens" y haz clic para crear un bot, elige el nombre que quieras, copia y pega el token aquí<br><br>Esto permite que la herramienta envie mensajes como el bot Kicklet en tu chat.',
         kickStartMessageTooltip: 'Mensaje que el bot Kicklet enviará al hacer clic en "Iniciar Sorteo".<br><br><code>{keyword}</code> se reemplaza por tu palabra clave.',
-        kickAnnounceMessageTooltip: 'Mensaje que el bot Kicklet enviará cuando se sortee un ganador.<br><br><code>{winner}</code> se reemplaza por el nombre del ganador.<br><code>{platform}</code> se reemplaza por "Kick" o "Twitch".<br><code>{chance}</code> se reemplaza por el % de probabilidad de ganar del ganador (basado en sus entradas).',
+        kickAnnounceMessageTooltip: 'Mensaje que el bot Kicklet enviará cuando se sortee un ganador.<br><br><code>{winner}</code> se reemplaza por el nombre del ganador.<br><code>{platform}</code> se reemplaza por "Kick" ou "Twitch".<br><code>{chance}</code> se reemplaza por el % de probabilidad de ganar del ganador (basado en sus entradas).',
 
         saveSettings: 'Guardar Configuración',
         statusWaiting: 'Presiona "Iniciar Sorteio" para conectarte a lo(s) chat(s).',
@@ -260,7 +260,7 @@ const translations = {
         allowDualEntryTooltip: 'Si está marcado, un usuario puede entrar una vez en Kick Y una vez en Twitch, duplicando sus oportunidades.<br><br>Si está desmarcado, la primera entrada (de cualquier plataforma) es la única que cuenta.',
         botTokenTooltip: 'Esta es la "contraseña" de tu cuenta de bot.<br><br><strong>Cómo obtenerla:</strong><br>1. Crea una nueva cuenta de Twitch para tu bot (ej: "MiBot").<br>2. Activa la Autenticação de 2 Factores (2FA) en ella.<br>3. Ve a <code>twitchtokengenerator.com</code> y obtén el "Access Token".<br>4. Pega el token aquí y añade <code>oauth:</code> delante (ej: <code>oauth:abcdef123...</code>).',
         startMessageTooltip: 'Mensaje que el bot enviará cuando hagas clic en "Iniciar Sorteio".<br><br><code>{keyword}</code> se reemplaza por tu palabra clave. Si no hay palabra clave, se reemplazará por "cualquer mensaje".',
-        announceMessageTooltip: 'El mensaje que tu bot enviará al chat de Twitch cuando se sortee un ganador.<br><br><code>{winner}</code> se reemplaza por el nombre del ganador.<br><code>{platform}</code> se reemplaza por "Kick" o "Twitch".<br><code>{chance}</code> se reemplaza por el % de probabilidad de ganar del ganador (basado en sus entradas).',
+        announceMessageTooltip: 'El mensaje que tu bot enviará al chat de Twitch cuando se sortee un ganador.<br><br><code>{winner}</code> se reemplaza por el nombre del ganador.<br><code>{platform}</code> se reemplaza por "Kick" ou "Twitch".<br><code>{chance}</code> se reemplaza por el % de probabilidad de ganar del ganador (basado en sus entradas).',
         
         multipliersTooltip: "Aumenta la probabilidad de que un usuario gane.<br><br><strong>Ejemplo:</strong> Si el valor es '2', un SUB tendrá 2x más probabilidades (2 'boletos' en el sorteo).<br><br><strong>IMPORTANTE (KICK):</strong> Para que el multiplicador de Sub y VIP de Kick funcione, el usuario debe tener su <strong>insignia (badge) de Sub/VIP activada</strong> en la configuración de chat de tu canal de Kick.",
 
@@ -393,9 +393,7 @@ const translations = {
 
 // Função para definir o idioma
 function setLanguage(lang) {
-    // === MUDANÇA AQUI ===
-    if (!translations[lang]) lang = 'en'; // Define 'en' como padrão se 'vi' (ou outro) não for encontrado
-    // === FIM DA MUDANÇA ===
+    if (!translations[lang]) lang = 'en'; 
     
     currentLang = lang;
     
@@ -440,12 +438,10 @@ function getInitialLanguage() {
     if (savedLang && translations[savedLang]) {
         return savedLang;
     }
-    // === MUDANÇA AQUI ===
-    const browserLang = navigator.language.split('-')[0]; // Pega 'vi', 'pt', 'en', 'es'
+    const browserLang = navigator.language.split('-')[0];
     if (translations[browserLang]) {
-        return browserLang; // Retorna 'vi' se o navegador estiver em vietnamita
+        return browserLang;
     }
-    // === FIM DA MUDANÇA ===
     return 'en';
 }
 
@@ -500,6 +496,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const kickEyeIconOpen = document.getElementById('kick-eye-icon-open');
     const kickEyeIconClosed = document.getElementById('kick-eye-icon-closed');
     
+    // === NOVOS SELETORES (MULTIPLIERS) ===
+    const toggleMultipliersPanel = document.getElementById('toggle-multipliers-panel');
+    const multipliersSettingsWrapper = document.getElementById('multipliers-settings-wrapper');
+    const multipliersEyeIconOpen = document.getElementById('multipliers-eye-icon-open');
+    const multipliersEyeIconClosed = document.getElementById('multipliers-eye-icon-closed');
+    // === FIM DOS NOVOS SELETORES ===
+
     const toggleAwardsOverlayPanel = document.getElementById('toggle-awards-overlay-panel');
     const enableAwardsOverlayCheckbox = document.getElementById('enable-awards-overlay-checkbox');
     const awardsOverlaySettingsWrapper = document.getElementById('awards-overlay-settings-wrapper');
@@ -625,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showAlert('alertConnectFail', error.message);
         } finally {
             connectButton.disabled = false;
-            setLanguage(currentLang); // Garante que o texto do botão volte ao normal no idioma certo
+            setLanguage(currentLang);
         }
     }
 
@@ -1750,7 +1753,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultStartEn = translations['en'].defaultStartMessage;
         const defaultStartPt = translations['pt'].defaultStartMessage;
         const defaultStartEs = translations['es'].defaultStartMessage;
-        const defaultStartVi = translations['vi'].defaultStartMessage; // NOVO
+        const defaultStartVi = translations['vi'].defaultStartMessage;
         if ([defaultStartEn, defaultStartPt, defaultStartEs, defaultStartVi, ""].includes(startMessageInput.value)) {
             startMessageInput.value = translations[currentLang].defaultStartMessage;
         }
@@ -1758,7 +1761,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultAnnounceEn = translations['en'].defaultAnnounceMessage;
         const defaultAnnouncePt = translations['pt'].defaultAnnounceMessage;
         const defaultAnnounceEs = translations['es'].defaultAnnounceMessage;
-        const defaultAnnounceVi = translations['vi'].defaultAnnounceMessage; // NOVO
+        const defaultAnnounceVi = translations['vi'].defaultAnnounceMessage;
         if ([defaultAnnounceEn, defaultAnnouncePt, defaultAnnounceEs, defaultAnnounceVi, ""].includes(announcementMessageInput.value)) {
             announcementMessageInput.value = translations[currentLang].defaultAnnounceMessage;
         }
@@ -1766,7 +1769,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultKickStartEn = translations['en'].defaultKickStartMessage;
         const defaultKickStartPt = translations['pt'].defaultKickStartMessage;
         const defaultKickStartEs = translations['es'].defaultKickStartMessage;
-        const defaultKickStartVi = translations['vi'].defaultKickStartMessage; // NOVO
+        const defaultKickStartVi = translations['vi'].defaultKickStartMessage;
         if ([defaultKickStartEn, defaultKickStartPt, defaultKickStartEs, defaultKickStartVi, ""].includes(kickStartMessageInput.value)) {
             kickStartMessageInput.value = translations[currentLang].defaultKickStartMessage;
         }
@@ -1774,7 +1777,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultKickAnnounceEn = translations['en'].defaultKickAnnounceMessage;
         const defaultKickAnnouncePt = translations['pt'].defaultKickAnnounceMessage;
         const defaultKickAnnounceEs = translations['es'].defaultKickAnnounceMessage;
-        const defaultKickAnnounceVi = translations['vi'].defaultKickAnnounceMessage; // NOVO
+        const defaultKickAnnounceVi = translations['vi'].defaultKickAnnounceMessage;
         if ([defaultKickAnnounceEn, defaultKickAnnouncePt, defaultKickAnnounceEs, defaultKickAnnounceVi, ""].includes(kickAnnounceMessageInput.value)) {
             kickAnnounceMessageInput.value = translations[currentLang].defaultKickAnnounceMessage;
         }
@@ -1782,7 +1785,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultClosedEn = translations['en'].defaultTwitchClosedMessage;
         const defaultClosedPt = translations['pt'].defaultTwitchClosedMessage;
         const defaultClosedEs = translations['es'].defaultTwitchClosedMessage;
-        const defaultClosedVi = translations['vi'].defaultTwitchClosedMessage; // NOVO
+        const defaultClosedVi = translations['vi'].defaultTwitchClosedMessage;
         if ([defaultClosedEn, defaultClosedPt, defaultClosedEs, defaultClosedVi, ""].includes(twitchClosedMessageInput.value)) {
             twitchClosedMessageInput.value = translations[currentLang].defaultTwitchClosedMessage;
         }
@@ -1790,7 +1793,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultKickClosedEn = translations['en'].defaultKickClosedMessage;
         const defaultKickClosedPt = translations['pt'].defaultKickClosedMessage;
         const defaultKickClosedEs = translations['es'].defaultKickClosedMessage;
-        const defaultKickClosedVi = translations['vi'].defaultKickClosedMessage; // NOVO
+        const defaultKickClosedVi = translations['vi'].defaultKickClosedMessage;
         if ([defaultKickClosedEn, defaultKickClosedPt, defaultKickClosedEs, defaultKickClosedVi, ""].includes(kickClosedMessageInput.value)) {
             kickClosedMessageInput.value = translations[currentLang].defaultKickClosedMessage;
         }
@@ -1798,7 +1801,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const defaultAwardAnnounceEn = translations['en'].defaultAwardAnnounceMessage;
         const defaultAwardAnnouncePt = translations['pt'].defaultAwardAnnounceMessage;
         const defaultAwardAnnounceEs = translations['es'].defaultAwardAnnounceMessage;
-        const defaultAwardAnnounceVi = translations['vi'].defaultAwardAnnounceMessage; // NOVO
+        const defaultAwardAnnounceVi = translations['vi'].defaultAwardAnnounceMessage;
         if ([defaultAwardAnnounceEn, defaultAwardAnnouncePt, defaultAwardAnnounceEs, defaultAwardAnnounceVi, ""].includes(awardAnnounceMessageInput.value)) {
             awardAnnounceMessageInput.value = translations[currentLang].defaultAwardAnnounceMessage;
         }
@@ -1809,11 +1812,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLang = getInitialLanguage();
         setLanguage(currentLang);
         
-        // === MUDANÇA AQUI ===
-        // Garante que os seletores de idioma reflitam o idioma carregado (ex: 'vi' do navegador)
         languageSelectLogin.value = currentLang;
         languageSelectSettings.value = currentLang;
-        // === FIM DA MUDANÇA ===
 
         loadSettings();
         
@@ -1859,6 +1859,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 awardsEyeIconClosed.style.display = isHidden ? 'none' : 'block';
             }
         });
+        
+        // === MUDANÇA (OLHINHO MULTIPLICADORES) ===
+        toggleMultipliersPanel.addEventListener('click', (e) => {
+            if (e.target.closest('button.toggle-visibility-button')) { 
+                const isHidden = multipliersSettingsWrapper.style.display === 'none';
+                multipliersSettingsWrapper.style.display = isHidden ? 'flex' : 'none';
+                multipliersEyeIconOpen.style.display = isHidden ? 'block' : 'none';
+                multipliersEyeIconClosed.style.display = isHidden ? 'none' : 'block';
+            }
+        });
+        // === FIM DA MUDANÇA ===
         
         // --- LISTENERS DOS CHECKBOXES ---
         enableAwardsOverlayCheckbox.addEventListener('change', (e) => {
@@ -1916,8 +1927,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.stopPropagation();
                 
                 if (tooltipPopup.style.visibility === 'visible' && tooltipPopup.dataset.currentKey === e.currentTarget.dataset.tooltipKey) {
-                    hideTooltip();
                     tooltipPopup.dataset.currentKey = '';
+                    hideTooltip();
                 } else {
                     hideTooltip();
                     showTooltip(e.currentTarget);

@@ -190,29 +190,28 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 .giveaway-panel { display: flex; flex-direction: column; min-height: 0; }
 .winners-panel { display: flex; flex-direction: column;}
 
-/* === MUDANÇA DA CORREÇÃO AQUI === */
+/* === SUA CORREÇÃO APLICADA AQUI === */
 #participant-list { 
     list-style:none; 
     background:var(--bg-color); 
     border:1px solid var(--border-color); 
     border-radius:0.5rem; 
     padding:0.625rem; 
-    flex: 1;
-    overflow-y: auto;
-    max-height: 140vh; /* LIMITE ADICIONADO (Altura máxima de 70% da tela) */
-    
+    flex: 1; /* Permite que ele cresça */
+    overflow-y: auto; /* Adiciona a barra de rolagem se estourar */
+    /* Remove a altura máxima fixa para deixá-lo preencher o espaço flexível */
 }
 
 #winners-list {
     list-style:none; 
-    flex: 1; /* Este pode continuar flexível pois não cresce tanto */
+    flex: 1;
     overflow-y: auto; 
     background:var(--bg-color); 
     border:1px solid var(--border-color); 
     border-radius:0.5rem; 
     padding:0.625rem; 
 }
-/* === FIM DA MUDANÇA === */
+/* === FIM DA CORREÇÃO === */
 
 #participant-list li { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
 #participant-list li:last-child { border-bottom: none; }
@@ -241,7 +240,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 #reset-button:hover{ background:#b50d2f; }
 
 
-/* (Request 2) Alinha o H2 e o ? dos multiplicadores */
+/* Alinha o H2 e o ? dos multiplicadores */
 .multiplier-settings-panel h2 {
     display: flex;
     align-items: center;
@@ -484,19 +483,19 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     text-align: left;
 }
 
-/* === MUDANÇA DA CORREÇÃO AQUI (MODAL) === */
+/* === SUA CORREÇÃO APLICADA AQUI (MODAL) === */
 #modal-participant-list {
     list-style: none;
     padding: 0.5rem;
     margin: 0;
     overflow-y: auto;
-    /* flex: 1; FOI REMOVIDO */
-    max-height: 30rem; /* LIMITE ADICIONADO */
+    flex: 1; /* Permite que ele cresça */
+    /* max-height: 30rem; FOI REMOVIDO para deixar o flex: 1; funcionar */
     background: var(--bg-color);
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
 }
-/* === FIM DA MUDANÇA === */
+/* === FIM DA CORREÇÃO === */
 
 #modal-participant-list li {
     display: flex;
@@ -737,6 +736,14 @@ h1.winner-name.winner { color: var(--primary-color); }
 }
 /* FIM DOS NOVOS ESTILOS */
 
+/* === MUDANÇA (OLHINHO MULTIPLICADORES) === */
+#multipliers-settings-wrapper {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 0.9375rem;
+}
+/* === FIM DA MUDANÇA === */
+
 
 @media (max-width: 1024px) {
     body { padding: 1rem; }
@@ -757,12 +764,11 @@ h1.winner-name.winner { color: var(--primary-color); }
     }
     .modal-participant-list-container {
         flex-shrink: 0;
-        flex-basis: 15rem; /* Dá uma base de altura para a lista de participantes no modo mobile */
+        flex-basis: 15rem;
     }
     
-    /* === MUDANÇA AQUI === */
     #participant-list {
-        max-height: 50vh; /* Ajusta a altura máxima para telas menores */
+        max-height: 50vh;
     }
 }
 @media (max-width: 768px) {

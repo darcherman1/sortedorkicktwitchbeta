@@ -23,7 +23,8 @@
                         <option value="en">English</option>
                         <option value="pt">Português (BR)</option>
                         <option value="es">Español</option>
-                        <option value="vi">Tiếng Việt</option> </select>
+                        <option value="vi">Tiếng Việt</option> 
+                    </select>
                 </div>
                 
                 <p data-lang-key="loginSubtitle">Enter the channel(s) for the giveaway. You can connect to one or both.</p>
@@ -60,7 +61,8 @@
                                     <option value="en">English</option>
                                     <option value="pt">Português (BR)</option>
                                     <option value="es">Español</option>
-                                    <option value="vi">Tiếng Việt</option> </select>
+                                    <option value="vi">Tiếng Việt</option> 
+                                </select>
                             </div>
                             <button id="change-channel-button" class="small-button" data-lang-key="changeChannel">Change Channel</button>
                         </div>
@@ -105,18 +107,35 @@
                         </div>
                         
                         <div class="multiplier-settings-panel">
-                            <h2><span data-lang-key="multipliers">Luck Multipliers</span><button class="tooltip-trigger" data-tooltip-key="multipliersTooltip" aria-label="Help">?</button></h2>
-                            <div class="multiplier-grid">
-                                <label data-lang-key="platform">Platform</label><label>Sub</label><label>VIP</label>
-                                <span>Kick</span>
-                                <input type="number" id="kick-sub-multiplier" value="2" min="1">
-                                <input type="number" id="kick-vip-multiplier" value="2" min="1">
-                                <span>Twitch</span>
-                                <input type="number" id="twitch-sub-multiplier" value="2" min="1">
-                                <input type="number" id="twitch-vip-multiplier" value="2" min="1">
+                            
+                            <div class="collapsible-header" id="toggle-multipliers-panel">
+                                <h2>
+                                    <span data-lang-key="multipliers">Luck Multipliers</span>
+                                    <button class="tooltip-trigger" data-tooltip-key="multipliersTooltip" aria-label="Help">?</button>
+                                </h2>
+                                <button class="icon-button toggle-visibility-button" aria-label="Toggle Multipliers Settings">
+                                    <svg id="multipliers-eye-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    <svg id="multipliers-eye-icon-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>
+                                    </svg>
+                                </button>
                             </div>
-                        </div>
 
+                            <div id="multipliers-settings-wrapper" class="collapsible-content" style="display: none;">
+                                <div class="multiplier-grid">
+                                    <label data-lang-key="platform">Platform</label><label>Sub</label><label>VIP</label>
+                                    <span>Kick</span>
+                                    <input type="number" id="kick-sub-multiplier" value="2" min="1">
+                                    <input type="number" id="kick-vip-multiplier" value="2" min="1">
+                                    <span>Twitch</span>
+                                    <input type="number" id="twitch-sub-multiplier" value="2" min="1">
+                                    <input type="number" id="twitch-vip-multiplier" value="2" min="1">
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="bot-settings-panel">
                             <h2 data-lang-key="botSettings">Bot Settings</h2>
                             
@@ -216,6 +235,7 @@
                                 </div>
                                 <textarea id="award-announce-message-input" rows="3"></textarea>
                             </div>
+
                             <div class="kick-bot-separator"></div>
                             
                             <div class="collapsible-panel">
