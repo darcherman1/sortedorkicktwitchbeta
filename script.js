@@ -270,7 +270,7 @@ const translations = {
         pauseGiveaway: 'Parar Entradas',
         resumeGiveaway: 'Reanudar Entradas',
         statusPaused: 'Las entradas están pausadas.',
-        closedMessages: 'Mensajes de "Entradas Cerradas"',
+        closedMessages: 'Mensajes de "Entradas CerrADAS"',
         closedMessagesDesc: 'Mensajes que envían los bots al parar las entradas.',
         twitchClosedMessage: 'Mensaje "Cerrado" (Twitch)',
         kickClosedMessage: 'Mensaje "Cerrado" (Kick)',
@@ -1093,8 +1093,11 @@ document.addEventListener('DOMContentLoaded', () => {
             modalParticipantList.innerHTML = ''; 
         }
 
-        participants.forEach((p) => {
+        // === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL) ===
+        participants.forEach((p, id) => {
             const li = document.createElement('li');
+            li.dataset.uniqueId = id; // Adiciona o ID para sabermos em quem clicar
+            // === FIM DA MODIFICAÇÃO ===
             
             const icon = document.createElement('img');
             icon.className = 'platform-icon';
@@ -1217,6 +1220,28 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseGiveawayButton.textContent = translations[currentLang].pauseGiveaway;
         pauseGiveawayButton.classList.remove('paused');
     }
+
+    // === INÍCIO DA MODIFICAÇÃO (NOVA FUNÇÃO DE CLIQUE) ===
+    function toggleParticipantDisqualification(uniqueId) {
+        if (!participants.has(uniqueId)) return;
+
+        const participant = participants.get(uniqueId);
+        
+        // Alterna o status de 'vencedor' (desqualificado)
+        participant.hasWon = !participant.hasWon;
+
+        // Atualiza o Set de 'winningUsernames' para consistência
+        // Isso previne que eles entrem novamente se a 'hasWon' for true
+        if (participant.hasWon) {
+            winningUsernames.add(participant.username.toLowerCase());
+        } else {
+            winningUsernames.delete(participant.username.toLowerCase());
+        }
+
+        // Atualiza a UI para mostrar o risco no nome
+        updateParticipantListUI();
+    }
+    // === FIM DA MODIFICAÇÃO ===
     
     function setInputsDisabled(disabled) {
         const inputs = [
@@ -1327,7 +1352,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAwardsPanel.style.display = 'none';
             }
             
+            // === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL NO MODAL) ===
             modalInstance.addEventListener('click', (e) => {
+                // Lógica para desqualificar participante ao clicar no nome
+                const li = e.target.closest('#modal-participant-list li[data-unique-id]');
+                if (li) {
+                    const uniqueId = li.dataset.uniqueId;
+                    toggleParticipantDisqualification(uniqueId);
+                    return; // Para não acionar o card de prêmio
+                }
+
+                // Lógica original dos cards de prêmio
                 const card = e.target.closest('.award-card');
                 if (card) {
                     const awardName = card.dataset.awardName;
@@ -1336,6 +1371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+            // === FIM DA MODIFICAÇÃO ===
             // --- Fim da Lógica do Painel de Prêmios ---
 
 
@@ -1947,10 +1983,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     hideTooltip();
                     showTooltip(e.currentTarget);
-                    tooltipPopup.dataset.currentKey = e.currentTarget.dataset.tooltipKey;
+                    tooltipPopup.dataset.currentKey = e.currentTarget.dataset.currentKey;
                 }
             });
         });
+
+        // === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL NA LISTA PRINCIPAL) ===
+        participantList.addEventListener('click', (e) => {
+            const li = e.target.closest('li[data-unique-id]');
+            if (!li) return;
+
+            // Só permite clicar/desqualificar se o sorteio estiver ativo ou pausado
+            // (Evita cliques acidentais antes de começar)
+            if (!isGiveawayRunning && !pauseGiveawayButton.classList.contains('paused')) return; 
+
+            const uniqueId = li.dataset.uniqueId;
+            toggleParticipantDisqualification(uniqueId);
+        });
+        // === FIM DA MODIFICAÇÃO ===
     }
 
     init();
