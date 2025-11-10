@@ -12,7 +12,16 @@ const translations = {
         settings: 'Settings',
         keyword: 'Keyword (optional):',
         allowDualEntry: 'Allow dual entry (Kick + Twitch)',
-        excludeMods: 'Exclude Moderators',
+        
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+        excludeMods: 'Exclude Moderators', // Deixado para o caso de o loadSettings antigo puxar
+        whoCanParticipate: 'Who can participate?',
+        allowViewers: 'Viewers',
+        allowSubs: 'Subscribers',
+        allowVips: 'VIPs',
+        allowMods: 'Moderators',
+        // === FIM DA MODIFICAÇÃO ===
+        
         showWinnerChat: "Show winner's chat on modal",
         timerDuration: 'Winner Timer Duration (seconds):',
         animation: 'Giveaway Animation:',
@@ -109,7 +118,16 @@ const translations = {
         settings: 'Configurações',
         keyword: 'Palavra-chave (opcional):',
         allowDualEntry: 'Permitir entrada dupla (Kick + Twitch)',
+        
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
         excludeMods: 'Excluir Moderadores',
+        whoCanParticipate: 'Quem pode participar?',
+        allowViewers: 'Viewers',
+        allowSubs: 'Inscritos (Subs)',
+        allowVips: 'VIPs',
+        allowMods: 'Moderadores',
+        // === FIM DA MODIFICAÇÃO ===
+        
         showWinnerChat: 'Mostrar chat do vencedor no modal',
         timerDuration: 'Duração do Timer (segundos):',
         animation: 'Animação do Sorteio:',
@@ -206,7 +224,16 @@ const translations = {
         settings: 'Configuración',
         keyword: 'Palabra clave (opcional):',
         allowDualEntry: 'Permitir entrada doble (Kick + Twitch)',
+
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
         excludeMods: 'Excluir Moderadores',
+        whoCanParticipate: '¿Quién puede participar?',
+        allowViewers: 'Espectadores',
+        allowSubs: 'Suscriptores',
+        allowVips: 'VIPs',
+        allowMods: 'Moderadores',
+        // === FIM DA MODIFICAÇÃO ===
+        
         showWinnerChat: 'Mostrar chat del ganador en el modal',
         timerDuration: 'Duración del Temporizador (segundos):',
         animation: 'Animación del Sorteo:',
@@ -291,7 +318,6 @@ const translations = {
         awardAnnounceMessageTooltip: 'El mensaje que enviarán tus bots al hacer clic en un premio.<br><br><code>{award}</code> se reemplaza por el nombre del premio.',
         defaultAwardAnnounceMessage: 'Próximo sorteo: ¡{award}!'
     },
-    // === NOVA LINGUAGEM ADICIONADA: VIETNAMITA ===
     'vi': {
         appTitle: 'Công cụ Quay số',
         loginSubtitle: 'Nhập (các) kênh để quay số. Bạn có thể kết nối một hoặc cả hai.',
@@ -304,7 +330,16 @@ const translations = {
         settings: 'Cài đặt',
         keyword: 'Từ khóa (tùy chọn):',
         allowDualEntry: 'Cho phép tham gia kép (Kick + Twitch)',
+        
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
         excludeMods: 'Loại trừ Người điều hành',
+        whoCanParticipate: 'Ai có thể tham gia?',
+        allowViewers: 'Người xem',
+        allowSubs: 'Người đăng ký',
+        allowVips: 'VIP',
+        allowMods: 'Người điều hành',
+        // === FIM DA MODIFICAÇÃO ===
+        
         showWinnerChat: 'Hiển thị chat của người thắng',
         timerDuration: 'Thời gian đếm ngược (giây):',
         animation: 'Hiệu ứng quay số:',
@@ -466,10 +501,21 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const keywordInput = document.getElementById('keyword-input');
     const allowMultiPlatformCheckbox = document.getElementById('allow-multi-platform-checkbox');
-    const excludeModsCheckbox = document.getElementById('exclude-mods-checkbox');
+    // const excludeModsCheckbox = document.getElementById('exclude-mods-checkbox'); // Removido
     const showWinnerChatCheckbox = document.getElementById('show-winner-chat-checkbox');
     const winnerTimerDurationInput = document.getElementById('winner-timer-duration-input');
     const animationSelect = document.getElementById('animation-select');
+    
+    // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+    const toggleParticipationPanel = document.getElementById('toggle-participation-panel');
+    const participationSettingsWrapper = document.getElementById('participation-settings-wrapper');
+    const participationEyeIconOpen = document.getElementById('participation-eye-icon-open');
+    const participationEyeIconClosed = document.getElementById('participation-eye-icon-closed');
+    const allowViewersCheckbox = document.getElementById('allow-viewers-checkbox');
+    const allowSubsCheckbox = document.getElementById('allow-subs-checkbox');
+    const allowVipsCheckbox = document.getElementById('allow-vips-checkbox');
+    const allowModsCheckbox = document.getElementById('allow-mods-checkbox');
+    // === FIM DA MODIFICAÇÃO ===
     
     const kickSubMultiplier = document.getElementById('kick-sub-multiplier');
     const kickVipMultiplier = document.getElementById('kick-vip-multiplier');
@@ -496,12 +542,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const kickEyeIconOpen = document.getElementById('kick-eye-icon-open');
     const kickEyeIconClosed = document.getElementById('kick-eye-icon-closed');
     
-    // === NOVOS SELETORES (MULTIPLIERS) ===
     const toggleMultipliersPanel = document.getElementById('toggle-multipliers-panel');
     const multipliersSettingsWrapper = document.getElementById('multipliers-settings-wrapper');
     const multipliersEyeIconOpen = document.getElementById('multipliers-eye-icon-open');
     const multipliersEyeIconClosed = document.getElementById('multipliers-eye-icon-closed');
-    // === FIM DOS NOVOS SELETORES ===
 
     const toggleAwardsOverlayPanel = document.getElementById('toggle-awards-overlay-panel');
     const enableAwardsOverlayCheckbox = document.getElementById('enable-awards-overlay-checkbox');
@@ -584,6 +628,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         alert(message);
     }
+    
+    // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+    function isUserAllowed(userStatus) {
+        // Lógica de permissão:
+        // O usuário pode entrar se ele corresponder a QUALQUER
+        // categoria que esteja marcada.
+        
+        // 1. Verifica dos status "mais altos" para os "mais baixos"
+        if (userStatus.isMod) {
+            return allowModsCheckbox.checked;
+        }
+        if (userStatus.isVip) {
+            return allowVipsCheckbox.checked;
+        }
+        if (userStatus.isSub) {
+            return allowSubsCheckbox.checked;
+        }
+        
+        // 2. Se não for nada disso, é um "Viewer"
+        return allowViewersCheckbox.checked;
+    }
+    // === FIM DA MODIFICAÇÃO ===
 
     async function handleConnect() {
         const kickChannelName = kickChannelInput.value.trim().toLowerCase();
@@ -887,12 +953,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyword = keywordInput.value.trim().toLowerCase();
         
         if (keyword !== '' && messageContent.toLowerCase() !== keyword) return;
-
+        
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
         const badges = user.identity?.badges || [];
-        if (excludeModsCheckbox.checked) {
-            const isMod = badges.some(b => b.type === 'moderator' || b.type === 'broadcaster');
-            if (isMod) return;
+        const isMod = badges.some(b => b.type === 'moderator' || b.type === 'broadcaster');
+        const isSub = badges.some(b => b.type === 'subscriber' || b.type === 'founder');
+        const isVip = badges.some(b => 
+                (b.type && (b.type.toLowerCase() === 'vip' || b.type.toLowerCase() === 'og')) ||
+                (b.text && (b.text.toLowerCase() === 'vip' || b.text.toLowerCase() === 'og'))
+            );
+        
+        const userStatus = { isMod, isSub, isVip };
+
+        if (!isUserAllowed(userStatus)) {
+            return; // Bloqueia o usuário com base nas novas regras
         }
+        // === FIM DA MODIFICAÇÃO ===
 
         if (participants.has(uniqueId)) return;
 
@@ -900,13 +976,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const userStatus = {
-            isSub: badges.some(b => b.type === 'subscriber' || b.type === 'founder'),
-            isVip: badges.some(b => 
-                (b.type && (b.type.toLowerCase() === 'vip' || b.type.toLowerCase() === 'og')) ||
-                (b.text && (b.text.toLowerCase() === 'vip' || b.text.toLowerCase() === 'og'))
-            )
-        };
         addParticipant(user.username, 'kick', userStatus);
     }
     
@@ -969,10 +1038,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (keyword !== '' && messageContent.toLowerCase() !== keyword) return;
         
-        if (excludeModsCheckbox.checked) {
-            const isMod = userstate.mod || userstate.badges?.broadcaster;
-            if (isMod) return;
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+        const isMod = userstate.mod || userstate.badges?.broadcaster;
+        const isSub = userstate.subscriber || userstate.badges?.founder === '0';
+        const isVip = !!userstate.vip;
+
+        const userStatus = { isMod, isSub, isVip };
+
+        if (!isUserAllowed(userStatus)) {
+            return; // Bloqueia o usuário com base nas novas regras
         }
+        // === FIM DA MODIFICAÇÃO ===
 
         if (participants.has(uniqueId)) return;
         
@@ -980,10 +1056,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        const userStatus = {
-            isSub: userstate.subscriber || userstate.badges?.founder === '0',
-            isVip: !!userstate.vip
-        };
         addParticipant(username, 'twitch', userStatus);
     }
 
@@ -1093,11 +1165,9 @@ document.addEventListener('DOMContentLoaded', () => {
             modalParticipantList.innerHTML = ''; 
         }
 
-        // === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL) ===
         participants.forEach((p, id) => {
             const li = document.createElement('li');
             li.dataset.uniqueId = id; // Adiciona o ID para sabermos em quem clicar
-            // === FIM DA MODIFICAÇÃO ===
             
             const icon = document.createElement('img');
             icon.className = 'platform-icon';
@@ -1221,27 +1291,21 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseGiveawayButton.classList.remove('paused');
     }
 
-    // === INÍCIO DA MODIFICAÇÃO (NOVA FUNÇÃO DE CLIQUE) ===
     function toggleParticipantDisqualification(uniqueId) {
         if (!participants.has(uniqueId)) return;
 
         const participant = participants.get(uniqueId);
         
-        // Alterna o status de 'vencedor' (desqualificado)
         participant.hasWon = !participant.hasWon;
 
-        // Atualiza o Set de 'winningUsernames' para consistência
-        // Isso previne que eles entrem novamente se a 'hasWon' for true
         if (participant.hasWon) {
             winningUsernames.add(participant.username.toLowerCase());
         } else {
             winningUsernames.delete(participant.username.toLowerCase());
         }
 
-        // Atualiza a UI para mostrar o risco no nome
         updateParticipantListUI();
     }
-    // === FIM DA MODIFICAÇÃO ===
     
     function setInputsDisabled(disabled) {
         const inputs = [
@@ -1254,7 +1318,8 @@ document.addEventListener('DOMContentLoaded', () => {
             kickletApiTokenInput, kickStartMessageInput, kickAnnounceMessageInput,
 
             startGiveawayButton, connectButton, kickChannelInput, twitchChannelInput,
-            excludeModsCheckbox, winnerTimerDurationInput,
+            // excludeModsCheckbox, // Removido
+            winnerTimerDurationInput,
             languageSelectLogin, languageSelectSettings,
             showWinnerChatCheckbox,
             
@@ -1266,7 +1331,15 @@ document.addEventListener('DOMContentLoaded', () => {
             awardsDvInput,
             awardsApiKeyInput,
             toggleAwardsOverlayPanel,
-            awardAnnounceMessageInput
+            awardAnnounceMessageInput,
+            
+            // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+            toggleParticipationPanel,
+            allowViewersCheckbox,
+            allowSubsCheckbox,
+            allowVipsCheckbox,
+            allowModsCheckbox
+            // === FIM DA MODIFICAÇÃO ===
         ];
         inputs.forEach(input => input.disabled = disabled);
         
@@ -1352,17 +1425,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalAwardsPanel.style.display = 'none';
             }
             
-            // === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL NO MODAL) ===
             modalInstance.addEventListener('click', (e) => {
-                // Lógica para desqualificar participante ao clicar no nome
                 const li = e.target.closest('#modal-participant-list li[data-unique-id]');
                 if (li) {
                     const uniqueId = li.dataset.uniqueId;
                     toggleParticipantDisqualification(uniqueId);
-                    return; // Para não acionar o card de prêmio
+                    return; 
                 }
 
-                // Lógica original dos cards de prêmio
                 const card = e.target.closest('.award-card');
                 if (card) {
                     const awardName = card.dataset.awardName;
@@ -1371,7 +1441,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-            // === FIM DA MODIFICAÇÃO ===
             // --- Fim da Lógica do Painel de Prêmios ---
 
 
@@ -1443,7 +1512,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 platformIconEl.src = platform === 'kick' ? 'https://kick.com/favicon.ico' : 'https://www.twitch.tv/favicon.ico';
                 platformIconEl.style.display = 'inline-block';
 
-                // === INÍCIO DA MODIFICAÇÃO (ADICIONAR TAGS) ===
                 const winnerObject = participants.get(winnerUniqueId);
                 if (winnerObject && winnerObject.tags.length > 0) {
                     const tagsContainer = document.createElement('div');
@@ -1456,7 +1524,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     animationBox.appendChild(tagsContainer);
                 }
-                // === FIM DA MODIFICAÇÃO ===
                 
                 adjustWinnerFontSize(winnerNameEl, animationBox);
 
@@ -1528,7 +1595,7 @@ document.addEventListener('DOMContentLoaded', () => {
             twitchSubMultiplier: twitchSubMultiplier.value,
             twitchVipMultiplier: twitchVipMultiplier.value,
             winners: winners,
-            excludeMods: excludeModsCheckbox.checked,
+            // excludeMods: excludeModsCheckbox.checked, // Removido
             timerDuration: winnerTimerDurationInput.value,
             showWinnerChat: showWinnerChatCheckbox.checked,
             
@@ -1549,7 +1616,14 @@ document.addEventListener('DOMContentLoaded', () => {
             enableAwardsOverlay: enableAwardsOverlayCheckbox.checked,
             awardsDv: awardsDvInput.value,
             awardsApiKey: awardsApiKeyInput.value,
-            awardAnnounceMessage: awardAnnounceMessageInput.value
+            awardAnnounceMessage: awardAnnounceMessageInput.value,
+            
+            // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+            allowViewers: allowViewersCheckbox.checked,
+            allowSubs: allowSubsCheckbox.checked,
+            allowVips: allowVipsCheckbox.checked,
+            allowMods: allowModsCheckbox.checked
+            // === FIM DA MODIFICAÇÃO ===
         };
         localStorage.setItem('giveawayToolSettings', JSON.stringify(settings));
     }
@@ -1565,7 +1639,7 @@ document.addEventListener('DOMContentLoaded', () => {
             twitchVipMultiplier.value = settings.twitchVipMultiplier || '2';
             winners = settings.winners || [];
             updateWinnersListUI();
-            excludeModsCheckbox.checked = settings.excludeMods || false;
+            // excludeModsCheckbox.checked = settings.excludeMods || false; // Removido
             winnerTimerDurationInput.value = settings.timerDuration || '30';
             showWinnerChatCheckbox.checked = settings.showWinnerChat !== false;
             
@@ -1587,6 +1661,14 @@ document.addEventListener('DOMContentLoaded', () => {
             awardsDvInput.value = settings.awardsDv || '';
             awardsApiKeyInput.value = settings.awardsApiKey || '';
             awardAnnounceMessageInput.value = settings.awardAnnounceMessage || translations[currentLang].defaultAwardAnnounceMessage;
+            
+            // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+            // Carrega os novos valores. O 'settings.allowViewers !== false' garante que o padrão seja 'true'
+            allowViewersCheckbox.checked = settings.allowViewers !== false;
+            allowSubsCheckbox.checked = settings.allowSubs !== false;
+            allowVipsCheckbox.checked = settings.allowVips !== false;
+            allowModsCheckbox.checked = settings.allowMods || false; // Padrão 'false'
+            // === FIM DA MODIFICAÇÃO ===
 
             if (enableAwardsOverlayCheckbox.checked) {
                 startAwardsMonitor();
@@ -1602,6 +1684,14 @@ document.addEventListener('DOMContentLoaded', () => {
              twitchClosedMessageInput.value = translations[currentLang].defaultTwitchClosedMessage;
              kickClosedMessageInput.value = translations[currentLang].defaultKickClosedMessage;
              awardAnnounceMessageInput.value = translations[currentLang].defaultAwardAnnounceMessage;
+             
+             // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+             // Define os padrões para uma instalação nova
+             allowViewersCheckbox.checked = true;
+             allowSubsCheckbox.checked = true;
+             allowVipsCheckbox.checked = true;
+             allowModsCheckbox.checked = false;
+             // === FIM DA MODIFICAÇÃO ===
         }
     }
 
@@ -1768,7 +1858,7 @@ document.addEventListener('DOMContentLoaded', () => {
         awardsApiTimer = setInterval(() => {
             awardsApiAttempts = 0;
             fetchAwards();
-        }, 15000);
+        }, 3000);
     }
 
     function stopAwardsMonitor() {
@@ -1868,6 +1958,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         loadSettings();
         
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+        // Força o painel a começar fechado
+        participationSettingsWrapper.style.display = 'none';
+        // === FIM DA MODIFICAÇÃO ===
+        
         connectButton.addEventListener('click', handleConnect);
         startGiveawayButton.addEventListener('click', handleStartGiveaway);
         drawButton.addEventListener('click', drawWinner);
@@ -1911,7 +2006,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // === MUDANÇA (OLHINHO MULTIPLICADORES) ===
         toggleMultipliersPanel.addEventListener('click', (e) => {
             if (e.target.closest('button.toggle-visibility-button')) { 
                 const isHidden = multipliersSettingsWrapper.style.display === 'none';
@@ -1920,7 +2014,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 multipliersEyeIconClosed.style.display = isHidden ? 'none' : 'block';
             }
         });
-        // === FIM DA MUDANÇA ===
+        
+        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+        toggleParticipationPanel.addEventListener('click', (e) => {
+            const isHidden = participationSettingsWrapper.style.display === 'none';
+            participationSettingsWrapper.style.display = isHidden ? 'flex' : 'none'; // 'flex' porque é um collapsible-content
+            participationEyeIconOpen.style.display = isHidden ? 'block' : 'none';
+            participationEyeIconClosed.style.display = isHidden ? 'none' : 'block';
+        });
+        // === FIM DA MODIFICAÇÃO ===
         
         // --- LISTENERS DOS CHECKBOXES ---
         enableAwardsOverlayCheckbox.addEventListener('change', (e) => {
@@ -1983,24 +2085,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     hideTooltip();
                     showTooltip(e.currentTarget);
-                    tooltipPopup.dataset.currentKey = e.currentTarget.dataset.currentKey;
+                    tooltipPopup.dataset.currentKey = e.currentTarget.dataset.tooltipKey;
                 }
             });
         });
 
-        // === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL NA LISTA PRINCIPAL) ===
         participantList.addEventListener('click', (e) => {
             const li = e.target.closest('li[data-unique-id]');
             if (!li) return;
 
-            // Só permite clicar/desqualificar se o sorteio estiver ativo ou pausado
-            // (Evita cliques acidentais antes de começar)
             if (!isGiveawayRunning && !pauseGiveawayButton.classList.contains('paused')) return; 
 
             const uniqueId = li.dataset.uniqueId;
             toggleParticipantDisqualification(uniqueId);
         });
-        // === FIM DA MODIFICAÇÃO ===
     }
 
     init();

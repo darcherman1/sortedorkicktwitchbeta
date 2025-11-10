@@ -143,6 +143,49 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 .checkbox-wrapper { display: flex; align-items: center; }
 .checkbox-wrapper label { display: inline-flex; align-items: center; gap: 0.625rem; cursor: pointer; color: var(--primary-text-color); font-size: 1rem; }
 
+/* === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) === */
+.participation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9375rem;
+}
+.participation-grid .checkbox-wrapper {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.9375rem;
+}
+/* Modifica o estilo padrão do checkbox para o novo painel */
+.participation-grid input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 0.25rem;
+}
+.participation-grid input[type="checkbox"]::before {
+    content: '✔';
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+    width: auto;
+    height: auto;
+    background: transparent;
+}
+.participation-grid input[type="checkbox"]:checked {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.participation-grid input[type="checkbox"]:checked::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+/* === FIM DA MODIFICAÇÃO === */
+
 /* Regra 1: Aplicada a todos os toggles */
 .checkbox-wrapper input[type="checkbox"],
 .collapsible-header input[type="checkbox"] { 
@@ -182,6 +225,43 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     background: var(--primary-text-color);
 }
 
+/* === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) === */
+/* Sobrescreve as regras acima para o grid de participação */
+.participation-grid .checkbox-wrapper input[type="checkbox"],
+.participation-grid .collapsible-header input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 0.25rem;
+}
+.participation-grid .checkbox-wrapper input[type="checkbox"]::before,
+.participation-grid .collapsible-header input[type="checkbox"]::before {
+    content: '✔';
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+    width: auto;
+    height: auto;
+    background: transparent;
+}
+.participation-grid .checkbox-wrapper input[type="checkbox"]:checked,
+.participation-grid .collapsible-header input[type="checkbox"]:checked {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.participation-grid .checkbox-wrapper input[type="checkbox"]:checked::before,
+.participation-grid .collapsible-header input[type="checkbox"]:checked::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+/* === FIM DA MODIFICAÇÃO === */
+
+
 #status-message { font-size: 0.9rem; margin-top: auto; text-align: center; font-weight: 600; }
 .status-waiting { color: var(--secondary-text-color); }
 .status-connected { color: var(--success-color); }
@@ -190,31 +270,28 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 .giveaway-panel { display: flex; flex-direction: column; min-height: 0; }
 .winners-panel { display: flex; flex-direction: column;}
 
-/* === SUA CORREÇÃO APLICADA AQUI === */
 #participant-list { 
     list-style:none; 
     background:var(--bg-color); 
     border:1px solid var(--border-color); 
     border-radius:0.5rem; 
     padding:0.625rem; 
-    flex: 1; /* Permite que ele cresça */
+    flex: 1; 
     max-height: 121vh;
-    overflow-y: auto; /* Adiciona a barra de rolagem se estourar */
-    /* Remove a altura máxima fixa para deixá-lo preencher o espaço flexível */
+    overflow-y: auto; 
 }
 
 #winners-list {
     list-style:none; 
     flex: 1;
+    max-height: 90vh;
     overflow-y: auto; 
     background:var(--bg-color); 
     border:1px solid var(--border-color); 
     border-radius:0.5rem; 
     padding:0.625rem; 
 }
-/* === FIM DA CORREÇÃO === */
 
-/* === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL) === */
 #participant-list li { 
     padding: 0.5rem 0.75rem; 
     border-bottom: 1px solid var(--border-color); 
@@ -222,13 +299,12 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     display: flex; 
     align-items: center; 
     gap: 0.5rem; 
-    cursor: pointer; /* ADICIONADO */
-    transition: background-color 0.2s ease; /* ADICIONADO */
+    cursor: pointer; 
+    transition: background-color 0.2s ease; 
 }
 #participant-list li:hover {
-    background-color: var(--border-color); /* ADICIONADO */
+    background-color: var(--border-color); 
 }
-/* === FIM DA MODIFICAÇÃO === */
 
 #participant-list li:last-child { border-bottom: none; }
 .platform-icon { width: 1rem; height: 1rem; flex-shrink: 0; }
@@ -499,22 +575,18 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     text-align: left;
 }
 
-/* === SUA CORREÇÃO APLICADA AQUI (MODAL) === */
 #modal-participant-list {
     list-style: none;
     padding: 0.5rem;
     margin: 0;
     max-height: 30rem;
     overflow-y: auto;
-    flex: 1; /* Permite que ele cresça */
-    /* max-height: 30rem; FOI REMOVIDO para deixar o flex: 1; funcionar */
+    flex: 1; 
     background: var(--bg-color);
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
 }
-/* === FIM DA CORREÇÃO === */
 
-/* === INÍCIO DA MODIFICAÇÃO (CLIQUE MANUAL NO MODAL) === */
 #modal-participant-list li {
     display: flex;
     align-items: center;
@@ -522,13 +594,12 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     padding: 0.4rem 0.5rem;
     font-size: 0.9rem;
     border-bottom: 1px solid var(--border-color);
-    transition: opacity 0.3s ease, text-decoration 0.3s ease, background-color 0.2s ease; /* ADICIONADO */
-    cursor: pointer; /* ADICIONADO */
+    transition: opacity 0.3s ease, text-decoration 0.3s ease, background-color 0.2s ease; 
+    cursor: pointer; 
 }
 #modal-participant-list li:hover {
-    background-color: var(--border-color); /* ADICIONADO */
+    background-color: var(--border-color); 
 }
-/* === FIM DA MODIFICAÇÃO === */
 
 #modal-participant-list li:last-child {
     border-bottom: none;
@@ -556,7 +627,6 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     transition: color 0.3s, border-color 0.3s;
 }
 
-/* === INÍCIO DA MODIFICAÇÃO (ALINHAMENTO DAS TAGS) === */
 .winner-animation-box {
     width: 100%;
     height: 5rem;
@@ -565,16 +635,15 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     align-items: center;
     overflow: hidden;
     margin: 0 auto;
-    gap: 0.75rem; /* ADICIONADO PARA ESPAÇAMENTO */
+    gap: 0.75rem; 
 }
 .winner-animation-box .modal-platform-icon {
     width: 2.5rem;
     height: 2.5rem;
-    margin-right: 0; /* MODIFICADO (de 0.75rem para 0) */
+    margin-right: 0; 
     flex-shrink: 0;
     display: none;
 }
-/* === FIM DA MODIFICAÇÃO === */
 
 h1.winner-name {
     font-size: 2.5rem;
@@ -765,13 +834,11 @@ h1.winner-name.winner { color: var(--primary-color); }
 }
 /* FIM DOS NOVOS ESTILOS */
 
-/* === MUDANÇA (OLHINHO MULTIPLICADORES) === */
 #multipliers-settings-wrapper {
     padding-left: 0;
     border-left: none;
     margin-top: 0.9375rem;
 }
-/* === FIM DA MUDANÇA === */
 
 
 @media (max-width: 1024px) {
@@ -799,6 +866,12 @@ h1.winner-name.winner { color: var(--primary-color); }
     #participant-list {
         max-height: 50vh;
     }
+
+    /* === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) === */
+    .participation-grid {
+        grid-template-columns: 1fr; /* Coloca os itens em coluna única em telas menores */
+    }
+    /* === FIM DA MODIFICAÇÃO === */
 }
 @media (max-width: 768px) {
     .login-inputs { flex-direction: column; }
@@ -808,11 +881,12 @@ h1.winner-name.winner { color: var(--primary-color); }
         width: 90vw;
         max-width: 350px;
     }
+    .participation-grid {
+        grid-template-columns: 1fr; /* Garante coluna única */
+    }
 }
 
-/* === INÍCIO DA MODIFICAÇÃO (REGRA DAS TAGS) === */
 .winner-animation-box .status-tags-container {
-    margin-left: 0; /* Remove a margem automática da lista de participantes */
-    flex-shrink: 0; /* Impede que as tags diminuam ou quebrem */
+    margin-left: 0; 
+    flex-shrink: 0; 
 }
-/* === FIM DA MODIFICAÇÃO === */
