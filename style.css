@@ -225,7 +225,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     background: var(--primary-text-color);
 }
 
-/* === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) === */
+/* === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) - SOBRESCREVE O TOGGLE PADRÃO === */
 /* Sobrescreve as regras acima para o grid de participação */
 .participation-grid .checkbox-wrapper input[type="checkbox"],
 .participation-grid .collapsible-header input[type="checkbox"] {
@@ -234,6 +234,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     background: var(--bg-color);
     border: 2px solid var(--border-color);
     border-radius: 0.25rem;
+    margin: 0; /* Remove margens que podem ser herdadas */
 }
 .participation-grid .checkbox-wrapper input[type="checkbox"]::before,
 .participation-grid .collapsible-header input[type="checkbox"]::before {
@@ -249,6 +250,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     width: auto;
     height: auto;
     background: transparent;
+    border-radius: 0; /* Desabilita o raio do círculo */
 }
 .participation-grid .checkbox-wrapper input[type="checkbox"]:checked,
 .participation-grid .collapsible-header input[type="checkbox"]:checked {
@@ -259,7 +261,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 .participation-grid .collapsible-header input[type="checkbox"]:checked::before {
     transform: translate(-50%, -50%) scale(1);
 }
-/* === FIM DA MODIFICAÇÃO === */
+/* === FIM DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) === */
 
 
 #status-message { font-size: 0.9rem; margin-top: auto; text-align: center; font-weight: 600; }
@@ -390,7 +392,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     padding: 0;
     margin: 0;
     flex: 1;
-    max-height: 20rem;
+    max-height: 40rem; 
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -415,12 +417,18 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     box-shadow: var(--card-shadow);
     flex-shrink: 0;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .award-card:hover {
     background: var(--border-color);
 }
+/* Estilo para o prêmio selecionado no modal */
+.award-card.selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
 
 .award-card__tag {
     position: absolute;
@@ -530,10 +538,10 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     flex: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 0.5rem;
+    gap: 1rem;
     min-width: 0;
     min-height: 0;
+    /* IMPORTANTE: Permite que o flexbox distribua espaço verticalmente */
 }
 
 .modal-right-column {
@@ -557,7 +565,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
 }
 
 #modal-awards-list-container {
-    max-height: 10rem;
+    max-height: 20rem; 
     min-height: 52px;
 }
 
@@ -645,6 +653,7 @@ header .channel-info strong { background: var(--bg-color); padding: 0.25rem 0.75
     display: none;
 }
 
+/* CORREÇÃO PARA ALINHAMENTO DO NOME */
 h1.winner-name {
     font-size: 2.5rem;
     line-height: 1.1;
@@ -653,11 +662,13 @@ h1.winner-name {
     text-overflow: clip;
     min-width: 0;
     transition: font-size 0.1s ease-out;
+    flex-grow: 1; /* Faz o nome preencher o espaço */
+    text-align: center; /* Centraliza o texto dentro do H1 */
 }
 h1.winner-name.winner { color: var(--primary-color); }
 
+/* CORREÇÃO: CHAT BOX ADAPTÁVEL */
 .winner-chat-box {
-    height: 120px;
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
@@ -668,7 +679,21 @@ h1.winner-name.winner { color: var(--primary-color); }
     line-height: 1.4;
     display: none;
     margin-top: 0.5rem;
+    
+    /* Padrão (quando input está escondido): */
+    height: auto;
+    flex-grow: 1; /* Ocupa todo o espaço vertical disponível */
+    min-height: 150px; /* Altura mínima razoável */
+    max-height: 400px;
 }
+
+/* Quando o painel de envio está ativo, a chat box encolhe */
+.modal-draw-panel.with-send-panel .winner-chat-box {
+    flex-grow: 0; /* Para de crescer */
+    height: 120px; /* Volta ao tamanho compacto */
+    min-height: 120px;
+}
+
 .winner-chat-box p {
     margin: 0 0 0.5rem 0;
     word-break: break-word;
@@ -840,53 +865,90 @@ h1.winner-name.winner { color: var(--primary-color); }
     margin-top: 0.9375rem;
 }
 
+/* ========================================================= */
+/* === ESTILOS PARA O PAINEL DE ENVIO DE MENSAGEM DO MODAL === */
+/* ========================================================= */
 
+.modal-send-message-panel {
+    background-color: var(--panel-bg-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    flex-shrink: 0; /* Impede que encolha */
+}
+
+.modal-send-message-panel h3 {
+    font-size: 1.1rem;
+    color: var(--primary-text-color);
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+#modal-message-input {
+    width: 100%;
+    min-height: 50px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+/* === NOVOS ESTILOS PARA DOIS BOTÕES === */
+.modal-send-button-wrapper {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.modal-send-button {
+    flex: 1; /* Faz os botões dividirem o espaço */
+    border: none;
+    padding: 0.75rem 1rem; /* Padding ajustado para caber texto */
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.90rem; /* Fonte levemente reduzida */
+    transition: background-color 0.2s, transform 0.1s;
+}
+.modal-send-button:active {
+    transform: scale(0.99);
+}
+
+/* Botão Enviar Global (Roxo) */
+#modal-send-global-button {
+    background-color: var(--twitch-color); 
+    color: #fff;
+}
+#modal-send-global-button:hover {
+    background-color: #772ce8; 
+}
+
+/* Botão Enviar Premiação (Verde) */
+#modal-send-award-button {
+    background-color: var(--primary-color);
+    color: #000;
+}
+#modal-send-award-button:hover {
+    filter: brightness(1.1);
+}
+/* === FIM DOS NOVOS ESTILOS === */
+
+
+/* Garante que o painel de participantes do modal fique na parte de baixo em telas menores */
 @media (max-width: 1024px) {
-    body { padding: 1rem; }
-    #app-container { min-height: auto; }
-    .main-content { grid-template-columns: 1fr; gap: 2rem; }
-    .left-panels, .giveaway-panel, .winners-panel, .right-panels { grid-row: auto; }
-    
-    .modal-instance { max-width: 90vw; }
-    .modal-content { flex-direction: column; min-height: 80vh; max-height: 80vh; }
-    
     .modal-right-column {
-        flex-direction: column-reverse;
-        flex: 1;
-        overflow-y: auto;
+        /* O "flex-direction: column-reverse" no media query inverte a ordem */
+        /* O painel de participantes (lista) deve ficar em cima, e os prêmios (awards) embaixo,
+           então a ordem no HTML está correta para que isso funcione com column-reverse.
+           No HTML, o awards-panel está antes do participant-list-container. */
     }
-    #modal-awards-list-container {
-        max-height: 10rem;
-    }
-    .modal-participant-list-container {
-        flex-shrink: 0;
-        flex-basis: 15rem;
-    }
-    
-    #participant-list {
-        max-height: 50vh;
-    }
-
-    /* === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) === */
-    .participation-grid {
-        grid-template-columns: 1fr; /* Coloca os itens em coluna única em telas menores */
-    }
-    /* === FIM DA MODIFICAÇÃO === */
-}
-@media (max-width: 768px) {
-    .login-inputs { flex-direction: column; }
-    #login-language-selector { max-width: 100%; }
-    .main-content { grid-template-columns: 1fr; }
-    .tooltip-popup {
-        width: 90vw;
-        max-width: 350px;
-    }
-    .participation-grid {
-        grid-template-columns: 1fr; /* Garante coluna única */
-    }
-}
-
-.winner-animation-box .status-tags-container {
-    margin-left: 0; 
-    flex-shrink: 0; 
 }
