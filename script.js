@@ -1,4 +1,4 @@
-// DICIONÁRIO DE TRADUÇÕES ATUALIZADO (CORREÇÕES FINAIS VIETNAMITA + PORTUGUÊS)
+// DICIONÁRIO DE TRADUÇÕES ATUALIZADO
 const translations = {
     'en': {
         appTitle: 'Giveaway Tool',
@@ -98,10 +98,7 @@ const translations = {
         pauseGiveaway: 'Stop Entries',
         resumeGiveaway: 'Resume Entries',
         statusPaused: 'Entries are paused.',
-        
-        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
         closedMessages: '"Stop Entries" Messages',
-        
         closedMessagesDesc: 'Messages sent by bots when you stop entries.',
         twitchClosedMessage: 'Twitch "Closed" Message',
         kickClosedMessage: 'Kick "Closed" Message',
@@ -192,10 +189,7 @@ const translations = {
         kickAnnounceMessageTooltip: 'A mensagem que seu bot enviará. Variáveis: <br><code>{winner}</code>: nome do vencedor.<br><code>{platform}</code>: "Kick" ou "Twitch".<br><code>{chance}</code>: % de chance do vencedor.<br><code>{award}</code>: prêmio selecionado na caixa de mensagem do modal.',
 
         saveSettings: 'Salvar Configurações',
-        
-        // CORREÇÃO SOLICITADA: STATUS
         statusWaiting: 'Pressione "Iniciar Sorteio" para conectar ao(s) chat(s).',
-        
         statusConnected: 'Conectado! Aguardando entradas.',
         statusError: 'Erro de conexão.',
         kickError: 'Erro na conexão com a Kick.',
@@ -230,10 +224,7 @@ const translations = {
         pauseGiveaway: 'Parar Entradas',
         resumeGiveaway: 'Retomar Entradas',
         statusPaused: 'As entradas estão pausadas.',
-        
-        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
         closedMessages: 'Mensagens de "Parar Entradas"',
-        
         closedMessagesDesc: 'Mensagens que os bots enviam ao parar as entradas.',
         twitchClosedMessage: 'Mensagem "Fechada" (Twitch)',
         kickClosedMessage: 'Mensagem "Fechada" (Kick)',
@@ -358,10 +349,7 @@ const translations = {
         pauseGiveaway: 'Parar Entradas',
         resumeGiveaway: 'Reanudar Entradas',
         statusPaused: 'Las entradas están pausadas.',
-        
-        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
         closedMessages: 'Mensajes de "Parar Entradas"',
-        
         closedMessagesDesc: 'Mensajes que envían los bots al parar las entradas.',
         twitchClosedMessage: 'Mensaje "Cerrado" (Twitch)',
         kickClosedMessage: 'Mensaje "Cerrado" (Kick)',
@@ -435,7 +423,6 @@ const translations = {
 
         startMessage: 'Tin nhắn bắt đầu quay số ({keyword})',
         announceMessage: 'Tin nhắn Người chiến thắng ({winner}, {platform}, {chance}%, {award})',
-        // MENSAGENS PADRÃO
         defaultStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
         defaultAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng {award} từ {platform} với {chance}% cơ hội! 🎉',
         
@@ -443,7 +430,6 @@ const translations = {
         kickletApiToken: 'Token API Kicklet',
         kickStartMessage: 'Tin nhắn bắt đầu (Kick) ({keyword})',
         kickAnnounceMessage: 'Tin nhắn Người chiến thắng (Kick) ({winner}, {platform}, {chance}%, {award})',
-        // MENSAGENS PADRÃO KICK
         defaultKickStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
         defaultKickAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng {award} từ {platform} với {chance}% cơ hội! 🎉',
         
@@ -453,7 +439,6 @@ const translations = {
         announceMessageTooltip: 'Tin nhắn mà bot sẽ gửi. Biến: <br><code>{winner}</code>: tên người thắng.<br><code>{platform}</code>: "Kick" hoặc "Twitch".<br><code>{chance}</code>: % cơ hội của người thắng.<br><code>{award}</code>: giải thưởng được chọn trong hộp tin nhắn modal.',
         kickAnnounceMessageTooltip: 'Tin nhắn mà bot sẽ gửi. Biến: <br><code>{winner}</code>: tên người thắng.<br><code>{platform}</code>: "Kick" hoặc "Twitch".<br><code>{chance}</code>: % cơ hội của người thắng.<br><code>{award}</code>: giải thưởng được chọn trong hộp tin nhắn modal.',
 
-        // CORREÇÕES COMPLETAS VIETNAMITA
         enableAwardsOverlay: 'Bảng Giải thưởng',
         awardsDv: 'DV (Đăng nhập)',
         awardsApiKey: 'Khóa API',
@@ -467,9 +452,7 @@ const translations = {
         awardAnnounceMessageTooltip: 'Tin nhắn mà bot sẽ gửi khi bạn nhấp vào một giải thưởng.<br><br><code>{award}</code> được thay thế bằng tên giải thưởng.',
         defaultAwardAnnounceMessage: 'Giải thưởng tiếp theo: {award}!',
 
-        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
         closedMessages: 'Tin nhắn "Dừng Tham gia"',
-        
         closedMessagesDesc: 'Tin nhắn được gửi bởi bot khi bạn dừng nhận người tham gia.',
         twitchClosedMessage: 'Tin nhắn "Đóng" (Twitch)',
         kickClosedMessage: 'Tin nhắn "Đóng" (Kick)',
@@ -487,7 +470,6 @@ const translations = {
         drawAgain: 'Quay lại',
         ok: 'OK',
         
-        // CORREÇÃO SOLICITADA: TRADUÇÕES FALTANTES
         statusWaiting: 'Nhấn "Bắt đầu Quay số" để kết nối với kênh chat.',
         saveSettings: 'Lưu Cài đặt',
         startGiveaway: 'Bắt đầu Quay số',
@@ -715,6 +697,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let lastModalMessage = ''; 
     let currentAwardName = '';
+
+    // --- PERSISTÊNCIA MODAL ---
+    let lastModalAnnouncementState = false;
+    let lastModalAnnouncementColor = 'primary';
     
     // --- NOVAS VARIÁVEIS PARA API DA TWITCH (ANÚNCIO) ---
     let twitchClientId = null;
@@ -1530,11 +1516,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // Atualiza traduções no select do modal
             updateSelectOptions(modalAnnouncementColorSelect, currentLang);
             
-            // LÓGICA DO ALERTA NO MODAL (Ao clicar no checkbox)
+            // RESTAURA ESTADO DO MODAL
+            modalIsAnnouncementCheckbox.checked = lastModalAnnouncementState;
+            if (lastModalAnnouncementColor) {
+                modalAnnouncementColorSelect.value = lastModalAnnouncementColor;
+            }
+            
+            // EVENTOS DE MUDANÇA NO MODAL
             modalIsAnnouncementCheckbox.addEventListener('change', (e) => {
+                lastModalAnnouncementState = e.target.checked;
                 if (e.target.checked) {
                     alert(translations[currentLang].announcementScopeWarning);
                 }
+            });
+            modalAnnouncementColorSelect.addEventListener('change', (e) => {
+                lastModalAnnouncementColor = e.target.value;
             });
 
             if (lastModalMessage) modalMessageInput.value = lastModalMessage;
