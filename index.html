@@ -96,7 +96,6 @@
                                     <span data-lang-key="enableModalSendMessage">Enable chat send panel on winner modal</span>
                                 </label>
                             </div>
-                            
                             <label for="winner-timer-duration-input" data-lang-key="timerDuration">Winner Timer Duration (seconds):</label>
                             <input type="number" id="winner-timer-duration-input" value="30" min="0">
                             
@@ -205,6 +204,23 @@
                                 </div>
                                 <input type="password" id="twitch-bot-oauth-input" placeholder="oauth:xxxxxxxx">
                                 
+                                <div class="announcement-settings-group">
+                                    <div class="checkbox-wrapper">
+                                        <label for="twitch-use-announcement-checkbox">
+                                            <input type="checkbox" id="twitch-use-announcement-checkbox">
+                                            <span data-lang-key="useAnnouncementAuto">Send Auto-Messages as Announcement</span>
+                                        </label>
+                                    </div>
+                                    <label for="twitch-announcement-color-select" data-lang-key="announcementColor">Announcement Color:</label>
+                                    <select id="twitch-announcement-color-select">
+                                        <option value="primary" data-lang-key="colorPrimary">Primary</option>
+                                        <option value="blue" data-lang-key="colorBlue">Blue</option>
+                                        <option value="green" data-lang-key="colorGreen">Green</option>
+                                        <option value="orange" data-lang-key="colorOrange">Orange</option>
+                                        <option value="purple" data-lang-key="colorPurple">Purple</option>
+                                    </select>
+                                </div>
+
                                 <div class="label-wrapper">
                                     <label for="start-message-input" data-lang-key="startMessage">Start Giveaway Message ({keyword})</label>
                                     <button class="tooltip-trigger" data-tooltip-key="startMessageTooltip" aria-label="Help">?</button>
@@ -212,7 +228,7 @@
                                 <textarea id="start-message-input" rows="3"></textarea>
                                 
                                 <div class="label-wrapper">
-                                    <label for="announcement-message-input" data-lang-key="announceMessage">Winner Message ({winner}, {platform}, {chance}%, {award})</label>
+                                    <label for="announcement-message-input" data-lang-key="announceMessage">Winner Announcement Message ({winner}, {platform}, {chance}%)</label>
                                     <button class="tooltip-trigger" data-tooltip-key="announceMessageTooltip" aria-label="Help">?</button>
                                 </div>
                                 <textarea id="announcement-message-input" rows="3"></textarea>
@@ -245,7 +261,7 @@
                                 <textarea id="kick-start-message-input" rows="3"></textarea>
                                 
                                 <div class="label-wrapper">
-                                    <label for="kick-announcement-message-input" data-lang-key="kickAnnounceMessage">Kick Winner Message ({winner}, {platform}, {chance}%, {award})</label>
+                                    <label for="kick-announcement-message-input" data-lang-key="kickAnnounceMessage">Kick Winner Message ({winner}, {platform}, {chance}%)</label>
                                     <button class="tooltip-trigger" data-tooltip-key="kickAnnounceMessageTooltip" aria-label="Help">?</button>
                                 </div>
                                 <textarea id="kick-announcement-message-input" rows="3"></textarea>
@@ -357,6 +373,22 @@
                         <div class="modal-send-message-panel">
                              <h3 data-lang-key="modalSendMessageTitle">Send Chat Message</h3>
                              <textarea id="modal-message-input" rows="2" placeholder-lang-key="modalMessagePlaceholder"></textarea>
+                             
+                             <div class="modal-announcement-controls">
+                                <div class="checkbox-wrapper small">
+                                    <label for="modal-is-announcement-checkbox">
+                                        <input type="checkbox" id="modal-is-announcement-checkbox">
+                                        <span data-lang-key="modalAsAnnouncement">As Announcement (Twitch)</span>
+                                    </label>
+                                </div>
+                                <select id="modal-announcement-color-select" class="small-select">
+                                    <option value="primary" data-lang-key="colorPrimary">Primary</option>
+                                    <option value="blue" data-lang-key="colorBlue">Blue</option>
+                                    <option value="green" data-lang-key="colorGreen">Green</option>
+                                    <option value="orange" data-lang-key="colorOrange">Orange</option>
+                                    <option value="purple" data-lang-key="colorPurple">Purple</option>
+                                </select>
+                             </div>
                              <div class="modal-send-button-wrapper">
                                  <button id="modal-send-global-button" class="modal-send-button" data-lang-key="modalSendGlobalButton">Send Global Message</button>
                                  <button id="modal-send-award-button" class="modal-send-button" data-lang-key="modalSendAwardButton">Send Award</button>

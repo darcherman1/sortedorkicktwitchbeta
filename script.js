@@ -1,4 +1,4 @@
-// DICIONÁRIO DE TRADUÇÕES REVISADO E OTIMIZADO
+// DICIONÁRIO DE TRADUÇÕES ATUALIZADO (CORREÇÕES FINAIS VIETNAMITA + PORTUGUÊS)
 const translations = {
     'en': {
         appTitle: 'Giveaway Tool',
@@ -33,6 +33,17 @@ const translations = {
         botUsername: 'Twitch Bot Username',
         botUsernamePlaceholder: "Your bot's username",
         botToken: 'Twitch Bot OAuth Token',
+        
+        useAnnouncementAuto: 'Send Auto-Messages as Announcement',
+        announcementColor: 'Announcement Color:',
+        modalAsAnnouncement: 'As Announcement (Twitch)',
+        announcementScopeWarning: '⚠️ ATTENTION: To use the Announcement feature, your Token MUST have the "moderator:manage:announcements" scope enabled.\n\nPlease generate a new token if you haven\'t done so yet.',
+        colorPrimary: 'Primary',
+        colorBlue: 'Blue',
+        colorGreen: 'Green',
+        colorOrange: 'Orange',
+        colorPurple: 'Purple',
+        
         startMessage: 'Start Giveaway Message ({keyword})',
         announceMessage: 'Winner Message ({winner}, {platform}, {chance}%, {award})',
         defaultStartMessage: 'A new giveaway has started! Type {keyword} to enter!',
@@ -45,7 +56,7 @@ const translations = {
         defaultKickStartMessage: 'A new giveaway has started! Type {keyword} to enter!',
         defaultKickAnnounceMessage: 'Congratulations @{winner}, you won {award} from {platform} with a {chance}% chance! 🎉',
         
-        kickletTokenTooltip: 'Get this from YOUR Kicklet Profile Settings at <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">kicklet.app/profile/settings</a>. Log in, go to "API tokens", create a bot, and paste the token here.<br><br>This allows the tool to send messages as the Kicklet bot in your chat.',
+        kickletTokenTooltip: 'Get this from YOUR Kicklet Profile Settings <a href="https://kicklet.app/profile/settings" target="_blank">https://kicklet.app/profile/settings</a> log in to your account, go to "API tokens" and click to create a bot, choose any name you want, copy and paste the token here<br><br>This allows the tool to send messages as the Kicklet bot in your chat.',
         kickStartMessageTooltip: 'Message the Kicklet bot will send when you click "Start Giveaway".<br><br><code>{keyword}</code> is replaced by your keyword.',
         
         announceMessageTooltip: 'The message your bot sends. Variables: <br><code>{winner}</code>: winner\'s name.<br><code>{platform}</code>: "Kick" or "Twitch".<br><code>{chance}</code>: winner\'s % chance.<br><code>{award}</code>: prize selected in the modal message box.',
@@ -74,7 +85,9 @@ const translations = {
         credits: 'Updated version of the kickaway (github) project by darcherman v2.0',
         
         allowDualEntryTooltip: 'If checked, a user can enter once on Kick AND once on Twitch, doubling their chances.<br><br>If unchecked, the first entry (from either platform) is the only one that counts.',
-        botTokenTooltip: 'This is the "password" for your bot account.<br><br><strong>How to get it:</strong><br>1. Create a new Twitch account for your bot (e.g., "MyBot").<br>2. Enable 2-Factor-Auth (2FA) on it.<br>3. Go to <code>twitchtokengenerator.com</code> and get the "Access Token".<br>4. Paste the token here and add <code>oauth:</code> in front (e.g., <code>oauth:abcdef123...</code>).',
+        
+        botTokenTooltip: 'This is the "password" for your bot account.<br><br><strong>IMPORTANT:</strong> To use Announcements (/announce), the token MUST have the <code>moderator:manage:announcements</code> scope.<br><br><strong>How to get it:</strong><br>1. Visit <code>twitchtokengenerator.com</code><br>2. Select "Custom Scope Token".<br>3. Enable <code>chat:read</code>, <code>chat:edit</code> AND <code>moderator:manage:announcements</code>.<br>4. Generate and copy the Access Token.',
+        
         startMessageTooltip: 'Message the bot will send when you click "Start Giveaway".<br><br><code>{keyword}</code> is replaced by your keyword. If no keyword, it will be replaced with "any message".',
         
         multipliersTooltip: "Increases a user's chance of winning.<br><br><strong>Example:</strong> If the value is '2', a SUB will have 2x the chances (2 'tickets' in the draw).<br><br><strong>IMPORTANT (KICK):</strong> For the Kick Sub and VIP multiplier to work, the user must have their <strong>Sub/VIP badge enabled</strong> in their chat settings on your Kick channel.",
@@ -85,7 +98,10 @@ const translations = {
         pauseGiveaway: 'Stop Entries',
         resumeGiveaway: 'Resume Entries',
         statusPaused: 'Entries are paused.',
+        
+        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
         closedMessages: '"Stop Entries" Messages',
+        
         closedMessagesDesc: 'Messages sent by bots when you stop entries.',
         twitchClosedMessage: 'Twitch "Closed" Message',
         kickClosedMessage: 'Kick "Closed" Message',
@@ -146,6 +162,17 @@ const translations = {
         botUsername: 'Nome de usuário do Bot (Twitch)',
         botUsernamePlaceholder: 'Nome do seu bot',
         botToken: 'Token OAuth do Bot (Twitch)',
+        
+        useAnnouncementAuto: 'Enviar Auto-Mensagens como Comunicado',
+        announcementColor: 'Cor do Comunicado:',
+        modalAsAnnouncement: 'Como Comunicado (Twitch)',
+        announcementScopeWarning: '⚠️ ATENÇÃO: Para usar a função de Comunicado (Anúncio), seu Token DEVE ter o escopo "moderator:manage:announcements" ativado.\n\nPor favor, gere um novo token se ainda não fez isso.',
+        colorPrimary: 'Padrão',
+        colorBlue: 'Azul',
+        colorGreen: 'Verde',
+        colorOrange: 'Laranja',
+        colorPurple: 'Roxo',
+
         startMessage: 'Mensagem de Início do Sorteio ({keyword})',
         announceMessage: 'Mensagem do Vencedor ({winner}, {platform}, {chance}%, {award})',
         defaultStartMessage: 'Um novo sorteio começou! Digite {keyword} para entrar!',
@@ -158,14 +185,17 @@ const translations = {
         defaultKickStartMessage: 'Um novo sorteio começou! Digite {keyword} para entrar!',
         defaultKickAnnounceMessage: 'Parabéns @{winner}, você ganhou {award} pela {platform} com {chance}% de chance! 🎉',
         
-        kickletTokenTooltip: 'Pegue isso nas Configurações do SEU Perfil do Kicklet em <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">kicklet.app/profile/settings</a>. Entre na sua conta, vá até "API tokens", crie um bot e cole o token aqui.<br><br>Isso permite que a ferramenta envie mensagens como o bot Kicklet no seu chat.',
+        kickletTokenTooltip: 'Pegue isso nas Configurações do SEU Perfil do Kicklet <a href="https://kicklet.app/profile/settings" target="_blank">https://kicklet.app/profile/settings</a> entre na sua conta vá até "API tokens" e clique pra criar um bot, escolha o nome que você quiser, copie e cole aqui o token<br><br>Isso permite que a ferramenta envie mensagens como o bot Kicklet no seu chat.',
         kickStartMessageTooltip: 'Mensagem que o bot Kicklet enviará quando você clicar em "Iniciar Sorteio".<br><br><code>{keyword}</code> é substituída pela sua palavra-chave.',
         
         announceMessageTooltip: 'A mensagem que seu bot enviará. Variáveis: <br><code>{winner}</code>: nome do vencedor.<br><code>{platform}</code>: "Kick" ou "Twitch".<br><code>{chance}</code>: % de chance do vencedor.<br><code>{award}</code>: prêmio selecionado na caixa de mensagem do modal.',
         kickAnnounceMessageTooltip: 'A mensagem que seu bot enviará. Variáveis: <br><code>{winner}</code>: nome do vencedor.<br><code>{platform}</code>: "Kick" ou "Twitch".<br><code>{chance}</code>: % de chance do vencedor.<br><code>{award}</code>: prêmio selecionado na caixa de mensagem do modal.',
 
         saveSettings: 'Salvar Configurações',
-        statusWaiting: 'Pressione "Start Giveaway" para conectar ao(s) chat(s).',
+        
+        // CORREÇÃO SOLICITADA: STATUS
+        statusWaiting: 'Pressione "Iniciar Sorteio" para conectar ao(s) chat(s).',
+        
         statusConnected: 'Conectado! Aguardando entradas.',
         statusError: 'Erro de conexão.',
         kickError: 'Erro na conexão com a Kick.',
@@ -187,7 +217,9 @@ const translations = {
         credits: 'Versão atualizada do projeto kickaway (github) por darcherman v2.0',
         
         allowDualEntryTooltip: 'Se marcado, um usuário pode entrar uma vez na Kick E uma vez na Twitch, dobrando suas chances.<br><br>Se desmarcado, a primeira entrada (de qualquer plataforma) é a única que conta.',
-        botTokenTooltip: 'Esta é a "senha" da sua conta de bot.<br><br><strong>Como obter:</strong><br>1. Crie uma nova conta no Twitch para seu bot (ex: "MeuBot").<br>2. Ative a Autenticação de 2 Fatores (2FA) nela.<br>3. Vá ao site <code>twitchtokengenerator.com</code> e pegue o "Access Token".<br>4. Cole o token aqui e adicione <code>oauth:</code> na frente (ex: <code>oauth:abcdef123...</code>).',
+        
+        botTokenTooltip: 'Esta é a "senha" da sua conta de bot.<br><br><strong>IMPORTANTE:</strong> Para usar Comunicados (/announce), o token DEVE ter o escopo <code>moderator:manage:announcements</code>.<br><br><strong>Como obter:</strong><br>1. Vá em <code>twitchtokengenerator.com</code><br>2. Escolha "Custom Scope Token".<br>3. Marque <code>chat:read</code>, <code>chat:edit</code> E <code>moderator:manage:announcements</code>.<br>4. Gere e copie o Access Token.',
+        
         startMessageTooltip: 'Mensagem que o bot enviará quando você clicar em "Iniciar Sorteio".<br><br><code>{keyword}</code> é substituída pela sua palavra-chave. Se não houver palavra-chave, será substituída por "qualquer mensagem".',
         
         multipliersTooltip: "Aumenta a chance de um usuário ganhar.<br><br><strong>Exemplo:</strong> Se o valor for '2', um SUB terá 2x mais chances (2 'bilhetes' no sorteio).<br><br><strong>IMPORTANTE (KICK):</strong> Para o multiplicador de Sub e VIP da Kick funcionar, o usuário precisa ter o <strong>distintivo (badge) de Sub/VIP ativado</strong> nas configurações de chat do seu canal Kick.",
@@ -198,7 +230,10 @@ const translations = {
         pauseGiveaway: 'Parar Entradas',
         resumeGiveaway: 'Retomar Entradas',
         statusPaused: 'As entradas estão pausadas.',
-        closedMessages: 'Mensagens de "Parar entradas"',
+        
+        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
+        closedMessages: 'Mensagens de "Parar Entradas"',
+        
         closedMessagesDesc: 'Mensagens que os bots enviam ao parar as entradas.',
         twitchClosedMessage: 'Mensagem "Fechada" (Twitch)',
         kickClosedMessage: 'Mensagem "Fechada" (Kick)',
@@ -248,7 +283,7 @@ const translations = {
         
         showWinnerChat: 'Mostrar chat del ganador en el modal',
         timerDuration: 'Duración del Temporizador (segundos):',
-        animation: 'Animación del Sorteo:',
+        animation: 'Animación del Sorteio:',
         animScramble: 'Aleatorio (letras)',
         animNone: 'Ninguna',
         multipliers: 'Multiplicadores de Suerte',
@@ -259,19 +294,30 @@ const translations = {
         botUsername: 'Nombre de usuario del Bot (Twitch)',
         botUsernamePlaceholder: 'Nombre de tu bot',
         botToken: 'Token OAuth del Bot (Twitch)',
+
+        useAnnouncementAuto: 'Enviar Auto-Mensajes como Comunicado',
+        announcementColor: 'Color del Comunicado:',
+        modalAsAnnouncement: 'Como Comunicado (Twitch)',
+        announcementScopeWarning: '⚠️ ATENCIÓN: Para utilizar la función de Comunicado (Anuncio), su Token DEBE tener el alcance "moderator:manage:announcements" activado.\n\nPor favor, genere un nuevo token si aún no lo ha hecho.',
+        colorPrimary: 'Principal',
+        colorBlue: 'Azul',
+        colorGreen: 'Verde',
+        colorOrange: 'Naranja',
+        colorPurple: 'Morado',
+
         startMessage: 'Mensaje de Inicio del Sorteo ({keyword})',
         announceMessage: 'Mensaje del Ganador ({winner}, {platform}, {chance}%, {award})',
-        defaultStartMessage: '¡Un nuevo sorteo ha comenzado! Escribe {keyword} para entrar.',
+        defaultStartMessage: '¡Un nuevo sorteio ha comenzado! Escribe {keyword} para entrar.',
         defaultAnnounceMessage: '¡Felicidades @{winner}, ganaste {award} desde {platform} con un {chance}% de chance! 🎉',
         
         enableKickBot: 'Activar Bot de Kick (vía Kicklet)',
         kickletApiToken: 'Token de API de Kicklet',
         kickStartMessage: 'Mensaje de Inicio (Kick) ({keyword})',
         kickAnnounceMessage: 'Mensaje del Ganador (Kick) ({winner}, {platform}, {chance}%, {award})',
-        defaultKickStartMessage: '¡Un nuevo sorteo ha comenzado! Escribe {keyword} para entrar.',
+        defaultKickStartMessage: '¡Un nuevo sorteio ha comenzado! Escribe {keyword} para entrar.',
         defaultKickAnnounceMessage: '¡Felicidades @{winner}, ganaste {award} desde {platform} con un {chance}% de chance! 🎉',
         
-        kickletTokenTooltip: 'Obtén esto en la Configuración de TU Perfil de Kicklet en <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">kicklet.app/profile/settings</a>. Inicia sesión, ve a "API tokens", crea un bot y pega el token aquí.<br><br>Esto permite que la herramienta envíe mensajes como el bot Kicklet en tu chat.',
+        kickletTokenTooltip: 'Obtén esto en la Configuración de TU Perfil de Kicklet <a href="https://kicklet.app/profile/settings" target="_blank">https://kicklet.app/profile/settings</a> inicia sesión en tu cuenta, ve a "API tokens" y haz clic para crear un bot, elige el nombre que quieras, copia y pega el token aquí<br><br>Esto permite que la herramienta envie mensajes como el bot Kicklet en tu chat.',
         kickStartMessageTooltip: 'Mensaje que el bot Kicklet enviará al hacer clic en "Iniciar Sorteio".<br><br><code>{keyword}</code> se reemplaza por tu palabra clave.',
         
         announceMessageTooltip: 'El mensaje que tu bot enviará. Variables: <br><code>{winner}</code>: nombre del ganador.<br><code>{platform}</code>: "Kick" o "Twitch".<br><code>{chance}</code>: % de probabilidad del ganador.<br><code>{award}</code>: premio seleccionado en la caja de mensaje del modal.',
@@ -298,9 +344,10 @@ const translations = {
         alertConnectFail: 'Falló la conexión:',
         alertSettingsSaved: '¡Configuración guardada!',
         credits: 'Versão atualizada del proyecto kickaway (github) por darcherman v2.0',
-        
         allowDualEntryTooltip: 'Si está marcado, un usuario puede entrar una vez en Kick Y una vez en Twitch, duplicando sus oportunidades.<br><br>Si está desmarcado, la primera entrada (de cualquier plataforma) es la única que cuenta.',
-        botTokenTooltip: 'Esta es la "contraseña" de tu cuenta de bot.<br><br><strong>Cómo obtenerla:</strong><br>1. Crea una nueva cuenta de Twitch para tu bot (ej: "MiBot").<br>2. Activa la Autenticação de 2 Factores (2FA) en ella.<br>3. Ve a <code>twitchtokengenerator.com</code> y obtén el "Access Token".<br>4. Pega el token aquí y añade <code>oauth:</code> delante (ej: <code>oauth:abcdef123...</code>).',
+        
+        botTokenTooltip: 'Esta es la "contraseña" de tu cuenta de bot.<br><br><strong>IMPORTANTE:</strong> Para usar Comunicados (/announce), el token DEBE tener el alcance <code>moderator:manage:announcements</code>.<br><br><strong>Cómo obtenerla:</strong><br>1. Ve a <code>twitchtokengenerator.com</code><br>2. Elige "Custom Scope Token".<br>3. Marca <code>chat:read</code>, <code>chat:edit</code> Y <code>moderator:manage:announcements</code>.<br>4. Genera y copia el Access Token.',
+        
         startMessageTooltip: 'Mensaje que el bot enviará cuando hagas clic en "Iniciar Sorteio".<br><br><code>{keyword}</code> se reemplaza por tu palabra clave. Si no hay palabra clave, se reemplazará por "cualquer mensaje".',
         
         multipliersTooltip: "Aumenta la probabilidad de que un usuario gane.<br><br><strong>Ejemplo:</strong> Si el valor es '2', un SUB tendrá 2x más probabilidades (2 'boletos' en el sorteo).<br><br><strong>IMPORTANTE (KICK):</strong> Para que el multiplicador de Sub y VIP de Kick funcione, el usuario debe tener su <strong>insignia (badge) de Sub/VIP activada</strong> en la configuración de chat de tu canal de Kick.",
@@ -311,7 +358,10 @@ const translations = {
         pauseGiveaway: 'Parar Entradas',
         resumeGiveaway: 'Reanudar Entradas',
         statusPaused: 'Las entradas están pausadas.',
-        closedMessages: 'Mensajes de "Entradas Cerradas"',
+        
+        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
+        closedMessages: 'Mensajes de "Parar Entradas"',
+        
         closedMessagesDesc: 'Mensajes que envían los bots al parar las entradas.',
         twitchClosedMessage: 'Mensaje "Cerrado" (Twitch)',
         kickClosedMessage: 'Mensaje "Cerrado" (Kick)',
@@ -323,7 +373,7 @@ const translations = {
         awardsDv: 'DV (Login)',
         awardsApiKey: 'Clave de API',
         awardsOverlayTooltip: 'Introduce las credenciales para tu panel de premios.<br><br>Se guardan localmente al hacer clic en "Guardar Configuración".',
-        awardsPanelTitle: 'Premios Actuales',
+        awardsPanelTitle: 'Prêmios Actuales',
         awardsStatusLoading: 'Cargando premios...',
         awardsStatusError: 'Comprueba las credenciales en Configuración.',
         awardsStatusApiError: 'Error de API. Reintentando...',
@@ -372,8 +422,20 @@ const translations = {
         botUsername: 'Tên người dùng Bot (Twitch)',
         botUsernamePlaceholder: 'Tên bot của bạn',
         botToken: 'Token OAuth của Bot (Twitch)',
+
+        useAnnouncementAuto: 'Gửi tin tự động dạng Thông báo',
+        announcementColor: 'Màu thông báo:',
+        modalAsAnnouncement: 'Dạng Thông báo (Twitch)',
+        announcementScopeWarning: '⚠️ CHÚ Ý: Để sử dụng tính năng Thông báo, Token của bạn PHẢI có phạm vi (scope) "moderator:manage:announcements" được kích hoạt.\n\nVui lòng tạo token mới nếu bạn chưa làm vậy.',
+        colorPrimary: 'Chính',
+        colorBlue: 'Xanh dương',
+        colorGreen: 'Xanh lá',
+        colorOrange: 'Cam',
+        colorPurple: 'Tím',
+
         startMessage: 'Tin nhắn bắt đầu quay số ({keyword})',
         announceMessage: 'Tin nhắn Người chiến thắng ({winner}, {platform}, {chance}%, {award})',
+        // MENSAGENS PADRÃO
         defaultStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
         defaultAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng {award} từ {platform} với {chance}% cơ hội! 🎉',
         
@@ -381,71 +443,55 @@ const translations = {
         kickletApiToken: 'Token API Kicklet',
         kickStartMessage: 'Tin nhắn bắt đầu (Kick) ({keyword})',
         kickAnnounceMessage: 'Tin nhắn Người chiến thắng (Kick) ({winner}, {platform}, {chance}%, {award})',
+        // MENSAGENS PADRÃO KICK
         defaultKickStartMessage: 'Một đợt quay số mới đã bắt đầu! Gõ {keyword} để tham gia!',
         defaultKickAnnounceMessage: 'Chúc mừng @{winner}, bạn đã thắng {award} từ {platform} với {chance}% cơ hội! 🎉',
         
-        kickletTokenTooltip: 'Lấy mã này từ Cài đặt Hồ sơ Kicklet CỦA BẠN tại <a href=\"https://kicklet.app/profile/settings\" target=\"_blank\">kicklet.app/profile/settings</a>. Đăng nhập, đi tới "API tokens", nhấp tạo bot, và dán token vào đây.<br><br>Điều này cho phép công cụ gửi tin nhắn dưới dạng bot Kicklet trong cuộc trò chuyện của bạn.',
+        kickletTokenTooltip: 'Lấy mã này từ Cài đặt Hồ sơ Kicklet CỦA BẠN <a href="https://kicklet.app/profile/settings" target="_blank">https://kicklet.app/profile/settings</a> đăng nhập vào tài khoản của bạn, đi tới "API tokens" và nhấp để tạo bot, chọn bất kỳ tên nào bạn muốn, sao chép và dán token vào đây<br><br>Điều này cho phép công cụ gửi tin nhắn dưới dạng bot Kicklet trong cuộc trò chuyện của bạn.',
         kickStartMessageTooltip: 'Tin nhắn mà bot Kicklet sẽ gửi khi bạn nhấp vào "Bắt đầu Quay số".<br><br><code>{keyword}</code> được thay thế bằng từ khóa của bạn.',
         
         announceMessageTooltip: 'Tin nhắn mà bot sẽ gửi. Biến: <br><code>{winner}</code>: tên người thắng.<br><code>{platform}</code>: "Kick" hoặc "Twitch".<br><code>{chance}</code>: % cơ hội của người thắng.<br><code>{award}</code>: giải thưởng được chọn trong hộp tin nhắn modal.',
         kickAnnounceMessageTooltip: 'Tin nhắn mà bot sẽ gửi. Biến: <br><code>{winner}</code>: tên người thắng.<br><code>{platform}</code>: "Kick" hoặc "Twitch".<br><code>{chance}</code>: % cơ hội của người thắng.<br><code>{award}</code>: giải thưởng được chọn trong hộp tin nhắn modal.',
 
-        saveSettings: 'Lưu Cài đặt',
-        statusWaiting: 'Nhấn "Bắt đầu Quay số" để kết nối với (các) kênh chat.',
-        statusConnected: 'Đã kết nối! Đang chờ người tham gia.',
-        statusError: 'Lỗi kết nối.',
-        kickError: 'Lỗi kết nối Kick.',
-        kickLost: 'Mất kết nối Kick.',
-        startGiveaway: 'Bắt đầu Quay số',
-        participants: 'Người tham gia',
-        drawWinner: 'Quay số',
-        reset: 'Đặt lại',
-        winners: 'Người chiến thắng',
-        drawing: 'Đang quay số...',
-        ok: 'OK',
-        drawAgain: 'Quay lại',
-        alertNoParticipants: 'Không có người tham gia để quay số!',
-        alertKickConnectFail: 'Không tìm thấy kênh Kick:',
-        alertKickChatroomFail: 'Không thể lấy ID phòng chat Kick.',
-        alertNoChannel: 'Vui lòng nhập ít nhất một tên kênh.',
-        alertConnectFail: 'Kết nối thất bại:',
-        alertSettingsSaved: 'Đã lưu cài đặt!',
-        credits: 'Phiên bản cập nhật của dự án kickaway (github) bởi darcherman v2.0',
-
-        allowDualEntryTooltip: 'Nếu được chọn, người dùng có thể tham gia một lần trên Kick VÀ một lần trên Twitch, nhân đôi cơ hội của họ.<br><br>Nếu không được chọn, lần tham gia đầu tiên (từ bất kỳ nền tảng nào) là lần duy nhất được tính.',
-        botTokenTooltip: 'Đây là "mật khẩu" cho tài khoản bot của bạn.<br><br><strong>Cách lấy:</strong><br>1. Tạo một tài khoản Twitch mới cho bot của bạn (ví dụ: "MyBot").<br>2. Bật Xác thực 2 yếu tố (2FA) trên đó.<br>3. Truy cập <code>twitchtokengenerator.com</code> và lấy "Access Token".<br>4. Dán token vào đây và thêm <code>oauth:</code> ở trước (ví dụ: <code>oauth:abcdef123...</code>).',
-        startMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp "Bắt đầu Quay số".<br><br><code>{keyword}</code> được thay thế bằng từ khóa của bạn. Nếu không có từ khóa, nó sẽ được thay thế bằng "bất kỳ tin nhắn nào".',
-
-        multipliersTooltip: "Tăng cơ hội thắng của người dùng.<br><br><strong>Ví dụ:</strong> Nếu giá trị là '2', một SUB sẽ có 2x cơ hội (2 'vé' trong đợt quay).<br><br><strong>QUAN TRỌNG (KICK):</strong> Để hệ số nhân Sub và VIP của Kick hoạt động, người dùng phải <strong>bật huy hiệu Sub/VIP</strong> của họ trong cài đặt trò chuyện trên kênh Kick của bạn.",
-
-        chatWaitingForMessage: 'Đang chờ tin nhắn từ người thắng...',
-        keywordAnyMessage: 'bất kỳ tin nhắn nào',
-
-        pauseGiveaway: 'Dừng tham gia',
-        resumeGiveaway: 'Tiếp tục tham gia',
-        statusPaused: 'Đã tạm dừng tham gia.',
-        
-        closedMessages: 'Tin nhắn "Đã đóng"',
-        closedMessagesDesc: 'Tin nhắn được gửi bởi bot khi bạn dừng tham gia.',
-        twitchClosedMessage: 'Tin nhắn "Đã đóng" (Twitch)',
-        kickClosedMessage: 'Tin nhắn "Đã đóng" (Kick)',
-        closedMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp "Dừng tham gia".',
-        defaultTwitchClosedMessage: 'Đã đóng đăng ký! Chúc may mắn.',
-        defaultKickClosedMessage: 'Đã đóng đăng ký! Chúc may mắn.',
-
-        enableAwardsOverlay: 'Bảng Phần thưởng',
+        // CORREÇÕES COMPLETAS VIETNAMITA
+        enableAwardsOverlay: 'Bảng Giải thưởng',
         awardsDv: 'DV (Đăng nhập)',
         awardsApiKey: 'Khóa API',
-        awardsOverlayTooltip: 'Nhập thông tin đăng nhập cho bảng phần thưởng của bạn.<br><br>Chúng được lưu cục bộ khi nhấp vào "Lưu Cài đặt".',
-        awardsPanelTitle: 'Phần thưởng Hiện tại',
-        awardsStatusLoading: 'Đang tải phần thưởng...',
-        awardsStatusError: 'Kiểm tra thông tin đăng nhập trong Cài đặt.',
+        awardsOverlayTooltip: 'Nhập thông tin xác thực cho tệp overlay.html của bạn.<br><br>Công cụ này chỉ lưu cài đặt; tệp overlay đọc chúng riêng biệt.',
+        awardsPanelTitle: 'Giải thưởng hiện tại',
+        awardsStatusLoading: 'Đang tải giải thưởng...',
+        awardsStatusError: 'Kiểm tra thông tin xác thực trong cài đặt.',
         awardsStatusApiError: 'Lỗi API. Đang thử lại...',
-        awardsStatusNoAwards: 'Không có phần thưởng nào.',
-        awardAnnounceMessageLabel: 'Tin nhắn Thông báo Phần thưởng ({award})',
-        awardAnnounceMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp vào một phần thưởng.<br><br><code>{award}</code> được thay thế bằng tên phần thưởng.',
-        defaultAwardAnnounceMessage: 'Vòng quay số tiếp theo: {award}!',
+        awardsStatusNoAwards: 'Không có giải thưởng nào.',
+        awardAnnounceMessageLabel: 'Tin nhắn Thông báo Giải thưởng ({award})',
+        awardAnnounceMessageTooltip: 'Tin nhắn mà bot sẽ gửi khi bạn nhấp vào một giải thưởng.<br><br><code>{award}</code> được thay thế bằng tên giải thưởng.',
+        defaultAwardAnnounceMessage: 'Giải thưởng tiếp theo: {award}!',
 
+        // CORREÇÃO SOLICITADA: ALINHADO COM O BOTÃO
+        closedMessages: 'Tin nhắn "Dừng Tham gia"',
+        
+        closedMessagesDesc: 'Tin nhắn được gửi bởi bot khi bạn dừng nhận người tham gia.',
+        twitchClosedMessage: 'Tin nhắn "Đóng" (Twitch)',
+        kickClosedMessage: 'Tin nhắn "Đóng" (Kick)',
+        closedMessageTooltip: 'Tin nhắn bot sẽ gửi khi bạn nhấp vào "Dừng Tham gia".',
+        defaultTwitchClosedMessage: 'Đã đóng tham gia! Chúc may mắn.',
+        defaultKickClosedMessage: 'Đã đóng tham gia! Chúc may mắn.',
+
+        participants: 'Người tham gia',
+        winners: 'Người chiến thắng',
+        drawWinner: 'Quay Người thắng',
+        pauseGiveaway: 'Dừng Tham gia',
+        resumeGiveaway: 'Tiếp tục Tham gia',
+        statusPaused: 'Đã tạm dừng tham gia.',
+        reset: 'Đặt lại',
+        drawAgain: 'Quay lại',
+        ok: 'OK',
+        
+        // CORREÇÃO SOLICITADA: TRADUÇÕES FALTANTES
+        statusWaiting: 'Nhấn "Bắt đầu Quay số" để kết nối với kênh chat.',
+        saveSettings: 'Lưu Cài đặt',
+        startGiveaway: 'Bắt đầu Quay số',
+        
         enableModalSendMessage: 'Bật bảng gửi chat trên modal',
         modalSendMessageTitle: 'Gửi Tin nhắn Chat',
         modalMessagePlaceholder: 'Nhập tin nhắn để gửi đến cả hai kênh chat...',
@@ -494,6 +540,21 @@ function setLanguage(lang) {
     const langSelectSettings = document.getElementById('language-select-settings');
     if (langSelectLogin.value !== lang) langSelectLogin.value = lang;
     if (langSelectSettings.value !== lang) langSelectSettings.value = lang;
+    
+    // Atualiza opções do seletor de cor
+    const colorSelect = document.getElementById('twitch-announcement-color-select');
+    const modalColorSelect = document.getElementById('modal-announcement-color-select');
+    if (colorSelect) updateSelectOptions(colorSelect, lang);
+    if (modalColorSelect) updateSelectOptions(modalColorSelect, lang);
+}
+
+function updateSelectOptions(selectElement, lang) {
+    for (let i = 0; i < selectElement.options.length; i++) {
+        const key = selectElement.options[i].getAttribute('data-lang-key');
+        if (key && translations[lang][key]) {
+            selectElement.options[i].text = translations[lang][key];
+        }
+    }
 }
 
 // Função para obter o idioma inicial
@@ -530,15 +591,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const keywordInput = document.getElementById('keyword-input');
     const allowMultiPlatformCheckbox = document.getElementById('allow-multi-platform-checkbox');
-    // const excludeModsCheckbox = document.getElementById('exclude-mods-checkbox'); // Removido
     const showWinnerChatCheckbox = document.getElementById('show-winner-chat-checkbox');
-    // NOVO SELETOR
     const enableModalSendMessageCheckbox = document.getElementById('enable-modal-send-message-checkbox'); 
-    // FIM NOVO SELETOR
     const winnerTimerDurationInput = document.getElementById('winner-timer-duration-input');
     const animationSelect = document.getElementById('animation-select');
     
-    // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
+    // === PAINEL DE PARTICIPAÇÃO ===
     const toggleParticipationPanel = document.getElementById('toggle-participation-panel');
     const participationSettingsWrapper = document.getElementById('participation-settings-wrapper');
     const participationEyeIconOpen = document.getElementById('participation-eye-icon-open');
@@ -547,7 +605,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const allowSubsCheckbox = document.getElementById('allow-subs-checkbox');
     const allowVipsCheckbox = document.getElementById('allow-vips-checkbox');
     const allowModsCheckbox = document.getElementById('allow-mods-checkbox');
-    // === FIM DA MODIFICAÇÃO ===
     
     const kickSubMultiplier = document.getElementById('kick-sub-multiplier');
     const kickVipMultiplier = document.getElementById('kick-vip-multiplier');
@@ -558,6 +615,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const twitchBotSettingsWrapper = document.getElementById('twitch-bot-settings-wrapper');
     const twitchBotUsernameInput = document.getElementById('twitch-bot-username-input');
     const twitchBotOauthInput = document.getElementById('twitch-bot-oauth-input');
+    
+    // NOVOS SELETORES DE ANÚNCIO
+    const twitchUseAnnouncementCheckbox = document.getElementById('twitch-use-announcement-checkbox');
+    const twitchAnnouncementColorSelect = document.getElementById('twitch-announcement-color-select');
+    
     const startMessageInput = document.getElementById('start-message-input');
     const announcementMessageInput = document.getElementById('announcement-message-input');
     
@@ -620,15 +682,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const tooltipPopup = document.getElementById('tooltip-popup-container');
     
-    // --- NOVOS SELETORES DO MODAL (ADICIONADOS) ---
-    // Estes elementos estarão dentro do modal-instance clonado,
-    // então precisam ser buscados APÓS o modal ser criado.
+    // --- VARIÁVEIS DO MODAL ---
     let modalMessageInput = null;
     let modalSendGlobalButton = null;
     let modalSendAwardButton = null;
     let modalSendMessagePanel = null;
-    let modalTimerDisplay = null; 
-    
+    let modalIsAnnouncementCheckbox = null;
+    let modalAnnouncementColorSelect = null;
+
     // --- VARIÁVEIS DE ESTADO ---
     let kickChannel = null, twitchChannel = null;
     let kickChatroomId = null;
@@ -652,10 +713,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let awardsApiAttempts = 0;
     let awardsUsingProxy = false;
     
-    // CORREÇÃO: Variável de estado para persistência da mensagem
     let lastModalMessage = ''; 
-    // CORREÇÃO: Variável de estado para prêmio clicado
     let currentAwardName = '';
+    
+    // --- NOVAS VARIÁVEIS PARA API DA TWITCH (ANÚNCIO) ---
+    let twitchClientId = null;
+    let twitchBroadcasterId = null;
+    let twitchBotId = null;
 
 
     // --- FUNÇÕES PRINCIPAIS ---
@@ -678,27 +742,12 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(message);
     }
     
-    // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
     function isUserAllowed(userStatus) {
-        // Lógica de permissão:
-        // O usuário pode entrar se ele corresponder a QUALQUER
-        // categoria que esteja marcada.
-        
-        // 1. Verifica dos status "mais altos" para os "mais baixos"
-        if (userStatus.isMod) {
-            return allowModsCheckbox.checked;
-        }
-        if (userStatus.isVip) {
-            return allowVipsCheckbox.checked;
-        }
-        if (userStatus.isSub) {
-            return allowSubsCheckbox.checked;
-        }
-        
-        // 2. Se não for nada disso, é um "Viewer"
+        if (userStatus.isMod) return allowModsCheckbox.checked;
+        if (userStatus.isVip) return allowVipsCheckbox.checked;
+        if (userStatus.isSub) return allowSubsCheckbox.checked;
         return allowViewersCheckbox.checked;
     }
-    // === FIM DA MODIFICAÇÃO ===
 
     async function handleConnect() {
         const kickChannelName = kickChannelInput.value.trim().toLowerCase();
@@ -753,33 +802,99 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!enableKickBotCheckbox.checked || !token || !messageContent) {
             return;
         }
-        
         try {
-            const response = await fetch('https://kicklet.app/api/kick/message', {
+            await fetch('https://kicklet.app/api/kick/message', {
                 method: 'POST',
-                headers: {
-                    'Authorization': `apitoken ${token}`,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    content: messageContent
-                })
+                headers: { 'Authorization': `apitoken ${token}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ content: messageContent })
             });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Erro ao enviar mensagem pelo Kicklet:', errorData);
-            } else {
-                console.log('Mensagem enviada pelo Kicklet com sucesso.');
-            }
         } catch (error) {
             console.error('Falha na requisição ao Kicklet:', error);
         }
     }
     
-    // --- FUNÇÃO: Enviar Mensagem pela Twitch (COM LÓGICA ON-DEMAND) ---
-    function sendTwitchMessage(messageContent) {
+    // --- NOVO: FUNÇÃO PARA VALIDAR TOKEN E PEGAR IDs DA TWITCH ---
+    async function validateTwitchTokenAndGetIds() {
+        const oauthToken = twitchBotOauthInput.value.trim();
+        if (!oauthToken || !twitchChannel || !enableTwitchBotCheckbox.checked) return;
+
+        // 1. Limpa o prefixo "oauth:" se existir, para chamadas de API
+        const cleanToken = oauthToken.startsWith('oauth:') ? oauthToken.slice(6) : oauthToken;
+
+        try {
+            // A. Validar Token para pegar Client ID e User ID do Bot
+            const validateRes = await fetch('https://id.twitch.tv/oauth2/validate', {
+                headers: { 'Authorization': `OAuth ${cleanToken}` }
+            });
+            if (!validateRes.ok) throw new Error('Twitch Token Validation Failed');
+            const validateData = await validateRes.json();
+            
+            twitchClientId = validateData.client_id;
+            twitchBotId = validateData.user_id;
+
+            // B. Pegar ID do Broadcaster (Canal)
+            const userRes = await fetch(`https://api.twitch.tv/helix/users?login=${twitchChannel}`, {
+                headers: {
+                    'Client-Id': twitchClientId,
+                    'Authorization': `Bearer ${cleanToken}`
+                }
+            });
+            if (!userRes.ok) throw new Error('Failed to get Broadcaster ID');
+            const userData = await userRes.json();
+            
+            if (userData.data && userData.data.length > 0) {
+                twitchBroadcasterId = userData.data[0].id;
+                console.log('Twitch IDs Loaded:', { twitchClientId, twitchBotId, twitchBroadcasterId });
+            }
+
+        } catch (e) {
+            console.error('Erro ao validar Twitch IDs:', e);
+            // Não paramos o fluxo, pois o chat via IRC (TMI.js) ainda pode funcionar
+        }
+    }
+
+    // --- NOVO: FUNÇÃO PARA ENVIAR ANÚNCIO (HELIX API) ---
+    async function sendTwitchAnnouncement(messageContent, color = 'primary') {
+        const oauthToken = twitchBotOauthInput.value.trim();
+        if (!oauthToken || !twitchClientId || !twitchBroadcasterId || !twitchBotId) {
+            console.warn('Faltam dados para enviar anúncio (IDs ou Token). Usando chat normal.');
+            // Fallback para chat normal
+            return sendTwitchChat(messageContent);
+        }
+
+        const cleanToken = oauthToken.startsWith('oauth:') ? oauthToken.slice(6) : oauthToken;
+
+        try {
+            const url = `https://api.twitch.tv/helix/chat/announcements?broadcaster_id=${twitchBroadcasterId}&moderator_id=${twitchBotId}`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Client-Id': twitchClientId,
+                    'Authorization': `Bearer ${cleanToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: messageContent,
+                    color: color // blue, green, orange, purple, primary
+                })
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`API Error: ${response.status} - ${errText}`);
+            }
+            console.log('Anúncio Twitch enviado com sucesso.');
+
+        } catch (error) {
+            console.error('Falha ao enviar anúncio Twitch:', error);
+            // Fallback silencioso para chat normal em caso de erro
+            sendTwitchChat(messageContent);
+        }
+    }
+
+    // Função para envio via IRC (TMI.js) - Antiga sendTwitchMessage renomeada
+    function sendTwitchChat(messageContent) {
         const botUsername = twitchBotUsernameInput.value.trim();
         const botOauth = twitchBotOauthInput.value.trim();
         
@@ -790,38 +905,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (twitchClient && twitchClient.readyState() === 'OPEN') {
             twitchClient.say(twitchChannel, messageContent)
                 .catch((err) => console.error('Erro ao enviar mensagem (Twitch principal):', err));
-        } 
-        else {
-            console.log('Cliente TMI principal não está conectado. Criando conexão temporária...');
+        } else {
+            // Conexão temporária
             const tempClient = new tmi.Client({
                 connection: { secure: true, reconnect: false },
                 identity: { username: botUsername, password: botOauth },
                 channels: [twitchChannel]
             });
-            
             tempClient.once('connected', () => {
                 tempClient.say(twitchChannel, messageContent)
-                    .then(() => {
-                        tempClient.disconnect();
-                    })
-                    .catch((err) => {
-                        console.error('Erro ao enviar mensagem (Twitch temp):', err);
-                        tempClient.disconnect();
-                    });
+                    .then(() => tempClient.disconnect())
+                    .catch((err) => { console.error(err); tempClient.disconnect(); });
             });
-
-            tempClient.on('disconnected', () => {
-                console.log('Cliente TMI temporário desconectado.');
-            });
-
-            tempClient.connect().catch((err) => {
-                console.error('Falha ao conectar cliente TMI temporário:', err);
-            });
+            tempClient.connect().catch(console.error);
+        }
+    }
+    
+    // Função unificada que decide se manda Anúncio ou Chat
+    function sendTwitchMessage(messageContent, forceAnnouncement = false, announcementColor = 'primary') {
+        if (forceAnnouncement) {
+            sendTwitchAnnouncement(messageContent, announcementColor);
+        } else {
+            sendTwitchChat(messageContent);
         }
     }
     
     function sendTwitchClosedMessage() {
-        sendTwitchMessage(twitchClosedMessageInput.value);
+        // Mensagens de "Closed" respeitam a config global de anúncio
+        const useAnnounce = twitchUseAnnouncementCheckbox.checked;
+        const color = twitchAnnouncementColorSelect.value;
+        sendTwitchMessage(twitchClosedMessageInput.value, useAnnounce, color);
     }
 
     function sendKickClosedMessage() {
@@ -833,39 +946,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = modalMessageInput.value.trim();
         if (!message) return;
         
-        // Envia para a Twitch (se ativado)
-        sendTwitchMessage(message);
+        // Twitch: Verifica checkbox do modal
+        const useAnnounce = modalIsAnnouncementCheckbox.checked;
+        const color = modalAnnouncementColorSelect.value;
+        sendTwitchMessage(message, useAnnounce, color);
 
-        // Envia para a Kick (se ativado)
+        // Kick
         sendKickletMessage(message);
-
-        // Não define currentAwardName
     }
     
     function handleSendAwardMessageFromModal() {
         const message = modalMessageInput.value.trim();
         if (!message) return;
         
-        // 1. Define o prêmio global
         currentAwardName = message;
 
-        // 2. Envia para a Twitch (se ativado)
-        sendTwitchMessage(message);
+        const useAnnounce = modalIsAnnouncementCheckbox.checked;
+        const color = modalAnnouncementColorSelect.value;
+        sendTwitchMessage(message, useAnnounce, color);
 
-        // 3. Envia para a Kick (se ativado)
         sendKickletMessage(message);
     }
     // --- FIM DA LÓGICA DE ENVIO DE MENSAGEM DO MODAL ---
 
 
-    function handleStartGiveaway() {
+    async function handleStartGiveaway() {
         if (!kickChannel && !twitchChannel) {
             showAlert('alertNoChannel');
             return;
         }
         
         resetGiveawayState();
-        currentAwardName = ''; // Limpa o prêmio ao iniciar novo sorteio
+        currentAwardName = ''; 
         isGiveawayRunning = true;
         setInputsDisabled(true);
         statusMessage.textContent = translations[currentLang].statusConnected;
@@ -874,16 +986,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const botUsername = twitchBotUsernameInput.value.trim();
         const botOauth = twitchBotOauthInput.value.trim();
         
+        // 1. VALIDAÇÃO DE TOKEN E OBTENÇÃO DE IDS (Para Anúncios)
         if (twitchChannel && enableTwitchBotCheckbox.checked && botUsername && botOauth) {
+            await validateTwitchTokenAndGetIds(); // Espera obter os IDs antes de continuar
+            
             const sendMessage = () => {
                 const messageTemplate = startMessageInput.value;
                 if (!messageTemplate) return; 
 
                 let keyword = keywordInput.value.trim();
                 let keywordText = (keyword === '') ? translations[currentLang].keywordAnyMessage : keyword;
-                
                 let message = messageTemplate.replace('{keyword}', keywordText);
-                sendTwitchMessage(message);
+                
+                // Usa configuração global de anúncio
+                const useAnnounce = twitchUseAnnouncementCheckbox.checked;
+                const color = twitchAnnouncementColorSelect.value;
+                sendTwitchMessage(message, useAnnounce, color);
             };
 
             if (twitchClient) {
@@ -898,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             twitchClient.once('connected', () => {
-                console.log('Cliente TMI principal conectado para o sorteio.');
+                console.log('Cliente TMI principal conectado.');
                 sendMessage(); 
                 statusMessage.textContent = translations[currentLang].statusConnected;
                 statusMessage.className = 'status-connected';
@@ -938,7 +1056,6 @@ document.addEventListener('DOMContentLoaded', () => {
             statusMessage.textContent = translations[currentLang].statusConnected;
             statusMessage.className = 'status-connected';
             startGiveawayButton.disabled = true;
-
         } else {
             pauseGiveawayButton.textContent = translations[currentLang].resumeGiveaway;
             pauseGiveawayButton.classList.add('paused');
@@ -957,7 +1074,6 @@ document.addEventListener('DOMContentLoaded', () => {
             chatBox.classList.remove('no-messages');
             hasWinnerResponded = true;
         }
-        
         const p = document.createElement('p');
         p.textContent = message;
         chatBox.appendChild(p);
@@ -968,7 +1084,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (winnerCountdownInterval) {
             clearInterval(winnerCountdownInterval);
             winnerCountdownInterval = null;
-            
             const timerDisplay = multiWinnerModalContainer.querySelector('#modal-timer-display');
             if (timerDisplay) {
                 timerDisplay.style.color = 'var(--success-color)';
@@ -988,7 +1103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         kickWs.onmessage = (event) => {
             const parsed = JSON.parse(event.data);
             if (parsed.event === 'pusher_internal:subscription_succeeded') {
-                console.log('Successfully subscribed to Kick chat.');
                 statusMessage.textContent = translations[currentLang].statusConnected;
                 statusMessage.className = 'status-connected';
             }
@@ -997,12 +1111,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
         kickWs.onerror = (error) => {
-            console.error('Kick WebSocket Error:', error);
             statusMessage.textContent = translations[currentLang].kickError;
             statusMessage.className = 'status-error';
         };
         kickWs.onclose = () => {
-            console.log('Kick WebSocket disconnected.');
             if (isGiveawayRunning) {
                 statusMessage.textContent = translations[currentLang].kickLost;
                 statusMessage.className = 'status-error';
@@ -1025,63 +1137,40 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGiveawayRunning) return;
 
         const usernameLower = user.username.toLowerCase();
-        if (winningUsernames.has(usernameLower)) {
-            return;
-        }
+        if (winningUsernames.has(usernameLower)) return;
         
         const keyword = keywordInput.value.trim().toLowerCase();
-        
         if (keyword !== '' && messageContent.toLowerCase() !== keyword) return;
         
-        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
         const badges = user.identity?.badges || [];
         const isMod = badges.some(b => b.type === 'moderator' || b.type === 'broadcaster');
         const isSub = badges.some(b => b.type === 'subscriber' || b.type === 'founder');
-        const isVip = badges.some(b => 
-                (b.type && (b.type.toLowerCase() === 'vip' || b.type.toLowerCase() === 'og')) ||
-                (b.text && (b.text.toLowerCase() === 'vip' || b.text.toLowerCase() === 'og'))
-            );
+        const isVip = badges.some(b => (b.type && (b.type.toLowerCase() === 'vip' || b.type.toLowerCase() === 'og')) || (b.text && (b.text.toLowerCase() === 'vip' || b.text.toLowerCase() === 'og')));
         
         const userStatus = { isMod, isSub, isVip };
-
-        if (!isUserAllowed(userStatus)) {
-            return; // Bloqueia o usuário com base nas novas regras
-        }
-        // === FIM DA MODIFICAÇÃO ===
+        if (!isUserAllowed(userStatus)) return;
 
         if (participants.has(uniqueId)) return;
-
-        if (!allowMultiPlatformCheckbox.checked && Array.from(participants.values()).some(p => p.username.toLowerCase() === usernameLower && !p.hasWon)) {
-            return;
-        }
+        if (!allowMultiPlatformCheckbox.checked && Array.from(participants.values()).some(p => p.username.toLowerCase() === usernameLower && !p.hasWon)) return;
 
         addParticipant(user.username, 'kick', userStatus);
     }
     
-    
     // --- LÓGICA DO TWITCH ---
     function connectToTwitch() {
-        if (twitchClient && twitchClient.readyState() === 'OPEN') {
-            return;
-        }
+        if (twitchClient && twitchClient.readyState() === 'OPEN') return;
         
         const botUsername = twitchBotUsernameInput.value.trim();
         const botOauth = twitchBotOauthInput.value.trim();
+        const identity = (enableTwitchBotCheckbox.checked && botUsername && botOauth) ? { username: botUsername, password: botOauth } : null;
         
-        const identity = (enableTwitchBotCheckbox.checked && botUsername && botOauth)
-            ? { username: botUsername, password: botOauth }
-            : null;
-            
-        const clientOptions = {
+        twitchClient = new tmi.Client({
             connection: { secure: true, reconnect: true },
             identity: identity,
             channels: [twitchChannel]
-        };
-        
-        twitchClient = new tmi.Client(clientOptions);
+        });
         
         twitchClient.on('connected', () => {
-            console.log('Cliente TMI principal conectado.');
             if (isGiveawayRunning) {
                 statusMessage.textContent = translations[currentLang].statusConnected;
                 statusMessage.className = 'status-connected';
@@ -1109,31 +1198,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isGiveawayRunning) return;
         
         const usernameLower = username.toLowerCase();
-         if (winningUsernames.has(usernameLower)) {
-            return;
-        }
+         if (winningUsernames.has(usernameLower)) return;
         
         const keyword = keywordInput.value.trim().toLowerCase();
-        
         if (keyword !== '' && messageContent.toLowerCase() !== keyword) return;
         
-        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
         const isMod = userstate.mod || userstate.badges?.broadcaster;
         const isSub = userstate.subscriber || userstate.badges?.founder === '0';
         const isVip = !!userstate.vip;
-
+        
         const userStatus = { isMod, isSub, isVip };
-
-        if (!isUserAllowed(userStatus)) {
-            return; // Bloqueia o usuário com base nas novas regras
-        }
-        // === FIM DA MODIFICAÇÃO ===
+        if (!isUserAllowed(userStatus)) return;
 
         if (participants.has(uniqueId)) return;
-        
-        if (!allowMultiPlatformCheckbox.checked && Array.from(participants.values()).some(p => p.username.toLowerCase() === usernameLower && !p.hasWon)) {
-            return;
-        }
+        if (!allowMultiPlatformCheckbox.checked && Array.from(participants.values()).some(p => p.username.toLowerCase() === usernameLower && !p.hasWon)) return;
         
         addParticipant(username, 'twitch', userStatus);
     }
@@ -1166,7 +1244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         participants.set(uniqueId, { username, platform, entries, tags, hasWon: false });
-        
         updateParticipantListUI();
     }
 
@@ -1192,15 +1269,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!winnerObject) {
             drawButton.disabled = allEntries.length === 0;
-            if (allEntries.length > 0) {
-                drawWinner();
-            }
+            if (allEntries.length > 0) drawWinner();
             return;
         }
         
         const winnerName = winnerObject.username;
         const winnerPlatform = winnerObject.platform;
-        
         const winnerEntries = winnerObject.entries;
         const totalEntriesInDraw = allEntries.length;
         const chancePercent = ((winnerEntries / totalEntriesInDraw) * 100).toFixed(1);
@@ -1208,7 +1282,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayWinnerAnimation(winnerName, winnerUniqueId, winnerPlatform, chancePercent).then(() => {});
     }
     
-    // FUNÇÕES DE ANÚNCIO (ATUALIZADAS PARA INCLUIR AWARD)
     function announceWinnerOnTwitch(winnerName, platform, chancePercent, awardName) {
         const messageTemplate = announcementMessageInput.value;
         const platformName = platform.charAt(0).toUpperCase() + platform.slice(1);
@@ -1216,9 +1289,12 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace('{winner}', winnerName)
             .replace('{platform}', platformName)
             .replace(/{chance}/g, chancePercent)
-            .replace(/{award}/g, awardName); // NOVO: Substituição do prêmio
+            .replace(/{award}/g, awardName);
         
-        sendTwitchMessage(message);
+        // Usa configuração global para o anúncio automático do vencedor
+        const useAnnounce = twitchUseAnnouncementCheckbox.checked;
+        const color = twitchAnnouncementColorSelect.value;
+        sendTwitchMessage(message, useAnnounce, color);
     }
     
     function announceWinnerOnKick(winnerName, platform, chancePercent, awardName) {
@@ -1230,7 +1306,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .replace('{winner}', winnerName)
                     .replace('{platform}', platformName)
                     .replace(/{chance}/g, chancePercent)
-                    .replace(/{award}/g, awardName); // NOVO: Substituição do prêmio
+                    .replace(/{award}/g, awardName);
                 sendKickletMessage(message);
             }
         }
@@ -1238,19 +1314,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- FUNÇÕES DE UI E ESTADO ---
-    
     function updateParticipantListUI() {
         participantList.innerHTML = '';
-        
-        // Usa multiWinnerModalContainer.querySelector para buscar o elemento no DOM atual
         const modalParticipantList = multiWinnerModalContainer.querySelector('#modal-participant-list'); 
-        if (modalParticipantList) {
-            modalParticipantList.innerHTML = ''; 
-        }
+        if (modalParticipantList) modalParticipantList.innerHTML = ''; 
 
         participants.forEach((p, id) => {
             const li = document.createElement('li');
-            li.dataset.uniqueId = id; // Adiciona o ID para sabermos em quem clicar
+            li.dataset.uniqueId = id; 
             
             const icon = document.createElement('img');
             icon.className = 'platform-icon';
@@ -1281,7 +1352,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (modalParticipantList) {
                 const modalLi = li.cloneNode(true); 
-                
                 if (p.hasWon) {
                     modalLi.style.textDecoration = ''; 
                     modalLi.style.opacity = '';      
@@ -1291,14 +1361,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        const totalParticipantCount = participants.size; 
-        
-        participantCount.textContent = totalParticipantCount;
-        
+        participantCount.textContent = participants.size;
         const modalCountSpan = multiWinnerModalContainer.querySelector('#modal-participant-count');
-        if(modalCountSpan) {
-            modalCountSpan.textContent = totalParticipantCount;
-        }
+        if(modalCountSpan) modalCountSpan.textContent = participants.size;
 
         allEntries = [];
         participants.forEach((p, id) => {
@@ -1310,13 +1375,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const isDisabled = allEntries.length === 0;
-        
         drawButton.disabled = isDisabled;
-        
         const modalDrawAgainButton = multiWinnerModalContainer.querySelector('.modal-draw-again-button');
-        if (modalDrawAgainButton) {
-            modalDrawAgainButton.disabled = isDisabled;
-        }
+        if (modalDrawAgainButton) modalDrawAgainButton.disabled = isDisabled;
     }
 
 
@@ -1350,7 +1411,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWinnersListUI();
         
         if (kickWs) kickWs.close();
-        
         if (twitchClient) {
              twitchClient.removeAllListeners(); 
              twitchClient.disconnect();
@@ -1362,8 +1422,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentMonitoredWinnerId = null;
         currentMonitoredChatbox = null;
         hasWinnerResponded = false;
-        
-        // CORREÇÃO: Limpa o prêmio no reset total
         currentAwardName = ''; 
         
         isGiveawayRunning = false;
@@ -1379,17 +1437,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleParticipantDisqualification(uniqueId) {
         if (!participants.has(uniqueId)) return;
-
         const participant = participants.get(uniqueId);
-        
         participant.hasWon = !participant.hasWon;
-
-        if (participant.hasWon) {
-            winningUsernames.add(participant.username.toLowerCase());
-        } else {
-            winningUsernames.delete(participant.username.toLowerCase());
-        }
-
+        if (participant.hasWon) winningUsernames.add(participant.username.toLowerCase());
+        else winningUsernames.delete(participant.username.toLowerCase());
         updateParticipantListUI();
     }
     
@@ -1397,42 +1448,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputs = [
             keywordInput, allowMultiPlatformCheckbox, animationSelect,
             kickSubMultiplier, kickVipMultiplier, twitchSubMultiplier, twitchVipMultiplier,
-            
             enableTwitchBotCheckbox,
             twitchBotUsernameInput, twitchBotOauthInput, announcementMessageInput, startMessageInput,
+            // Novos inputs Twitch
+            twitchUseAnnouncementCheckbox, twitchAnnouncementColorSelect,
             enableKickBotCheckbox, 
             kickletApiTokenInput, kickStartMessageInput, kickAnnounceMessageInput,
-
             twitchClosedMessageInput, kickClosedMessageInput,
-            
             startGiveawayButton, connectButton, kickChannelInput, twitchChannelInput,
             winnerTimerDurationInput,
             languageSelectLogin, languageSelectSettings,
             showWinnerChatCheckbox,
-            enableModalSendMessageCheckbox, // NOVO: Adiciona o novo checkbox
-            
+            enableModalSendMessageCheckbox,
             enableAwardsOverlayCheckbox,
             awardsDvInput,
             awardsApiKeyInput,
             awardAnnounceMessageInput,
-            
-            // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
             allowViewersCheckbox,
             allowSubsCheckbox,
             allowVipsCheckbox,
             allowModsCheckbox
-            // === FIM DA MODIFICAÇÃO ===
         ];
         inputs.forEach(input => input.disabled = disabled);
         
-        // Elementos que têm o listener de clique no pai (collapsible-header)
         document.querySelectorAll('.collapsible-header .toggle-visibility-button').forEach(btn => {
             btn.style.opacity = disabled ? '0.5' : '1';
             btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
         });
-
-        // O botão de Start/Connect (que é o que está desabilitado)
-        // precisa ser reabilitado antes que o botão Pause/Stop funcione.
         pauseGiveawayButton.disabled = !disabled; 
         startGiveawayButton.disabled = disabled;
     }
@@ -1445,10 +1487,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function adjustWinnerFontSize(nameElement, containerElement) {
         nameElement.style.fontSize = '2.5rem';
-        const containerWidth = containerElement.clientWidth - 10;
         let nameWidth = nameElement.scrollWidth;
         let currentFontSize = 2.5;
-
         while (nameWidth > containerElement.clientWidth && currentFontSize > 1.0) {
             currentFontSize -= 0.1;
             nameElement.style.fontSize = `${currentFontSize}rem`;
@@ -1458,13 +1498,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayWinnerAnimation(winnerName, winnerUniqueId, platform, chancePercent) {
         return new Promise(resolve => {
-            if (winnerCountdownInterval) {
-                clearInterval(winnerCountdownInterval);
-            }
+            if (winnerCountdownInterval) clearInterval(winnerCountdownInterval);
             
             const modalInstance = modalTemplate.querySelector('.modal-instance').cloneNode(true);
-            const modalDrawPanel = modalInstance.querySelector('.modal-draw-panel'); // Seletor para o painel
-            
             modalInstance.querySelector('.winner-title-text').textContent = translations[currentLang].drawing;
 
             const winnerNameEl = document.createElement('h1');
@@ -1483,41 +1519,41 @@ document.addEventListener('DOMContentLoaded', () => {
             const drawAgainButton = modalInstance.querySelector('.modal-draw-again-button');
             const chatBox = modalInstance.querySelector('#modal-winner-chat');
             
-            // --- NOVO: Obtém referências e anexa listener para o painel de mensagem ---
             modalMessageInput = modalInstance.querySelector('#modal-message-input');
-            // NOVOS SELETORES DE BOTÃO
             modalSendGlobalButton = modalInstance.querySelector('#modal-send-global-button');
             modalSendAwardButton = modalInstance.querySelector('#modal-send-award-button');
             modalSendMessagePanel = modalInstance.querySelector('.modal-send-message-panel');
+            // NOVOS SELETORES DO MODAL
+            modalIsAnnouncementCheckbox = modalInstance.querySelector('#modal-is-announcement-checkbox');
+            modalAnnouncementColorSelect = modalInstance.querySelector('#modal-announcement-color-select');
+            
+            // Atualiza traduções no select do modal
+            updateSelectOptions(modalAnnouncementColorSelect, currentLang);
+            
+            // LÓGICA DO ALERTA NO MODAL (Ao clicar no checkbox)
+            modalIsAnnouncementCheckbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    alert(translations[currentLang].announcementScopeWarning);
+                }
+            });
 
-            // CORREÇÃO: Restaura a última mensagem salva
-            if (lastModalMessage) {
-                modalMessageInput.value = lastModalMessage;
-            }
+            if (lastModalMessage) modalMessageInput.value = lastModalMessage;
 
-            // Controla a visibilidade do painel de envio
             if (enableModalSendMessageCheckbox.checked) {
                 modalSendMessagePanel.style.display = 'flex';
-                modalDrawPanel.classList.add('with-send-panel'); // ADICIONA A CLASSE
-                
                 modalSendGlobalButton.addEventListener('click', handleSendGlobalMessageFromModal);
                 modalSendAwardButton.addEventListener('click', handleSendAwardMessageFromModal);
-                
                 modalMessageInput.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
-                        // Define "Enviar Premiação" como a ação padrão do Enter
                         handleSendAwardMessageFromModal(); 
                     }
                 });
             } else {
                 modalSendMessagePanel.style.display = 'none';
-                modalDrawPanel.classList.remove('with-send-panel'); // REMOVE A CLASSE
             }
             
-            // Atualiza o placeholder do input de mensagem
             modalMessageInput.setAttribute('placeholder', translations[currentLang].modalMessagePlaceholder);
-            // --- FIM DO NOVO ---
 
             // --- Lógica do Painel de Prêmios do Modal ---
             const modalAwardsPanel = modalInstance.querySelector('#modal-awards-panel');
@@ -1527,29 +1563,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (enableAwardsOverlayCheckbox.checked) {
                 modalAwardsPanel.style.display = 'flex';
                 modalAwardsList.innerHTML = '';
-                
                 if (lastValidAwards.length > 0) {
                     lastValidAwards.forEach(award => {
                         const card = document.createElement('div');
                         card.className = 'award-card';
                         card.dataset.awardName = award?.name || '—';
-
-                        // CORREÇÃO: Destaca o prêmio se ele for o 'currentAwardName'
                         if (award?.name === currentAwardName) {
                             card.classList.add('selected');
                             card.style.borderColor = 'var(--primary-color)';
                             card.style.boxShadow = '0 0 10px var(--primary-color)';
                         }
-                        
                         const tag = document.createElement('div');
                         tag.className = 'award-card__tag';
                         card.appendChild(tag);
-
                         const title = document.createElement('div');
                         title.className = 'award-card__title';
                         title.textContent = award?.name || '—';
                         card.appendChild(title);
-                        
                         modalAwardsList.appendChild(card);
                     });
                 } else {
@@ -1567,18 +1597,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     toggleParticipantDisqualification(uniqueId);
                     return; 
                 }
-
                 const card = e.target.closest('.award-card');
                 if (card) {
                     const awardName = card.dataset.awardName;
                     if (awardName) {
-                        // 1. Define o prêmio GLOBAL
                         currentAwardName = awardName; 
-                        
-                        // 2. CORREÇÃO: Envia o anúncio de "próximo sorteio"
                         sendAwardAnnouncement(awardName);
                         
-                        // 3. (Ajuste visual opcional): destaque o prêmio clicado
                         modalAwardsList.querySelectorAll('.award-card').forEach(c => {
                             c.classList.remove('selected');
                             c.style.borderColor = 'var(--card-border-color)';
@@ -1590,63 +1615,43 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-            // --- Fim da Lógica do Painel de Prêmios ---
-
 
             const modalParticipantList = modalInstance.querySelector('#modal-participant-list');
-            
             confirmButton.textContent = translations[currentLang].ok;
             drawAgainButton.textContent = translations[currentLang].drawAgain;
 
             winners.push({ name: winnerName, date: new Date().toLocaleString() });
-            
             const winnerObject = participants.get(winnerUniqueId);
-            const winnerUsernameLower = winnerObject.username.toLowerCase();
-            
             if (winnerObject) {
               winnerObject.hasWon = true; 
-              winningUsernames.add(winnerUsernameLower); 
+              winningUsernames.add(winnerObject.username.toLowerCase()); 
             }
-            
             saveSettings();
             updateWinnersListUI();
 
             function closeModalAndClearTimer() {
                 if (winnerCountdownInterval) clearInterval(winnerCountdownInterval);
                 winnerCountdownInterval = null;
-                
-                // CORREÇÃO: Salva o conteúdo antes de fechar/destruir
                 if (modalMessageInput) {
                     lastModalMessage = modalMessageInput.value;
-                    
-                    // Remove listeners
                     modalSendGlobalButton.removeEventListener('click', handleSendGlobalMessageFromModal);
                     modalSendAwardButton.removeEventListener('click', handleSendAwardMessageFromModal);
-                    modalMessageInput.removeEventListener('keydown', handleSendAwardMessageFromModal); 
                 }
-                
                 currentMonitoredWinnerId = null;
                 currentMonitoredChatbox = null;
                 hasWinnerResponded = false;
-                
                 modalMessageInput = null;
-                modalSendGlobalButton = null;
-                modalSendAwardButton = null;
-                modalSendMessagePanel = null;
-
                 multiWinnerModalContainer.style.display = 'none';
                 multiWinnerModalContainer.innerHTML = '';
-                
                 updateParticipantListUI();
             }
             
             confirmButton.onclick = () => {
-                currentAwardName = ''; // Limpa o prêmio ao confirmar/fechar
+                currentAwardName = ''; 
                 closeModalAndClearTimer();
                 resolve();
             };
             drawAgainButton.onclick = () => {
-                // NÃO limpa o prêmio, pois pode ser o mesmo
                 closeModalAndClearTimer();
                 drawWinner(); 
             };
@@ -1655,7 +1660,6 @@ document.addEventListener('DOMContentLoaded', () => {
             multiWinnerModalContainer.appendChild(modalInstance);
             multiWinnerModalContainer.style.display = 'flex'; 
             buttonContainer.style.visibility = 'visible';
-
             updateParticipantListUI(); 
 
             currentMonitoredWinnerId = winnerUniqueId;
@@ -1691,32 +1695,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     animationBox.appendChild(tagsContainer);
                 }
-                
                 adjustWinnerFontSize(winnerNameEl, animationBox);
 
-                // --- NOVO: LÓGICA DO PRÊMIO NO ANÚNCIO ---
-                let finalAwardName = currentAwardName; // Prioridade 1: O prêmio global
-                
-                // Prioridade 2: O texto na caixa de mensagem (se o prêmio global não foi definido)
-                if (!finalAwardName && modalMessageInput) {
-                    finalAwardName = modalMessageInput.value.trim();
-                }
-                
-                // Prioridade 3: Fallback
-                if (!finalAwardName) {
-                     finalAwardName = translations[currentLang].defaultAwardFallback; 
-                }
+                let finalAwardName = currentAwardName; 
+                if (!finalAwardName && modalMessageInput) finalAwardName = modalMessageInput.value.trim();
+                if (!finalAwardName) finalAwardName = translations[currentLang].defaultAwardFallback; 
                 
                 announceWinnerOnTwitch(winnerName, platform, chancePercent, finalAwardName);
                 announceWinnerOnKick(winnerName, platform, chancePercent, finalAwardName);
-                // --- FIM NOVO ---
-
 
                 const modalListItems = modalParticipantList.querySelectorAll('li');
                 modalListItems.forEach(li => {
-                    if (li.classList.contains('winner')) { 
-                         li.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
+                    if (li.classList.contains('winner')) li.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 });
                 
                 let duration = parseInt(winnerTimerDurationInput.value, 10) || 0;
@@ -1724,7 +1714,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     timerDisplay.textContent = formatTime(duration);
                     timerDisplay.style.color = 'var(--primary-text-color)';
                     timerDisplay.style.borderColor = 'var(--border-color)';
-
                     winnerCountdownInterval = setInterval(() => {
                         duration--;
                         timerDisplay.textContent = formatTime(duration);
@@ -1767,7 +1756,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // --- PERSISTÊNCIA ---
     function saveSettings() {
         const settings = {
             kickChannel: kickChannelInput.value,
@@ -1777,21 +1765,25 @@ document.addEventListener('DOMContentLoaded', () => {
             twitchSubMultiplier: twitchSubMultiplier.value,
             twitchVipMultiplier: twitchVipMultiplier.value,
             winners: winners,
-            // excludeMods: excludeModsCheckbox.checked, // Removido
             timerDuration: winnerTimerDurationInput.value,
             showWinnerChat: showWinnerChatCheckbox.checked,
-            enableModalSendMessage: enableModalSendMessageCheckbox.checked, // NOVO: Salva o estado do checkbox
+            enableModalSendMessage: enableModalSendMessageCheckbox.checked, 
             
             enableTwitchBot: enableTwitchBotCheckbox.checked,
             twitchBotUsername: twitchBotUsernameInput.value,
             twitchBotOauth: twitchBotOauthInput.value, 
+            
+            // Salva novas configs
+            twitchUseAnnouncement: twitchUseAnnouncementCheckbox.checked,
+            twitchAnnouncementColor: twitchAnnouncementColorSelect.value,
+            
             startMessage: startMessageInput.value, 
-            announcementMessage: announcementMessageInput.value, // ATUALIZADO
+            announcementMessage: announcementMessageInput.value,
             
             enableKickBot: enableKickBotCheckbox.checked,
             kickletApiToken: kickletApiTokenInput.value,
             kickStartMessage: kickStartMessageInput.value,
-            kickAnnounceMessage: kickAnnounceMessageInput.value, // ATUALIZADO
+            kickAnnounceMessage: kickAnnounceMessageInput.value,
 
             twitchClosedMessage: twitchClosedMessageInput.value,
             kickClosedMessage: kickClosedMessageInput.value,
@@ -1801,12 +1793,10 @@ document.addEventListener('DOMContentLoaded', () => {
             awardsApiKey: awardsApiKeyInput.value,
             awardAnnounceMessage: awardAnnounceMessageInput.value,
             
-            // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
             allowViewers: allowViewersCheckbox.checked,
             allowSubs: allowSubsCheckbox.checked,
             allowVips: allowVipsCheckbox.checked,
             allowMods: allowModsCheckbox.checked
-            // === FIM DA MODIFICAÇÃO ===
         };
         localStorage.setItem('giveawayToolSettings', JSON.stringify(settings));
     }
@@ -1822,21 +1812,25 @@ document.addEventListener('DOMContentLoaded', () => {
             twitchVipMultiplier.value = settings.twitchVipMultiplier || '2';
             winners = settings.winners || [];
             updateWinnersListUI();
-            // excludeModsCheckbox.checked removido
             winnerTimerDurationInput.value = settings.timerDuration || '30';
             showWinnerChatCheckbox.checked = settings.showWinnerChat !== false;
-            enableModalSendMessageCheckbox.checked = settings.enableModalSendMessage || false; // NOVO: Carrega o estado
+            enableModalSendMessageCheckbox.checked = settings.enableModalSendMessage || false; 
             
             enableTwitchBotCheckbox.checked = settings.enableTwitchBot || false;
             twitchBotUsernameInput.value = settings.twitchBotUsername || '';
             twitchBotOauthInput.value = settings.twitchBotOauth || '';
+            
+            // Carrega novas configs
+            twitchUseAnnouncementCheckbox.checked = settings.twitchUseAnnouncement || false;
+            twitchAnnouncementColorSelect.value = settings.twitchAnnouncementColor || 'primary';
+            
             startMessageInput.value = settings.startMessage || translations[currentLang].defaultStartMessage; 
-            announcementMessageInput.value = settings.announcementMessage || translations[currentLang].defaultAnnounceMessage; // ATUALIZADO
+            announcementMessageInput.value = settings.announcementMessage || translations[currentLang].defaultAnnounceMessage;
 
             enableKickBotCheckbox.checked = settings.enableKickBot || false;
             kickletApiTokenInput.value = settings.kickletApiToken || '';
             kickStartMessageInput.value = settings.kickStartMessage || translations[currentLang].defaultKickStartMessage;
-            kickAnnounceMessageInput.value = settings.kickAnnounceMessage || translations[currentLang].defaultKickAnnounceMessage; // ATUALIZADO
+            kickAnnounceMessageInput.value = settings.kickAnnounceMessage || translations[currentLang].defaultKickAnnounceMessage; 
 
             twitchClosedMessageInput.value = settings.twitchClosedMessage || translations[currentLang].defaultTwitchClosedMessage;
             kickClosedMessageInput.value = settings.kickClosedMessage || translations[currentLang].defaultKickClosedMessage;
@@ -1846,37 +1840,28 @@ document.addEventListener('DOMContentLoaded', () => {
             awardsApiKeyInput.value = settings.awardsApiKey || '';
             awardAnnounceMessageInput.value = settings.awardAnnounceMessage || translations[currentLang].defaultAwardAnnounceMessage;
             
-            // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
-            // Carrega os novos valores. O 'settings.allowViewers !== false' garante que o padrão seja 'true'
             allowViewersCheckbox.checked = settings.allowViewers !== false;
             allowSubsCheckbox.checked = settings.allowSubs !== false;
             allowVipsCheckbox.checked = settings.allowVips !== false;
-            allowModsCheckbox.checked = settings.allowMods || false; // Padrão 'false'
-            // === FIM DA MODIFICAÇÃO ===
+            allowModsCheckbox.checked = settings.allowMods || false;
 
-            if (enableAwardsOverlayCheckbox.checked) {
-                startAwardsMonitor();
-            }
-
+            if (enableAwardsOverlayCheckbox.checked) startAwardsMonitor();
         } else {
+             // DEFAULT VALUES EM CASO DE PRIMEIRO ACESSO
              startMessageInput.value = translations[currentLang].defaultStartMessage;
-             announcementMessageInput.value = translations[currentLang].defaultAnnounceMessage; // ATUALIZADO
+             announcementMessageInput.value = translations[currentLang].defaultAnnounceMessage; 
              kickStartMessageInput.value = translations[currentLang].defaultKickStartMessage;
-             kickAnnounceMessageInput.value = translations[currentLang].defaultKickAnnounceMessage; // ATUALIZADO
+             kickAnnounceMessageInput.value = translations[currentLang].defaultKickAnnounceMessage; 
              winnerTimerDurationInput.value = '30';
              showWinnerChatCheckbox.checked = true;
-             enableModalSendMessageCheckbox.checked = false; // NOVO: Define o padrão como false
+             enableModalSendMessageCheckbox.checked = false;
              twitchClosedMessageInput.value = translations[currentLang].defaultTwitchClosedMessage;
              kickClosedMessageInput.value = translations[currentLang].defaultKickClosedMessage;
              awardAnnounceMessageInput.value = translations[currentLang].defaultAwardAnnounceMessage;
-             
-             // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
-             // Define os padrões para uma instalação nova
              allowViewersCheckbox.checked = true;
              allowSubsCheckbox.checked = true;
              allowVipsCheckbox.checked = true;
              allowModsCheckbox.checked = false;
-             // === FIM DA MODIFICAÇÃO ===
         }
     }
 
@@ -1884,14 +1869,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function showTooltip(button) {
         const key = button.dataset.tooltipKey;
         const content = translations[currentLang][key];
-        
         if (!content) return;
-        
         tooltipPopup.innerHTML = content;
-        
         const rect = button.getBoundingClientRect();
         
-        // --- Cálculo de Posição ---
         tooltipPopup.style.visibility = 'hidden';
         tooltipPopup.style.opacity = '0';
         tooltipPopup.style.display = 'block'; 
@@ -1900,18 +1881,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let left = rect.right + window.scrollX + 10; 
         let top = rect.top + window.scrollY + (rect.height / 2) - (popupRect.height / 2);
-
-        // Ajuste para não sair da tela (esquerda/direita)
-        if (left + popupRect.width > (window.innerWidth - 10)) {
-            left = rect.left + window.scrollX - popupRect.width - 10; 
-        }
-        // Ajuste para não sair da tela (topo/base)
-        if (top < window.scrollY + 10) {
-             top = window.scrollY + 10; 
-        }
-        if (top + popupRect.height > (window.innerHeight + window.scrollY - 10)) {
-             top = window.innerHeight + window.scrollY - popupRect.height - 10; 
-        }
+        if (left + popupRect.width > (window.innerWidth - 10)) left = rect.left + window.scrollX - popupRect.width - 10; 
+        if (top < window.scrollY + 10) top = window.scrollY + 10; 
+        if (top + popupRect.height > (window.innerHeight + window.scrollY - 10)) top = window.innerHeight + window.scrollY - popupRect.height - 10; 
 
         tooltipPopup.style.top = `${top}px`;
         tooltipPopup.style.left = `${left}px`;
@@ -1925,7 +1897,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // === FUNÇÕES DO PAINEL DE PRÊMIOS ===
-
     function renderAwards(awards) {
         if (!Array.isArray(awards) || awards.length === 0) {
             if (lastValidAwards.length === 0) {
@@ -1934,11 +1905,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return;
         }
-
         const awardsChanged = JSON.stringify(lastValidAwards) !== JSON.stringify(awards);
-        if (!awardsChanged) {
-            return;
-        }
+        if (!awardsChanged) return;
 
         lastValidAwards = [...awards];
         awardsListContainer.innerHTML = '';
@@ -1948,16 +1916,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'award-card';
             card.dataset.awardName = award?.name || '—';
-
             const tag = document.createElement('div');
             tag.className = 'award-card__tag';
             card.appendChild(tag);
-
             const title = document.createElement('div');
             title.className = 'award-card__title';
             title.textContent = award?.name || '—';
             card.appendChild(title);
-
             awardsListContainer.appendChild(card);
         });
         awardsCount.textContent = awards.length;
@@ -1966,82 +1931,60 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchAwards() {
         const DV = awardsDvInput.value.trim();
         const API_KEY = awardsApiKeyInput.value.trim();
-
         if (!DV || !API_KEY) {
             awardsListContainer.innerHTML = `<div class="error">${translations[currentLang].awardsStatusError}</div>`;
             awardsStatusMessage.style.display = 'none';
             return;
         }
-
         if (isAwardsLoading) return;
         isAwardsLoading = true;
         awardsApiAttempts++;
 
         const apiUrl = `https://megamu.net/dvapi.php?dv=${encodeURIComponent(DV)}&key=${encodeURIComponent(API_KEY)}&action=getawards&_=${Date.now()}`;
-        
         let url = apiUrl;
         if (awardsUsingProxy || awardsApiAttempts > 1) {
             url = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
             awardsUsingProxy = true;
         }
-
-        if (lastValidAwards.length === 0) {
-             awardsListContainer.innerHTML = `<div class="empty">${translations[currentLang].awardsStatusLoading}</div>`;
-        }
+        if (lastValidAwards.length === 0) awardsListContainer.innerHTML = `<div class="empty">${translations[currentLang].awardsStatusLoading}</div>`;
         awardsStatusMessage.style.display = 'none';
 
         try {
             const response = await fetch(url);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            
             let data = await response.json();
-            
-            if (awardsUsingProxy && data.contents) {
-                data = JSON.parse(data.contents);
-            }
+            if (awardsUsingProxy && data.contents) data = JSON.parse(data.contents);
 
             if (data && (data.result === 1 || data.awards)) {
                 renderAwards(data.awards || []);
                 awardsCount.textContent = (data.awards || []).length;
             } else {
-                if (lastValidAwards.length === 0) {
-                     awardsListContainer.innerHTML = `<div class="empty">${translations[currentLang].awardsStatusNoAwards}</div>`;
-                }
+                if (lastValidAwards.length === 0) awardsListContainer.innerHTML = `<div class="empty">${translations[currentLang].awardsStatusNoAwards}</div>`;
                  awardsCount.textContent = lastValidAwards.length;
             }
-
         } catch (error) {
             console.error('Erro ao buscar prêmios:', error);
-            
             if (awardsApiAttempts === 1 && !awardsUsingProxy) {
-                console.log('Falha na requisição direta, tentando com proxy CORS...');
                 awardsUsingProxy = true;
                 isAwardsLoading = false;
                 fetchAwards();
                 return;
             }
-
-            if (lastValidAwards.length === 0) {
-                awardsListContainer.innerHTML = `<div class="error">${translations[currentLang].awardsStatusApiError}</div>`;
-            }
+            if (lastValidAwards.length === 0) awardsListContainer.innerHTML = `<div class="error">${translations[currentLang].awardsStatusApiError}</div>`;
         } finally {
             isAwardsLoading = false;
         }
     }
 
     function startAwardsMonitor() {
-        console.log('Iniciando monitor de prêmios...');
         awardsOverlayPanel.style.display = 'flex';
         awardsStatusMessage.style.display = 'block';
         awardsStatusMessage.textContent = translations[currentLang].awardsStatusLoading;
         awardsStatusMessage.className = 'status-waiting';
-        
         lastValidAwards = [];
         awardsApiAttempts = 0;
         awardsUsingProxy = false;
-        
         fetchAwards();
-        
         if (awardsApiTimer) clearInterval(awardsApiTimer);
         awardsApiTimer = setInterval(() => {
             awardsApiAttempts = 0;
@@ -2050,7 +1993,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function stopAwardsMonitor() {
-        console.log('Parando monitor de prêmios...');
         awardsOverlayPanel.style.display = 'none';
         awardsStatusMessage.style.display = 'none';
         if (awardsApiTimer) {
@@ -2065,80 +2007,45 @@ document.addEventListener('DOMContentLoaded', () => {
     function sendAwardAnnouncement(awardName) {
         const messageTemplate = awardAnnounceMessageInput.value;
         if (!messageTemplate) return;
-
         const message = messageTemplate.replace('{award}', awardName);
-
-        sendTwitchMessage(message);
+        // Usa configs globais de anúncio para prêmios também
+        const useAnnounce = twitchUseAnnouncementCheckbox.checked;
+        const color = twitchAnnouncementColorSelect.value;
+        sendTwitchMessage(message, useAnnounce, color);
+        
         sendKickletMessage(message);
     }
-    // === FIM DAS FUNÇÕES DO PAINEL DE PRÊMIOS ===
-
 
     function handleLanguageChange(event) {
-        currentLang = event.target.value;
+        const oldLang = currentLang;
+        const newLang = event.target.value;
+        currentLang = newLang;
         setLanguage(currentLang);
         
-        // Atualiza os placeholders das mensagens
-        const defaultStartEn = translations['en'].defaultStartMessage;
-        const defaultStartPt = translations['pt'].defaultStartMessage;
-        const defaultStartEs = translations['es'].defaultStartMessage;
-        const defaultStartVi = translations['vi'].defaultStartMessage;
-        if ([defaultStartEn, defaultStartPt, defaultStartEs, defaultStartVi, ""].includes(startMessageInput.value)) {
-            startMessageInput.value = translations[currentLang].defaultStartMessage;
-        }
+        // LISTA DE INPUTS E SUAS CHAVES PADRÃO
+        const messageInputs = [
+            { input: startMessageInput, defaultKey: 'defaultStartMessage' },
+            { input: announcementMessageInput, defaultKey: 'defaultAnnounceMessage' },
+            { input: kickStartMessageInput, defaultKey: 'defaultKickStartMessage' },
+            { input: kickAnnounceMessageInput, defaultKey: 'defaultKickAnnounceMessage' },
+            { input: twitchClosedMessageInput, defaultKey: 'defaultTwitchClosedMessage' },
+            { input: kickClosedMessageInput, defaultKey: 'defaultKickClosedMessage' },
+            { input: awardAnnounceMessageInput, defaultKey: 'defaultAwardAnnounceMessage' }
+        ];
 
-        const defaultAnnounceEn = translations['en'].defaultAnnounceMessage;
-        const defaultAnnouncePt = translations['pt'].defaultAnnounceMessage;
-        const defaultAnnounceEs = translations['es'].defaultAnnounceMessage;
-        const defaultAnnounceVi = translations['vi'].defaultAnnounceMessage;
-        if ([defaultAnnounceEn, defaultAnnouncePt, defaultAnnounceEs, defaultAnnounceVi, ""].includes(announcementMessageInput.value)) {
-            announcementMessageInput.value = translations[currentLang].defaultAnnounceMessage;
-        }
-        
-        const defaultKickStartEn = translations['en'].defaultKickStartMessage;
-        const defaultKickStartPt = translations['pt'].defaultKickStartMessage;
-        const defaultKickStartEs = translations['es'].defaultKickStartMessage;
-        const defaultKickStartVi = translations['vi'].defaultKickStartMessage;
-        if ([defaultKickStartEn, defaultKickStartPt, defaultKickStartEs, defaultKickStartVi, ""].includes(kickStartMessageInput.value)) {
-            kickStartMessageInput.value = translations[currentLang].defaultKickStartMessage;
-        }
+        messageInputs.forEach(item => {
+            const currentVal = item.input.value;
+            // Verifica se o valor atual é vazio OU se é igual ao padrão do idioma ANTERIOR
+            // (ou seja, o usuário não customizou)
+            const oldDefault = translations[oldLang][item.defaultKey];
+            
+            if (!currentVal || currentVal === oldDefault) {
+                // Atualiza para o padrão do NOVO idioma
+                item.input.value = translations[newLang][item.defaultKey];
+            }
+        });
 
-        const defaultKickAnnounceEn = translations['en'].defaultKickAnnounceMessage;
-        const defaultKickAnnouncePt = translations['pt'].defaultKickAnnounceMessage;
-        const defaultKickAnnounceEs = translations['es'].defaultKickAnnounceMessage;
-        const defaultKickAnnounceVi = translations['vi'].defaultKickAnnounceMessage;
-        if ([defaultKickAnnounceEn, defaultKickAnnouncePt, defaultKickAnnounceEs, defaultKickAnnounceVi, ""].includes(kickAnnounceMessageInput.value)) {
-            kickAnnounceMessageInput.value = translations[currentLang].defaultKickAnnounceMessage;
-        }
-
-        const defaultClosedEn = translations['en'].defaultTwitchClosedMessage;
-        const defaultClosedPt = translations['pt'].defaultTwitchClosedMessage;
-        const defaultClosedEs = translations['es'].defaultTwitchClosedMessage;
-        const defaultClosedVi = translations['vi'].defaultTwitchClosedMessage;
-        if ([defaultClosedEn, defaultClosedPt, defaultClosedEs, defaultClosedVi, ""].includes(twitchClosedMessageInput.value)) {
-            twitchClosedMessageInput.value = translations[currentLang].defaultTwitchClosedMessage;
-        }
-
-        const defaultKickClosedEn = translations['en'].defaultKickClosedMessage;
-        const defaultKickClosedPt = translations['pt'].defaultKickClosedMessage;
-        const defaultKickClosedEs = translations['es'].defaultKickClosedMessage;
-        const defaultKickClosedVi = translations['vi'].defaultKickClosedMessage;
-        if ([defaultKickClosedEn, defaultKickClosedPt, defaultKickClosedEs, defaultKickClosedVi, ""].includes(kickClosedMessageInput.value)) {
-            kickClosedMessageInput.value = translations[currentLang].defaultKickClosedMessage;
-        }
-        
-        const defaultAwardAnnounceEn = translations['en'].defaultAwardAnnounceMessage;
-        const defaultAwardAnnouncePt = translations['pt'].defaultAwardAnnounceMessage;
-        const defaultAwardAnnounceEs = translations['es'].defaultAwardAnnounceMessage;
-        const defaultAwardAnnounceVi = translations['vi'].defaultAwardAnnounceMessage;
-        if ([defaultAwardAnnounceEn, defaultAwardAnnouncePt, defaultAwardAnnounceEs, defaultAwardAnnounceVi, ""].includes(awardAnnounceMessageInput.value)) {
-            awardAnnounceMessageInput.value = translations[currentLang].defaultAwardAnnounceMessage;
-        }
-        
-        // NOVO: Atualiza o placeholder do input de mensagem do modal, se estiver visível
-        if (modalMessageInput) {
-             modalMessageInput.setAttribute('placeholder', translations[currentLang].modalMessagePlaceholder);
-        }
+        if (modalMessageInput) modalMessageInput.setAttribute('placeholder', translations[currentLang].modalMessagePlaceholder);
     }
 
     // --- INICIALIZAÇÃO E EVENTOS ---
@@ -2150,11 +2057,7 @@ document.addEventListener('DOMContentLoaded', () => {
         languageSelectSettings.value = currentLang;
 
         loadSettings();
-        
-        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
-        // Força o painel a começar fechado
         participationSettingsWrapper.style.display = 'none';
-        // === FIM DA MODIFICAÇÃO ===
         
         connectButton.addEventListener('click', handleConnect);
         startGiveawayButton.addEventListener('click', handleStartGiveaway);
@@ -2171,99 +2074,49 @@ document.addEventListener('DOMContentLoaded', () => {
             headerMenuDropdown.classList.toggle('active');
         });
         
-        // --- LÓGICA DOS "OLHINHOS" ---
-        toggleTwitchBotPanel.addEventListener('click', (e) => {
-            // Verifica se o clique não foi no checkbox (para evitar o toggle duplo)
-            if (!e.target.closest('input[type="checkbox"]')) {
-                const isHidden = twitchBotSettingsWrapper.style.display === 'none';
-                twitchBotSettingsWrapper.style.display = isHidden ? 'flex' : 'none';
-                twitchEyeIconOpen.style.display = isHidden ? 'block' : 'none'; // ABERTO se VISÍVEL
-                twitchEyeIconClosed.style.display = isHidden ? 'none' : 'block'; // FECHADO se INVISÍVEL
-            }
-        });
-
-        toggleKickBotPanel.addEventListener('click', (e) => {
-            if (!e.target.closest('input[type="checkbox"]')) {
-                const isHidden = kickBotSettingsWrapper.style.display === 'none';
-                kickBotSettingsWrapper.style.display = isHidden ? 'flex' : 'none';
-                kickEyeIconOpen.style.display = isHidden ? 'block' : 'none'; // ABERTO se VISÍVEL
-                kickEyeIconClosed.style.display = isHidden ? 'none' : 'block'; // FECHADO se INVISÍVEL
-            }
-        });
-
-        // CORREÇÃO: Lógica para Painel de Premiação (Inverti os ícones)
-        toggleAwardsOverlayPanel.addEventListener('click', (e) => {
+        const toggleHandler = (wrapper, openIcon, closedIcon) => (e) => {
              if (!e.target.closest('input[type="checkbox"]')) {
-                const isHidden = awardsOverlaySettingsWrapper.style.display === 'none';
-                awardsOverlaySettingsWrapper.style.display = isHidden ? 'flex' : 'none';
-                // Lógica Correta: Se estava oculto (isHidden=true), agora está visível (open), e vice-versa.
-                awardsEyeIconOpen.style.display = isHidden ? 'block' : 'none'; // Aberto/Olho com seta
-                awardsEyeIconClosed.style.display = isHidden ? 'none' : 'block'; // Fechado/Olho cortado
+                const isHidden = wrapper.style.display === 'none';
+                wrapper.style.display = isHidden ? 'flex' : 'none';
+                openIcon.style.display = isHidden ? 'block' : 'none'; 
+                closedIcon.style.display = isHidden ? 'none' : 'block'; 
             }
-        });
+        };
+
+        toggleTwitchBotPanel.addEventListener('click', toggleHandler(twitchBotSettingsWrapper, twitchEyeIconOpen, twitchEyeIconClosed));
+        toggleKickBotPanel.addEventListener('click', toggleHandler(kickBotSettingsWrapper, kickEyeIconOpen, kickEyeIconClosed));
+        toggleAwardsOverlayPanel.addEventListener('click', toggleHandler(awardsOverlaySettingsWrapper, awardsEyeIconOpen, awardsEyeIconClosed));
+        toggleMultipliersPanel.addEventListener('click', toggleHandler(multipliersSettingsWrapper, multipliersEyeIconOpen, multipliersEyeIconClosed));
+        toggleClosedMessagePanel.addEventListener('click', toggleHandler(closedMessageSettingsWrapper, eyeIconOpen, eyeIconClosed));
+        toggleParticipationPanel.addEventListener('click', toggleHandler(participationSettingsWrapper, participationEyeIconOpen, participationEyeIconClosed));
         
-        toggleMultipliersPanel.addEventListener('click', (e) => {
-            if (e.target.closest('button.toggle-visibility-button')) { 
-                const isHidden = multipliersSettingsWrapper.style.display === 'none';
-                multipliersSettingsWrapper.style.display = isHidden ? 'flex' : 'none';
-                multipliersEyeIconOpen.style.display = isHidden ? 'block' : 'none';
-                multipliersEyeIconClosed.style.display = isHidden ? 'none' : 'block';
-            }
-        });
-        
-        // CORREÇÃO: Lógica para Mensagens de "Entradas Fechadas" (Inverti os ícones)
-        toggleClosedMessagePanel.addEventListener('click', (e) => {
-            // Precisamos checar pelo botão, pois o H2 também está no header
-            if (e.target.closest('button.toggle-visibility-button')) {
-                const isHidden = closedMessageSettingsWrapper.style.display === 'none';
-                closedMessageSettingsWrapper.style.display = isHidden ? 'flex' : 'none';
-                
-                // Lógica Correta: Se estava oculta (isHidden=true), agora está visível (open), e vice-versa.
-                eyeIconOpen.style.display = isHidden ? 'block' : 'none';
-                eyeIconClosed.style.display = isHidden ? 'none' : 'block';
-            }
-        });
-        
-        // === INÍCIO DA MODIFICAÇÃO (PAINEL DE PARTICIPAÇÃO) ===
-        toggleParticipationPanel.addEventListener('click', (e) => {
-             if (e.target.closest('button.toggle-visibility-button')) {
-                const isHidden = participationSettingsWrapper.style.display === 'none';
-                participationSettingsWrapper.style.display = isHidden ? 'flex' : 'none'; // 'flex' porque é um collapsible-content
-                participationEyeIconOpen.style.display = isHidden ? 'block' : 'none';
-                participationEyeIconClosed.style.display = isHidden ? 'none' : 'block';
-            }
-        });
-        // === FIM DA MODIFICAÇÃO ===
-        
-        // --- LISTENERS DOS CHECKBOXES ---
         enableAwardsOverlayCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) startAwardsMonitor();
+            else stopAwardsMonitor();
+        });
+        
+        // EVENTO PARA O ALERTA DE TOKEN (NAS CONFIGURAÇÕES)
+        twitchUseAnnouncementCheckbox.addEventListener('change', (e) => {
             if (e.target.checked) {
-                startAwardsMonitor();
-            } else {
-                stopAwardsMonitor();
+                alert(translations[currentLang].announcementScopeWarning);
             }
         });
         
-        // --- LISTENER DE CLIQUE (PAINEL PRINCIPAL) ---
-        // CORREÇÃO: Atualiza o currentAwardName ao clicar no painel principal
         awardsListContainer.addEventListener('click', (e) => {
             const card = e.target.closest('.award-card');
             if (card) {
                 const awardName = card.dataset.awardName;
                 if (awardName) {
-                    currentAwardName = awardName; // Define o prêmio global
-                    sendAwardAnnouncement(awardName); // Envia o anúncio de "próximo sorteio"
+                    currentAwardName = awardName;
+                    sendAwardAnnouncement(awardName);
                 }
             }
         });
-
-        // (O listener duplicado para toggleClosedMessagePanel foi removido)
 
         document.addEventListener('click', (e) => {
             if (!headerMenuToggle.contains(e.target) && !headerMenuDropdown.contains(e.target)) {
                 headerMenuDropdown.classList.remove('active');
             }
-            
             if (!tooltipPopup.contains(e.target) && !e.target.closest('.tooltip-trigger')) {
                 hideTooltip();
             }
@@ -2272,7 +2125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         saveSettingsButton.addEventListener('click', () => {
             saveSettings();
             showAlert('alertSettingsSaved');
-            
             if (enableAwardsOverlayCheckbox.checked) {
                 stopAwardsMonitor();
                 startAwardsMonitor();
@@ -2286,7 +2138,6 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                
                 if (tooltipPopup.style.visibility === 'visible' && tooltipPopup.dataset.currentKey === e.currentTarget.dataset.tooltipKey) {
                     tooltipPopup.dataset.currentKey = '';
                     hideTooltip();
@@ -2301,9 +2152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         participantList.addEventListener('click', (e) => {
             const li = e.target.closest('li[data-unique-id]');
             if (!li) return;
-
             if (!isGiveawayRunning && !pauseGiveawayButton.classList.contains('paused')) return; 
-
             const uniqueId = li.dataset.uniqueId;
             toggleParticipantDisqualification(uniqueId);
         });
